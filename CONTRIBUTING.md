@@ -10,7 +10,7 @@
 
 ## Reporting bugs
 
-The golden rule is to **always open *one* issue for *one* bug**. If you notice
+The golden rule is to **always open _one_ issue for _one_ bug**. If you notice
 several bugs and want to report them, make sure to create one new issue for
 each of them.
 
@@ -25,7 +25,7 @@ before reporting your issue**.
 
 ### Provide a simple explanation
 
-To be best understood by our team, please describe your problem in the simplest and most understandable way 
+To be best understood by our team, please describe your problem in the simplest and most understandable way
 so that someone who has never seen your problem can get an idea quickly.
 
 Now that you've read the guidelines, click the link below to create a
@@ -35,7 +35,7 @@ bug report:
 
 ## Proposing features or improvements
 
-If you want to contribute to the development of Bannerlord without developing (probably due to lack of 
+If you want to contribute to the development of Lego builder without developing (probably due to lack of
 skills) you can open what we call "feature proposals".
 
 - **[Proposing feature](https://github.com/ca-joue-ce-soir/legobuilder/issues/new?template=feature_proposal.yml)**

@@ -1,29 +1,20 @@
 name: Bug report
-description: Report a bug in Bannerlord Coop
+description: Report a bug in Lego builder
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        - Read our [CONTRIBUTING.md guide](https://github.com/Bannerlord-Coop-Team/BannerlordCoop/blob/master/CONTRIBUTING.md#reporting-bugs) on reporting bugs.
+        - Read our [CONTRIBUTING.md guide](https://github.com/ca-joue-ce-soir/legobuilder/main/CONTRIBUTING.md#reporting-bugs) on reporting bugs.
         - Write a descriptive issue title above.
-        - Search [open](https://github.com/Bannerlord-Coop-Team/BannerlordCoop/issues?q=is%3Aissue+is%3Aopen+label%3Abug) and [closed](https://github.com/Bannerlord-Coop-Team/BannerlordCoop/issues?q=is%3Aissue+is%3Aclosed+label%3Abug+) issues to ensure it has not already been reported.
+        - Search [open](https://github.com/ca-joue-ce-soir/legobuilder/issues?q=is%3Aissue+is%3Aopen+label%3Abug) and [closed](https://github.com/ca-joue-ce-soir/legobuilder/issues?q=is%3Aissue+is%3Aclosed+label%3Abug+) issues to ensure it has not already been reported.
 
   - type: input
     attributes:
-      label: Bannerlord Coop version
+      label: Lego builder version
       description: >
         Specify the Git commit hash or the branch used.
       placeholder: development(e5b41bc6e2d648c311be39be9b76b604f515ac5f)
-    validations:
-      required: false
-
-  - type: input
-    attributes:
-      label: Bannerlord version
-      description: |
-        Specify the bannerlord version you used.
-      placeholder: e1.5.8
     validations:
       required: false
 

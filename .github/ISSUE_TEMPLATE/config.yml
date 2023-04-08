@@ -3,9 +3,5 @@
 
 contact_links:
   - name: Share and discuss ideas
-    url: https://discord.gg/VXqGyT8
-    about: Discuss any idea related to improving Bannerlord Coop
-
-  - name: Website related
-    url: https://github.com/Bannerlord-Coop-Team/BannerlordCoop-website
-    about: Report bugs related to the website
+    url: https://github.com/ca-joue-ce-soir/legobuilder/discussions
+    about: Discuss any idea related to improving Lego builder

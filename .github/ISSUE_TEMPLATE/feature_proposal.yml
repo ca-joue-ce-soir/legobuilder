@@ -6,12 +6,11 @@ body:
     attributes:
       value: |
         - Write a descriptive proposal title above.
-        - Search [open](https://github.com/Bannerlord-Coop-Team/BannerlordCoop/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement) and [closed](https://github.com/Bannerlord-Coop-Team/BannerlordCoop/issues?q=is%3Aissue+is%3Aclosed+label%3Aenhancement+) to ensure the feature has not already been suggested.
+        - Search [open](https://github.com/ca-joue-ce-soir/legobuilder/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement) and [closed](https://github.com/ca-joue-ce-soir/legobuilder/issues?q=is%3Aissue+is%3Aclosed+label%3Aenhancement+) to ensure the feature has not already been suggested.
 
   - type: textarea
     attributes:
       label: Describe the feature / enhancement
-      placeholder: Example - "Add a loading screen before the full connection to the server."
     validations:
       required: true
 
