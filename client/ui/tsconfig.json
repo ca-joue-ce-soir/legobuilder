@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@lebuilder/configuration/react-library.json",
+  "extends": "@legobuilder/configuration/react-library.json",
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }
