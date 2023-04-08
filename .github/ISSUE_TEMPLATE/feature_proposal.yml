@@ -1,0 +1,23 @@
+name: Feature proposal
+description: Propose a possible solution to solve an engine limitation
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        - Write a descriptive proposal title above.
+        - Search [open](https://github.com/Bannerlord-Coop-Team/BannerlordCoop/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement) and [closed](https://github.com/Bannerlord-Coop-Team/BannerlordCoop/issues?q=is%3Aissue+is%3Aclosed+label%3Aenhancement+) to ensure the feature has not already been suggested.
+
+  - type: textarea
+    attributes:
+      label: Describe the feature / enhancement
+      placeholder: Example - "Add a loading screen before the full connection to the server."
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Describe how your proposal will work, with code, pseudo-code, mock-ups, and/or diagrams
+      placeholder: Explain as best you can how your feature should be implemented or provide as much information as possible."
+    validations:
+      required: true

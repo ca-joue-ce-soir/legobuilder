@@ -1,0 +1,45 @@
+name: Bug report
+description: Report a bug in Bannerlord Coop
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        - Read our [CONTRIBUTING.md guide](https://github.com/Bannerlord-Coop-Team/BannerlordCoop/blob/master/CONTRIBUTING.md#reporting-bugs) on reporting bugs.
+        - Write a descriptive issue title above.
+        - Search [open](https://github.com/Bannerlord-Coop-Team/BannerlordCoop/issues?q=is%3Aissue+is%3Aopen+label%3Abug) and [closed](https://github.com/Bannerlord-Coop-Team/BannerlordCoop/issues?q=is%3Aissue+is%3Aclosed+label%3Abug+) issues to ensure it has not already been reported.
+
+  - type: input
+    attributes:
+      label: Bannerlord Coop version
+      description: >
+        Specify the Git commit hash or the branch used.
+      placeholder: development(e5b41bc6e2d648c311be39be9b76b604f515ac5f)
+    validations:
+      required: false
+
+  - type: input
+    attributes:
+      label: Bannerlord version
+      description: |
+        Specify the bannerlord version you used.
+      placeholder: e1.5.8
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Issue description
+      description: |
+        Describe your issue briefly. What doesn't work, and how do you expect it to work instead?
+        You can include images or videos with drag and drop, and format code blocks or logs with <code>```</code> tags.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: |
+        List of steps or sample code that reproduces the issue. Having reproducible issues is a prerequisite for contributors to be able to solve them.
+    validations:
+      required: false

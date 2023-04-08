@@ -1,0 +1,21 @@
+# NodeJS
+node_modules
+dist
+
+# PHP
+vendor
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
