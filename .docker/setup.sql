@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS legobuilder_ps;
+CREATE DATABASE IF NOT EXISTS legobuilder_wp;

@@ -1,0 +1,70 @@
+version: '3.1'
+
+services:
+    database:
+        container_name: legobuilder_database
+        image: mariadb:10.7.8
+        ports:
+            - 3306:3306
+        environment:
+            - MYSQL_ROOT_PASSWORD=legobuilder
+        volumes:
+            - .docker/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+            - database_data:/var/lib/mysql
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        container_name: legobuilder_phpmyadmin
+        ports:
+            - 81:80
+        depends_on:
+            - database
+        environment:
+            - PMA_HOST=database
+            - PMA_USER=root
+            - PMA_PASSWORD=legobuilder
+
+    prestashop:
+        container_name: legobuilder_prestashop
+        image: prestashop/prestashop:8.0.3
+        depends_on:
+            - database
+        ports:
+            - 80:80
+        environment:
+            - DB_USER=root
+            - DB_PASSWD=legobuilder
+            - DB_NAME=legobuilder_ps
+            - DB_SERVER=database
+            - PS_INSTALL_AUTO=1
+            - PS_DOMAIN=localhost
+            - PS_FOLDER_INSTALL=install-dev
+            - PS_FOLDER_ADMIN=admin-dev
+            - ADMIN_MAIL=legobuilder@legobuilder.com
+            - ADMIN_PASSWD=legobuilder
+        volumes:
+            - prestashop_data:/var/www/html
+            - modules/prestashop:/var/www/html/modules/legobuilder
+
+    wordpress:
+        container_name: legobuilder_wordpress
+        image: wordpress
+        ports:
+            - 8080:80
+        environment:
+            - WORDPRESS_DB_HOST=database
+            - WORDPRESS_DB_USER=root
+            - WORDPRESS_DB_PASSWORD=legobuilder
+            - WORDPRESS_DB_NAME=legobuilder_wp
+        volumes:
+            - wordpress_data:/var/www/html
+            - modules/wordpress:/var/www/html/wp-content/plugins/legobuilder
+            
+networks:
+    app_network:
+        external: true
+
+volumes:
+    database_data:
+    prestashop_data:
+    wordpress_data:
