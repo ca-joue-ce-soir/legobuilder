@@ -1,6 +1,6 @@
 name: Feature proposal
 description: Propose a possible solution to solve an engine limitation
-labels: ["enhancement"]
+labels: ["kind/enhancement"]
 body:
   - type: markdown
     attributes:
