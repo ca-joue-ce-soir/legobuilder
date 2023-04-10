@@ -6,7 +6,7 @@ This repository contains the source code of the framework as well as modules for
 
 ## Installation
 
-Make sure you have Docker installed ([download](https://www.docker.com/)) and NodeJS ([download](https://nodejs.org/en/download).
+Make sure you have Docker installed ([download](https://www.docker.com/)) and NodeJS ([download](https://nodejs.org/en/download)).
 
 To launch the development environment:
 
