@@ -20,4 +20,4 @@ Then access **PrestaShop** at the following address: http://localhost and **Word
 
 GNU General Public License v3.0 or later
 
-See [LICENSE](/blob/main/LICENSE) to see the full text.
+See [LICENSE](/LICENSE) to see the full text.
