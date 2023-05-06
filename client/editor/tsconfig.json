@@ -1,5 +1,5 @@
 {
-  "extends": "@legobuilder/configuration/rez.json",
+  "extends": "@legobuilder/configuration/vite.json",
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

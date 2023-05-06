@@ -1,0 +1,13 @@
+FROM node:lts-bullseye-slim AS node
+FROM php:7.3-fpm-alpine
+
+COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
+COPY --from=node /usr/local/bin/node /usr/local/bin/node
+RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
+
+RUN mkdir -p /usr/src/legobuilder
+
+RUN npm install
+RUN cd /framework && composer install --prefer-source --no-interaction
+
+WORKDIR /usr/src/legobuilder
