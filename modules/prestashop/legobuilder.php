@@ -1,7 +1,5 @@
 <?php
 
-use Legobuilder\Framework\Coucou;
-
 if (!defined('_PS_VERSION_')) {
     exit();
 }

@@ -6,6 +6,12 @@
             "Legobuilder\\Framework\\": "src/"
         }
     },
-    "require-dev": {}
+    "require": {
+        "webonyx/graphql-php": "dev-master"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*",
+        "phpstan/phpstan": "1.11.x-dev",
+        "phpunit/phpunit": "9.6.x-dev"
+    }
 }
-    
