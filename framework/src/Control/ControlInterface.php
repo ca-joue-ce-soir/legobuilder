@@ -16,13 +16,6 @@ interface ControlInterface
     public function getId(): string;
 
     /**
-     * Get translated control name.
-     *
-     * @return string
-     */
-    public function getName(): string;
-
-    /**
      * Get default date from the control.
      * 
      * @return ControlOptions

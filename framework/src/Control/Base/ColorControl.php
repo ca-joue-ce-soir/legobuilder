@@ -9,10 +9,9 @@ use Legobuilder\Framework\Control\Option\ControlOptions;
 
 class ColorControl extends AbstractControl
 {
-    public function __construct(callable $translator)
+    public function getId(): string
     {   
-        $this->id = 'color';
-        $this->name = call_user_func($translator, 'Color');        
+        return 'color';
     }
     
     public function getOptions(): ControlOptions

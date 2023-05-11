@@ -9,10 +9,9 @@ use Legobuilder\Framework\Control\Option\ControlOptions;
 
 class TextControl extends AbstractControl
 {
-    public function __construct(callable $translator)
+    public function getId(): string
     {   
-        $this->id = 'text';
-        $this->name = call_user_func($translator, 'Text');        
+        return 'text';
     }
 
     public function getOptions(): ControlOptions

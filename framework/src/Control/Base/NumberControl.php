@@ -9,12 +9,11 @@ use Legobuilder\Framework\Control\Option\ControlOptions;
 
 class NumberControl extends AbstractControl
 {
-    public function __construct(callable $translator)
+    public function getId(): string
     {   
-        $this->id = 'number';
-        $this->name = call_user_func($translator, 'Number');        
+        return 'number';
     }
-    
+
     public function getOptions(): ControlOptions
     {
         return (parent::getOptions())
