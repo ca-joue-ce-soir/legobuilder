@@ -11,8 +11,8 @@ abstract class AbstractControl implements ControlInterface
     public function getOptions(): ControlOptions
     {
         return (new ControlOptions())
-            ->setOption('label', null, 'is_text')
-            ->setOption('hint', null, 'is_text')
+            ->addOption('label', true, null, 'is_string')
+            ->addOption('hint', false, null, 'is_string')
         ;
     }
 }

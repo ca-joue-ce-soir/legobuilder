@@ -9,15 +9,20 @@ use Legobuilder\Framework\Control\Option\ControlOptions;
 
 class ColorControl extends AbstractControl
 {
+    /**
+     * Get color control ID.
+     *
+     * @return string Control type.
+     */
     public function getId(): string
-    {   
+    {
         return 'color';
     }
-    
+
     public function getOptions(): ControlOptions
     {
         return (parent::getOptions())
-            ->setOption('color', null, 'is_text')
+            ->addOption('color', true, null, 'is_string')
         ;
     }
 }

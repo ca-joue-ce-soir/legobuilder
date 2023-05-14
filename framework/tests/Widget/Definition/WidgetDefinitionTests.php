@@ -11,7 +11,7 @@ use Legobuilder\Framework\Control\ControlCollection;
 use Legobuilder\Framework\Widget\Definition\WidgetDefinition;
 use PHPUnit\Framework\TestCase;
 
-class WidgetDefinitionTest extends TestCase
+class WidgetDefinitionTests extends TestCase
 {
     public function testSimpleWidgetDefinition()
     {

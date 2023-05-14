@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Legobuilder\Framework\Control;
 
 use Legobuilder\Framework\Collection\AbstractCollection;
-use Legobuilder\Framework\Control\Exception\UnexpectedTypeException;
 
 final class ControlCollection extends AbstractCollection implements ControlCollectionInterface
 {
@@ -39,7 +38,7 @@ final class ControlCollection extends AbstractCollection implements ControlColle
 
     /**
      * Retrieve all the keys (IDS) of controls in the collection.
-     * 
+     *
      * @return array Keys
      */
     public function getKeys(): array

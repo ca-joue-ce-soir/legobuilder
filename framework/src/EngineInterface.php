@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework;
 
+use Legobuilder\Framework\Control\ControlCollectionInterface;
 use Legobuilder\Framework\Endpoint\EndpointInterface;
 use Legobuilder\Framework\Zone\ZoneInterface;
 use Legobuilder\Framework\Renderer\RendererInterface;
+use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
+use Legobuilder\Framework\Widget\Definition\WidgetDefinitionCollectionInterface;
 use Legobuilder\Framework\Zone\ZoneCollectionInterface;
 
 interface EngineInterface
@@ -36,15 +39,22 @@ interface EngineInterface
 
     /**
      * Get the Endpoint Manager.
-     * 
+     *
      * @return EndpointInterface
      */
     public function getEndpoint(): EndpointInterface;
 
     /**
-     * Specify the translator functions to be used.
+     * Get Control Registry.
      * 
-     * @param callable Translator
+     * @return ControlCollectionInterface
      */
-    public function setTranslator(callable $translator): self;
+    public function getControlRegistry(): ControlCollectionInterface;
+
+    /**
+     * Get Widget Registry.
+     * 
+     * @return WidgetDefinitionCollectionInterface
+     */
+    public function getWidgetRegistry(): WidgetDefinitionCollectionInterface;
 }

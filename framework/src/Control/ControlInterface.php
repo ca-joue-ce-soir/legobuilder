@@ -17,7 +17,7 @@ interface ControlInterface
 
     /**
      * Get default date from the control.
-     * 
+     *
      * @return ControlOptions
      */
     public function getOptions(): ControlOptions;

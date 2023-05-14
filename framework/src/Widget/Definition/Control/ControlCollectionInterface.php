@@ -30,7 +30,7 @@ interface ControlCollectionInterface extends Iterator, Countable
 
     /**
      * Retrieve all the keys (IDS) of controls in the collection.
-     * 
+     *
      * @return array Keys
      */
     public function getKeys(): array;
