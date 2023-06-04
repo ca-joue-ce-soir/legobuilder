@@ -10,11 +10,11 @@ use Legobuilder\Framework\Control\Option\ControlOptions;
 class TextControl extends AbstractControl
 {
     /**
-     * Get text control ID.
+     * Get text control type.
      *
      * @return string Control type.
      */
-    public function getId(): string
+    public function getType(): string
     {
         return 'text';
     }

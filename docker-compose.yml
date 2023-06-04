@@ -72,9 +72,10 @@ services:
             dockerfile: .docker/Dockerfile.dev
         ports:
             - 5173:5173
+        command: /usr/src/legobuilder/.docker/entrypoint.sh
         volumes:
             - ./:/usr/src/legobuilder
-            
+        
 networks:
     app_network:
         external: true

@@ -9,11 +9,11 @@ use Legobuilder\Framework\Control\Option\ControlOptions;
 interface ControlInterface
 {
     /**
-     * Get unique control id.
+     * Get unique control type.
      *
      * @return string
      */
-    public function getId(): string;
+    public function getType(): string;
 
     /**
      * Get default date from the control.

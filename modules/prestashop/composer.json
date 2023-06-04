@@ -8,7 +8,7 @@
     "autoload": {
         "psr-4": {
             "Legobuilder\\Prestashop\\": "src/",
-            "Legobuilder\\Framework\\": "/usr/src/framework/src"
+            "Legobuilder\\Framework\\": "./../../framework"
         }
     },
     "config": {

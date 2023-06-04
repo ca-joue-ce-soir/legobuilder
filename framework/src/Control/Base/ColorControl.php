@@ -10,11 +10,11 @@ use Legobuilder\Framework\Control\Option\ControlOptions;
 class ColorControl extends AbstractControl
 {
     /**
-     * Get color control ID.
+     * Get color control type.
      *
      * @return string Control type.
      */
-    public function getId(): string
+    public function getType(): string
     {
         return 'color';
     }

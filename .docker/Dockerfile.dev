@@ -1,15 +1,25 @@
-FROM node:lts-bullseye-slim AS node
-FROM php:7.3-fpm-alpine
+FROM php:7.4.33-zts-alpine
 
-COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
-COPY --from=node /usr/local/bin/node /usr/local/bin/node
-RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
+# Install node, composer and unzip packages
+RUN apk update && apk add nodejs npm && apk add unzip
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+# Create and define the node_modules's cache, vendor's cache directory.
+RUN mkdir /usr/src/cache
+RUN mkdir /usr/src/cache/framework
+WORKDIR /usr/src/cache
 
-RUN mkdir -p /usr/src/legobuilder
-
+COPY package.json ./
 RUN npm install
-RUN cd /framework && composer install --prefer-source --no-interaction
 
+WORKDIR /usr/src/cache/framework
+
+COPY framework/composer.json ./
+ENV COMPOSER_ALLOW_SUPERUSER 1
+RUN composer install
+
+# Create and define the application's working directory.
+RUN mkdir /usr/src/legobuilder
 WORKDIR /usr/src/legobuilder
+
+ENTRYPOINT ["tail", "-f", "/dev/null"]

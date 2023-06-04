@@ -1,0 +1,4 @@
+services:
+    Legobuilder\Prestashop\Controller\BuilderController:
+        class: Legobuilder\Prestashop\Controller\BuilderController
+        public: true

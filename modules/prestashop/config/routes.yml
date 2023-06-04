@@ -1,0 +1,3 @@
+_legobuilder_endpoint:
+    resource: './routing/endpoint.yml'
+    prefix: 'legobuilder'
