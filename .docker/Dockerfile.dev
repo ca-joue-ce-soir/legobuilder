@@ -4,22 +4,11 @@ FROM php:7.4.33-zts-alpine
 RUN apk update && apk add nodejs npm && apk add unzip
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Create and define the node_modules's cache, vendor's cache directory.
-RUN mkdir /usr/src/cache
-RUN mkdir /usr/src/cache/framework
-WORKDIR /usr/src/cache
-
-COPY package.json ./
-RUN npm install
-
-WORKDIR /usr/src/cache/framework
-
-COPY framework/composer.json ./
-ENV COMPOSER_ALLOW_SUPERUSER 1
-RUN composer install
-
 # Create and define the application's working directory.
 RUN mkdir /usr/src/legobuilder
 WORKDIR /usr/src/legobuilder
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+CMD npm ci \
+    && composer install -d framework  \
+    && composer install -d modules/prestashop \
+    && npm run dev

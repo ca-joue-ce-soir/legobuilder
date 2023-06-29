@@ -68,11 +68,11 @@ services:
 
     development:
         container_name: legobuilder_development
+        tty: true
         build:
             dockerfile: .docker/Dockerfile.dev
         ports:
             - 5173:5173
-        command: /usr/src/legobuilder/.docker/entrypoint.sh
         volumes:
             - ./:/usr/src/legobuilder
         

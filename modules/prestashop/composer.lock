@@ -11,7 +11,7 @@
             "version": "dev-main",
             "dist": {
                 "type": "path",
-                "url": "/usr/src/framework",
+                "url": "/usr/src/legobuilder/framework",
                 "reference": "f4866d520dcd8f62da7a683e1e4f2f831d4230cc"
             },
             "type": "library",
