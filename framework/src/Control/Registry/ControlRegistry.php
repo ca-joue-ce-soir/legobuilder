@@ -6,7 +6,7 @@ namespace Legobuilder\Framework\Control\Registry;
 
 use Legobuilder\Framework\Control\ControlInterface;
 
-final class ControlRegistry implements ControlRegistryInterface
+class ControlRegistry implements ControlRegistryInterface
 {
     /**
      * @var array

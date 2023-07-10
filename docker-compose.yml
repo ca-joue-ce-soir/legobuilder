@@ -47,6 +47,7 @@ services:
         volumes:
             - prestashop_data:/var/www/html
             - ./modules/prestashop:/var/www/html/modules/legobuilder
+            - ./framework:/usr/src/legobuilder/framework
         profiles: ['prestashop', 'all']
 
     wordpress:
@@ -64,6 +65,7 @@ services:
         volumes:
             - wordpress_data:/var/www/html
             - ./modules/wordpress:/var/www/html/wp-content/plugins/legobuilder
+            - ./framework:/usr/src/legobuilder/framework
         profiles: ['wordpress', 'all']
 
     development:

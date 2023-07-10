@@ -7,20 +7,22 @@ namespace Legobuilder\Framework;
 use Legobuilder\Framework\Control\Base\ColorControl;
 use Legobuilder\Framework\Control\Base\NumberControl;
 use Legobuilder\Framework\Control\Base\TextControl;
+use Legobuilder\Framework\Control\Registry\ControlRegistry;
 use Legobuilder\Framework\Control\Registry\ControlRegistryInterface;
+use Legobuilder\Framework\Database\DatabaseBridgeInterface;
+use Legobuilder\Framework\Database\Migration\MigrationExecutor;
 use Legobuilder\Framework\Endpoint\EndpointInterface;
-use Legobuilder\Framework\Zone\ZoneInterface;
-use Legobuilder\Framework\Renderer\DefaultRenderer;
 use Legobuilder\Framework\Renderer\RendererInterface;
+use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistry;
 use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
-use Legobuilder\Framework\Zone\ZoneCollectionInterface;
+use Legobuilder\Framework\Zone\Registry\ZoneRegistryInterface;
 
 abstract class AbstractEngine implements EngineInterface
 {
     /**
-     * @var ZoneCollectionInterface
+     * @var Migrationexec
      */
-    protected $zones;
+    protected $migrationExecutor;
 
     /**
      * @var RendererInterface
@@ -33,6 +35,11 @@ abstract class AbstractEngine implements EngineInterface
     protected $endpoint;
 
     /**
+     * @var ZoneRegistryInterface
+     */
+    protected $zoneRegistry;
+
+    /**
      * @var ControlRegistryInterface
      */
     protected $controlRegistry;
@@ -43,34 +50,62 @@ abstract class AbstractEngine implements EngineInterface
     protected $widgetDefinitionRegistry;
 
     public function __construct(
-        ControlRegistryInterface $controlRegistry, 
-        WidgetDefinitionRegistryInterface $widgetDefinitionRegistry)
+        RendererInterface $renderer,
+        DatabaseBridgeInterface $databaseBridge)
     {
-        $this->renderer = new DefaultRenderer();
-        $this->controlRegistry = $controlRegistry;
-        $this->widgetDefinitionRegistry = $widgetDefinitionRegistry;
+        $this->renderer = $renderer;
+        $this->controlRegistry = new ControlRegistry();
+        $this->widgetDefinitionRegistry = new WidgetDefinitionRegistry();
+        $this->migrationExecutor = new MigrationExecutor($databaseBridge);
 
-        $controlRegistry
+        $this->controlRegistry
             ->registerControl(new TextControl())
             ->registerControl(new NumberControl())
             ->registerControl(new ColorControl())
         ;
+
+        $this->registerPlatformControls();
+        $this->registerPlatformWidgetsDefinitions();
     }
 
-    public function registerZone(string $zoneIdentifier, ZoneInterface $zone): self
-    {
-        $this->zones->add($zoneIdentifier, get_class($zone));
+    /**
+     * Handles the register of all the Controls for the platform, methods
+     * differ for PrestaShop or Wordpress for example.
+     */
+    public abstract function registerPlatformControls(): void;
 
-        return $this;
-    }
-
-    public function getZones(): ZoneCollectionInterface
-    {
-        return $this->zones;
-    }
+    /**
+     * Handles the register of all the Widgets Definitions for the platform.
+     */
+    public abstract function registerPlatformWidgetsDefinitions(): void;
 
     public function getRenderer(): RendererInterface
     {
         return $this->renderer;
+    }
+
+    public function getZoneRegistry(): ZoneRegistryInterface
+    {
+        return $this->zoneRegistry;
+    }
+
+    public function getWidgetDefinitionRegistry(): WidgetDefinitionRegistryInterface
+    {
+        return $this->widgetDefinitionRegistry;
+    }
+
+    public function getControlRegistry(): ControlRegistryInterface
+    {
+        return $this->controlRegistry;
+    }
+
+    public function getEndpoint(): EndpointInterface
+    {
+        return $this->endpoint;
+    }
+
+    public function getMigrationExecutor(): MigrationExecutor
+    {
+        return $this->migrationExecutor;
     }
 }

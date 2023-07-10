@@ -4,38 +4,28 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework;
 
-use Legobuilder\Framework\Control\ControlCollectionInterface;
+use Legobuilder\Framework\Control\Registry\ControlRegistryInterface;
+use Legobuilder\Framework\Database\Migration\MigrationExecutor;
 use Legobuilder\Framework\Endpoint\EndpointInterface;
-use Legobuilder\Framework\Zone\ZoneInterface;
 use Legobuilder\Framework\Renderer\RendererInterface;
 use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
-use Legobuilder\Framework\Widget\Definition\WidgetDefinitionCollectionInterface;
-use Legobuilder\Framework\Zone\ZoneCollectionInterface;
+use Legobuilder\Framework\Zone\Registry\ZoneRegistryInterface;
 
 interface EngineInterface
 {
+    /**
+     * Get the Migration Executor.
+     * 
+     * @return MigrationExecutor
+     */
+    public function getMigrationExecutor(): MigrationExecutor;
+
     /**
      * Get the renderer.
      *
      * @return RendererInterface
      */
     public function getRenderer(): RendererInterface;
-
-    /**
-     * Get all zones available in the engine.
-     *
-     * @return array
-     */
-    public function getZones(): ZoneCollectionInterface;
-
-    /**
-     * Register a new zone for the engine.
-     *
-     * @param string $zoneIdentifier
-     * @param ZoneInterface $zone
-     * @return self
-     */
-    public function registerZone(string $zoneIdentifier, ZoneInterface $zone): self;
 
     /**
      * Get the Endpoint Manager.
@@ -47,14 +37,21 @@ interface EngineInterface
     /**
      * Get Control Registry.
      * 
-     * @return ControlCollectionInterface
+     * @return ControlRegistryInterface
      */
-    public function getControlRegistry(): ControlCollectionInterface;
+    public function getControlRegistry(): ControlRegistryInterface;
 
     /**
      * Get Widget Registry.
      * 
-     * @return WidgetDefinitionCollectionInterface
+     * @return WidgetDefinitionRegistryInterface
      */
-    public function getWidgetRegistry(): WidgetDefinitionCollectionInterface;
+    public function getWidgetDefinitionRegistry(): WidgetDefinitionRegistryInterface;
+
+    /**
+     * Get Zone Registry.
+     * 
+     * @return ZoneRegistryInterface
+     */
+    public function getZoneRegistry(): ZoneRegistryInterface;
 }
