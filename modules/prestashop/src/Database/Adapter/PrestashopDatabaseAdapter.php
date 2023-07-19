@@ -3,9 +3,9 @@
 namespace Legobuilder\Prestashop\Database;
 
 use Doctrine\DBAL\Connection;
-use Legobuilder\Framework\Database\DatabaseBridgeInterface;
+use Legobuilder\Framework\Database\DatabaseAdapterInterface;
 
-final class PrestashopDatabaseBridge implements DatabaseBridgeInterface
+final class PrestashopDatabaseAdapter implements DatabaseAdapterInterface
 {
     /**
      * @var Connection
@@ -19,6 +19,9 @@ final class PrestashopDatabaseBridge implements DatabaseBridgeInterface
 
     public function execute(string $query, array $parameters = []): bool
     {
+        $query = str_replace('{prefix}', _DB_PREFIX_, $query);
+        $query = str_replace('{engine}', _MYSQL_ENGINE_, $query);
+
         return $this->connection->executeStatement($query, $parameters);
     }
 }

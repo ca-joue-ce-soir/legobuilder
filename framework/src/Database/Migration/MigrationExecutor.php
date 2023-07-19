@@ -30,7 +30,9 @@ class MigrationExecutor
 
     public function runUp()
     {
-
+        foreach ($this->migrations as $migration) {
+            $migration->up();
+        }
     }
 
     public function runDown()

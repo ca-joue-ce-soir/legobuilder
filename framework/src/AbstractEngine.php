@@ -51,9 +51,11 @@ abstract class AbstractEngine implements EngineInterface
 
     public function __construct(
         RendererInterface $renderer,
-        DatabaseBridgeInterface $databaseBridge)
+        DatabaseBridgeInterface $databaseBridge,
+        EndpointInterface $endpoint)
     {
         $this->renderer = $renderer;
+        $this->endpoint = $endpoint;
         $this->controlRegistry = new ControlRegistry();
         $this->widgetDefinitionRegistry = new WidgetDefinitionRegistry();
         $this->migrationExecutor = new MigrationExecutor($databaseBridge);

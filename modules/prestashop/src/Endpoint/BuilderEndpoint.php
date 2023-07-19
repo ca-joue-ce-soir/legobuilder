@@ -2,7 +2,8 @@
 
 namespace Legobuilder\Prestashop\Endpoint;
 
-final class BuilderEndpoint
-{
-    
+use Legobuilder\Framework\Endpoint\AbstractEndpoint;
+
+final class BuilderEndpoint extends AbstractEndpoint
+{ 
 }

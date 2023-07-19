@@ -36,6 +36,7 @@ abstract class AbstractEndpoint implements EndpointInterface
     public function execute(string $query, ?array $variableValues): array
     {
         $result = GraphQL::executeQuery($this->schema, $query, null, null, $variableValues);
+        
         return $result->toArray();
     }
 }

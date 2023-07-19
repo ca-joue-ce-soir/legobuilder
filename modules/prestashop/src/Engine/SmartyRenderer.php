@@ -19,15 +19,27 @@ final class SmartyRenderer implements RendererInterface
         $this->smarty = $smarty;
     }
 
-    public function renderWidget(WidgetInterface $Widget): string
+    /**
+     * Renders a widget.
+     * 
+     * @param WidgetInterface $widget
+     * @return string Rendered widget
+     */
+    public function renderWidget(WidgetInterface $widget): string
     {
-        $templatePath = $Widget->getDefinition()->getTemplatePath();
+        $templatePath = $widget->getDefinition()->getTemplatePath();
 
         return $this->smarty->fetch($templatePath);
     }
 
+    /**
+     * Renders an empty area on the front-office only visible from the editor.
+     * 
+     * @param ZoneInterface $zone
+     * @return string Rendered zone
+     */
     public function renderZone(ZoneInterface $zone): string
     {
-        return $this->smarty->fetch(_PS_MODULE_DIR_ . 'legobuilder/views/templates/front/zone.tpl');
+        return $this->smarty->fetch('module:legobuilder/views/templates/front/zone.tpl');
     }
 }

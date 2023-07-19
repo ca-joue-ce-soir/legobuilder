@@ -42,6 +42,12 @@ final class BuilderController extends FrameworkBundleAdminController
      */
     public function endpointAction(Request $request): JsonResponse
     {
-        return new JsonResponse();
+        $query = $request->query->get('query');
+        $variableValues = $request->query->get('variables');
+
+        $builderEndpoint = $this->engine->getEndpoint();
+        $endpointResult = $builderEndpoint->execute($query, $variableValues);
+
+        return new JsonResponse($endpointResult);
     }
 }
