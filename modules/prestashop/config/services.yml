@@ -1,4 +1,0 @@
-imports:
-    - { resource: services/controller.yml }
-    - { resource: services/engine.yml }
-    - { resource: services/entity.yml }

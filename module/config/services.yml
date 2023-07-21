@@ -1,0 +1,9 @@
+imports:
+    - { resource: services/engine.yml }
+    - { resource: services/entity.yml }
+    - { resource: services/controller.yml }
+
+services:
+    _defaults:
+        public: true
+        autoconfigure: false

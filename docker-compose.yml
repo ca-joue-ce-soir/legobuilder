@@ -46,37 +46,7 @@ services:
             - ADMIN_PASSWD=legobuilder
         volumes:
             - prestashop_data:/var/www/html
-            - ./modules/prestashop:/var/www/html/modules/legobuilder
-            - ./framework:/usr/src/legobuilder/framework
-        profiles: ['prestashop', 'all']
-
-    wordpress:
-        container_name: legobuilder_wordpress
-        build:
-            dockerfile: .docker/Dockerfile.wp
-        restart: unless-stopped
-        ports:
-            - 8080:80
-        environment:
-            - WORDPRESS_DB_HOST=database
-            - WORDPRESS_DB_USER=root
-            - WORDPRESS_DB_PASSWORD=legobuilder
-            - WORDPRESS_DB_NAME=legobuilder_wp
-        volumes:
-            - wordpress_data:/var/www/html
-            - ./modules/wordpress:/var/www/html/wp-content/plugins/legobuilder
-            - ./framework:/usr/src/legobuilder/framework
-        profiles: ['wordpress', 'all']
-
-    development:
-        container_name: legobuilder_development
-        tty: true
-        build:
-            dockerfile: .docker/Dockerfile.dev
-        ports:
-            - 5173:5173
-        volumes:
-            - ./:/usr/src/legobuilder
+            - ./module:/var/www/html/modules/legobuilder
         
 networks:
     app_network:
@@ -85,4 +55,3 @@ networks:
 volumes:
     database_data:
     prestashop_data:
-    wordpress_data:
