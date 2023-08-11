@@ -1,0 +1,13 @@
+legobuilder_editor:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: 'Legobuilder\Controller\BuilderController::editorAction'
+        _legacy_controller: 'BuilderController'
+        _legacy_link: 'BuilderController'
+
+legobuilder_endpoint:
+    path: /endpoint
+    methods: [GET, POST]
+    defaults:
+        _controller: 'Legobuilder\Controller\BuilderController::endpointAction'

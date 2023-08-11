@@ -1,0 +1,6 @@
+services:
+    Legobuilder\Controller\BuilderController:
+        class: Legobuilder\Controller\BuilderController
+        public: true
+        arguments:
+            - '@legobuilder.engine'

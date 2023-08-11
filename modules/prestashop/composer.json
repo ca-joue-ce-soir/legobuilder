@@ -1,0 +1,21 @@
+{
+    "name": "legobuilder/prestashop",
+    "type": "prestashop-module",
+    "autoload": {
+        "psr-4": {
+            "Legobuilder\\": "src/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "prepend-autoloader": false
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*",
+        "phpstan/phpstan": "1.11.x-dev",
+        "phpunit/phpunit": "9.6.x-dev"
+    },
+    "require": {
+        "webonyx/graphql-php": "^15.5"
+    }
+}

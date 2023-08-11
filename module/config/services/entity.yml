@@ -1,7 +1,0 @@
-services:
-    # Repository
-    legobuilder.database.repository.widget_repository:
-        class: 'Legobuilder\Prestashop\Database\Repository\WidgetRepository'
-        factory: [ '@doctrine.orm.default_entity_manager', getRepository ]
-        arguments:
-            - 'Legobuilder\Prestashop\Database\Entity\Widget'

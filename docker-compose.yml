@@ -28,7 +28,6 @@ services:
         container_name: legobuilder_prestashop
         build:
             dockerfile: .docker/Dockerfile.ps
-        restart: unless-stopped
         depends_on:
             - database
         ports:
@@ -46,7 +45,7 @@ services:
             - ADMIN_PASSWD=legobuilder
         volumes:
             - prestashop_data:/var/www/html
-            - ./module:/var/www/html/modules/legobuilder
+            - ./modules/prestashop:/var/www/html/modules/legobuilder
         
 networks:
     app_network:
