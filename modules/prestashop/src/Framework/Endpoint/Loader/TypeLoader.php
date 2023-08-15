@@ -22,7 +22,7 @@ class TypeLoader implements TypeLoaderInterface
             return $this;
         }
 
-        $this->types[$typeClass] = new $typeClass();
+        $this->types[$typeClass] = new $typeClass($this);
 
         return $this;
     }

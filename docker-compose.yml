@@ -43,6 +43,7 @@ services:
             - PS_FOLDER_ADMIN=admin-dev
             - ADMIN_MAIL=legobuilder@legobuilder.com
             - ADMIN_PASSWD=legobuilder
+            - LEGOBUILDER_VITE=5173
         volumes:
             - prestashop_data:/var/www/html
             - ./modules/prestashop:/var/www/html/modules/legobuilder

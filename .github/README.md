@@ -10,27 +10,26 @@ This repository contains the source code of the framework as well as modules for
 - Focus on performance
 - Scalable editor
 - Special attention to the user experience
-- CMS Agnostis, fast implementation
+- Simple implementation for each CMS
 - And a lot more, [see the documentation](#)
 
 ## Installation
 
-Make sure you have Docker installed ([download](https://www.docker.com/)).
+Make sure you have Docker installed ([download](https://www.docker.com/)) and NodeJS ([download](https://nodejs.org/en/download)).
 
 Initialize your project by cloning the repository ``git clone git@github.com:ca-joue-ce-soir/legobuilder.git`` and use Docker 
-to create your development environment:
+to create your PrestaShop environment:
 
 ```bash
-docker-compose --profile [prestashop,wordpress,all] up -d
+docker-compose up -d
 ```
-
-The **legobuilder_development** (*latest Node LTS with PHP 7.3*) container will allow you to bundle your JS files and access PHP Composer :
 
 ```bash
-docker exec -it legobuilder_development /bin/bash
+docker exec -it legobuilder_prestashop /bin/sh  # To enter the prestashop docker
+npm install & npm run dev # To develop the editor on your environment
 ```
 
-You can access **PrestaShop** at the following address: http://localhost and **Wordpress** at the following address: http://localhost:8080/
+You can access **PrestaShop** at the following address: http://localhost.
 
 ## License
 

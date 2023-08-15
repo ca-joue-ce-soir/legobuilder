@@ -1,0 +1,12 @@
+FROM node:alpine
+
+RUN mkdir -p /usr/src/editor
+WORKDIR /usr/src/editor
+
+COPY package.json .
+COPY turbo.json .
+COPY client client
+
+RUN npm install
+
+EXPOSE 5173

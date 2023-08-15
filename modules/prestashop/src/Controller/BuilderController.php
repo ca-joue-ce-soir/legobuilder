@@ -31,8 +31,11 @@ final class BuilderController extends FrameworkBundleAdminController
      */
     public function editorAction(): Response
     {
+        $viteDevelopmentPort = getenv('LEGOBUILDER_VITE');
+
         return $this->render('@Modules/legobuilder/views/templates/admin/editor.html.twig', [
-            'endpoint_link' => $this->generateUrl('legobuilder_endpoint')
+            'endpoint_link' => $this->generateUrl('legobuilder_endpoint'),
+            'vite_port' => $viteDevelopmentPort
         ]);
     }
 

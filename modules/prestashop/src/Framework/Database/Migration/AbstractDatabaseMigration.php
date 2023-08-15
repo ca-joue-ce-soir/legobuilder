@@ -6,7 +6,7 @@ namespace Legobuilder\Framework\Database\Migration;
 
 use Legobuilder\Framework\Database\Bridge\DatabaseBridgeInterface;
 
-abstract class AbstractMigration
+abstract class AbstractDatabaseMigration implements MigrationInterface
 {
     /**
      * @var DatabaseBridgeInterface
@@ -17,20 +17,4 @@ abstract class AbstractMigration
     {
         $this->databaseBridge = $databaseBridge;
     }
-
-    /**
-     * Run the migration.
-     *
-     * @throws DatabaseException
-     * @return bool Success
-     */
-    public abstract function up(): bool;
-
-    /**
-     * Reverse the migration.
-     *
-     * @throws DatabaseException
-     * @return bool Success
-     */
-    public abstract function down(): bool;
 }

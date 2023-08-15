@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Database\Migration;
 
-use Legobuilder\Framework\Database\Migration\AbstractMigration;
-
-class MigrationDefaultWidgetTable extends AbstractMigration
+class MigrationDefaultWidgetTable extends AbstractDatabaseMigration
 {  
     /**
      * Create the widget table.
