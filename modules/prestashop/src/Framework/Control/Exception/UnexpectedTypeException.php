@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Control\Exception;
 
-use InvalidArgumentException;
-
-final class UnexpectedTypeException extends InvalidArgumentException
+final class UnexpectedTypeException extends ControlException
 {
     public function __construct(mixed $value, string $expectedType)
     {

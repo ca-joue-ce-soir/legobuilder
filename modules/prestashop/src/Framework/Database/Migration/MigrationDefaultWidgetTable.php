@@ -16,6 +16,7 @@ class MigrationDefaultWidgetTable extends AbstractDatabaseMigration
         return $this->databaseBridge->execute('
             CREATE TABLE IF NOT EXISTS `{prefix}lb_widget` (
                 `id_widget` INT(10) NOT NULL,
+                `definition_id` VARCHAR(255) NOT NULL,
                 `zone` VARCHAR(255) NOT NULL,
                 `control_settings` TEXT,
                 PRIMARY KEY (`id_widget`)

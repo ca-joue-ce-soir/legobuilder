@@ -11,7 +11,7 @@ This repository contains the source code of the framework as well as modules for
 - Scalable editor
 - Special attention to the user experience
 - Simple implementation for each CMS
-- And a lot more, [see the documentation](#)
+- And a lot more, [see the documentation](https://legobuilder-editor.vercel.app/)
 
 ## Installation
 

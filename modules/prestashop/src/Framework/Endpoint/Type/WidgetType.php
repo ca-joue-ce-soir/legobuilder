@@ -9,6 +9,8 @@ use GraphQL\Type\Definition\Type;
 
 final class WidgetType extends ObjectType
 {
+    private static $type;
+
     public function __construct()
     {
         parent::__construct([
@@ -30,6 +32,6 @@ final class WidgetType extends ObjectType
 
     public static function type() 
     {
-        return new WidgetType();
+        return self::$type ??= new WidgetType();
     }
 }

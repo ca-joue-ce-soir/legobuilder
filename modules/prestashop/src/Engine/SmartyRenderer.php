@@ -27,7 +27,8 @@ final class SmartyRenderer implements RendererInterface
      */
     public function renderWidget(WidgetInterface $widget): string
     {
-        $templatePath = $widget->getDefinition()->getTemplatePath();
+        $widgetDefinition = $widget->getDefinition();
+        $templatePath = $widgetDefinition->getTemplatePath();
 
         return $this->smarty->fetch($templatePath);
     }

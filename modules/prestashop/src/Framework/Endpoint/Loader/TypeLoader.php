@@ -13,7 +13,7 @@ class TypeLoader implements TypeLoaderInterface
 
     public function get(string $typeName)
     {
-        
+        return $this->types[$typeName];
     }
 
     public function register(string $typeClass): self

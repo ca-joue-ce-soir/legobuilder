@@ -10,7 +10,11 @@ use GraphQL\Type\Schema;
 use GraphQL\Type\SchemaConfig;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoader;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
+use Legobuilder\Framework\Endpoint\Resolver\ControlResolver;
+use Legobuilder\Framework\Endpoint\Resolver\WidgetResolver;
+use Legobuilder\Framework\Endpoint\Resolver\ZoneResolver;
 use Legobuilder\Framework\Endpoint\Type\ControlType;
+use Legobuilder\Framework\Endpoint\Type\MutationType;
 use Legobuilder\Framework\Endpoint\Type\QueryType;
 use Legobuilder\Framework\Endpoint\Type\WidgetDefinitionType;
 use Legobuilder\Framework\Endpoint\Type\WidgetType;
@@ -31,6 +35,10 @@ class EngineEndpoint implements EndpointInterface
 
     public function __construct(EngineInterface $engine)
     {
+        $zoneResolver = new ZoneResolver($engine->getZoneRegistry());
+        $widgetResolver = new WidgetResolver($engine->getWidgetDefinitionRegistry());
+        $controlResolver = new ControlResolver($engine->getControlRegistry());
+
         $this->typeLoader = (new TypeLoader())
             ->register(ControlType::class)
             ->register(WidgetType::class)
@@ -40,7 +48,8 @@ class EngineEndpoint implements EndpointInterface
 
         $schemaConfig = SchemaConfig::create()
             ->setTypeLoader([$this->typeLoader, 'get'])
-            ->setQuery(new QueryType($engine))
+            ->setQuery(new QueryType($zoneResolver, $widgetResolver, $controlResolver))
+            ->setMutation(new MutationType())
         ;
 
         $this->schema = new Schema($schemaConfig);
