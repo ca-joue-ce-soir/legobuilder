@@ -6,10 +6,12 @@ use Legobuilder\Framework\Database\Migration\MigrationDefaultWidgetTable;
 use Legobuilder\Framework\Database\Migration\MigrationExecutor;
 use Legobuilder\Database\Adapter\PrestashopDatabaseAdapter;
 use Legobuilder\Framework\Control\Registry\ControlRegistryInterface;
-use Legobuilder\Framework\EngineInterface;
-use Legobuilder\Framework\Widget\WidgetInterface as WidgetWidgetInterface;
 use Legobuilder\Framework\Zone\Registry\ZoneRegistryInterface;
+use Legobuilder\Framework\EngineInterface;
+use Legobuilder\Framework\Widget\Type\Registry\WidgetTypeRegistryInterface;
 use Legobuilder\Framework\Zone\Zone;
+use Legobuilder\Widget\ProductFeaturesWidgetDefinition;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
 if (!defined('_PS_VERSION_')) {
@@ -77,23 +79,32 @@ class Legobuilder extends Module implements WidgetInterface
     public function hookActionLegobuilderRegisterControls(array $params)
     {
         /** @var ControlRegistryInterface $registry */
-        $registry = $params['registry'];
+        $controlRegistry = $params['registry'];
 
-        $registry->registerControl(new ProductControl());
+        $controlRegistry->registerControl(new ProductControl());
     }
-
-    public function hookActionLegobuilderRegisterWidgetsDefinitions()
+    
+    public function hookActionLegobuilderRegisterWidgetsDefinitions(array $params)
     {
+        /** @var WidgetTypeRegistryInterface $widgetTypeRegistry */
+        $widgetTypeRegistry = $params['registry'];
+
+        /** @var TranslatorInterface $translator */
+        $translator = $this->get('translator');
+
+        $widgetTypeRegistry
+            ->registerWidgetType(new ProductFeaturesWidgetDefinition($translator))
+        ;
     }
 
     public function hookActionLegobuilderRegisterZones(array $params)
     {
         /** @var ZoneRegistryInterface $registry */
-        $registry = $params['registry'];
+        $zoneRegistry = $params['registry'];
 
-        $registry
+        $zoneRegistry
             ->registerZone(new Zone('displayHome'))
-            ->registerZone(new Zone('cms'));
+            ->registerZone(new Zone('cms', ['id' => '[0-9]*']));
     }
 
     public function renderWidget($hookName, array $configuration)
@@ -102,25 +113,11 @@ class Legobuilder extends Module implements WidgetInterface
             return;
         }
 
-        $zone = $configuration['zone'];
-
         /** @var EngineInterface $engine */
         $engine = $this->get('legobuilder.engine');
-        $engineZones = $engine->getZoneRegistry()->getRegisteredZones();
+        $zone = $configuration['zone'];
 
-        if (!in_array($zone, $engineZones)) {
-            return;
-        }
-
-        /** @var WidgetWidgetInterface $widget */
-        $widget = $this->getWidgetVariables($hookName, $configuration);
-
-        if (null === $widget) {
-            return 'ERROR!';
-        }
-
-        $engineRenderer = $engine->getRenderer();
-        return $engineRenderer->renderWidget($widget);
+        return $engine->renderZone($zone);
     }
 
     public function getWidgetVariables($hookName, array $configuration)

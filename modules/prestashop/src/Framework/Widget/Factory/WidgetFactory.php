@@ -15,11 +15,16 @@ final class WidgetFactory implements WidgetFactoryInterface
      * @var WidgetDefinitionRegistryInterface
      */
     private $widgetDefinitionRegistry;
-
+    
     /**
      * @var array
      */
     private $widgetCache = [];
+
+    public function __construct(WidgetDefinitionRegistryInterface $widgetDefinitionRegistry)
+    {
+        $this->widgetDefinitionRegistry = $widgetDefinitionRegistry;
+    }    
 
     /**
      * Create Widget with controls data.
@@ -29,7 +34,7 @@ final class WidgetFactory implements WidgetFactoryInterface
      * 
      * @return WidgetInterface
      */
-    public function loadWidget(WidgetModel $widgetModel, bool $useCache = false): WidgetInterface
+    public function getWidget(WidgetModel $widgetModel, bool $useCache = false): WidgetInterface
     {
         $widgetId = $widgetModel->getId();
 
@@ -38,13 +43,15 @@ final class WidgetFactory implements WidgetFactoryInterface
         }
 
         $widgetDefinition = $this->widgetDefinitionRegistry->getWidgetDefinition(
-            $widgetModel->getDefinitionId()
+            $widgetModel->getType()
         );
 
-        $widget = new Widget($widgetId, $widgetModel->getZone(), $widgetDefinition);
-        
-        // @todo Set controls settings.
-        // @todo Get the widget data / dynamic ones.
+        $widget = new Widget(
+            $widgetId,
+            $widgetModel->getZone(),
+            $widgetModel->getControlSettings(),
+            $widgetDefinition
+        );
 
         return $this->widgetCache[$widgetId] = $widget;
     }

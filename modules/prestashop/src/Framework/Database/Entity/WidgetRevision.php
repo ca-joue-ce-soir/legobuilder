@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Legobuilder\Framework\Database\Model;
+namespace Legobuilder\Framework\Database\Entity;
 
-final class WidgetModel
+class WidgetRevision
 {
     /**
      * @var int
@@ -14,7 +14,7 @@ final class WidgetModel
     /**
      * @var string
      */
-    private $definitionId;
+    private $type;
 
     /**
      * @var string
@@ -51,25 +51,25 @@ final class WidgetModel
     }
 
     /**
-     * Get the value of definitionId
+     * Get the value of type
      *
      * @return  string
      */ 
-    public function getDefinitionId()
+    public function getType()
     {
-        return $this->definitionId;
+        return $this->type;
     }
 
     /**
-     * Set the value of definitionId
+     * Set the value of type
      *
-     * @param  string  $definitionId
+     * @param  string  $type
      *
      * @return  self
      */ 
-    public function setDefinitionId(string $definitionId)
+    public function setType(string $type)
     {
-        $this->definitionId = $definitionId;
+        $this->type = $type;
 
         return $this;
     }

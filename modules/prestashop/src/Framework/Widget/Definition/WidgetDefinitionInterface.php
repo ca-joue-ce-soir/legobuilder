@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Widget\Definition;
 
-use Legobuilder\Framework\Widget\Control\ControlCollectionInterface;
+use Legobuilder\Framework\Control\Widget\Definition\Control\WidgetDefinitionControlCollectionInterface;
+use Legobuilder\Framework\Renderer\RendererInterface;
 
 interface WidgetDefinitionInterface
 {
@@ -23,16 +24,17 @@ interface WidgetDefinitionInterface
     public function getName(): string;
 
     /**
-     * Get template path of Widget.
-     *
-     * @return string
-     */
-    public function getTemplatePath(): string;
-
-    /**
      * Get list of controls.
      *
-     * @return ControlCollectionInterface
+     * @return WidgetDefinitionControlCollectionInterface
      */
-    public function getControls();
+    public function getControls(): WidgetDefinitionControlCollectionInterface;
+
+    /**
+     * Render the widget.
+     * 
+     * @param RendererInterface $renderer
+     * @return string Rendered widget
+     */
+    public function render(RendererInterface $renderer): string;
 }

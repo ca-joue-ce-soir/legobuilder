@@ -10,11 +10,11 @@ use Legobuilder\Framework\Widget\Definition\WidgetDefinitionInterface;
 interface WidgetDefinitionRegistryInterface
 {
     /**
-     * Get Widgets registered.
+     * Get Widgets Definitions.
      *
      * @return WidgetDefinitionInterface[]
      */
-    public function getRegisteredWidgetsDefinitions(): array;
+    public function getWidgetsDefinitions(): array;
 
     /**
      * Register a new Widget Definition.
@@ -24,7 +24,7 @@ interface WidgetDefinitionRegistryInterface
     public function registerWidgetDefinition(WidgetDefinitionInterface $widgetDefinition): self;
 
     /**
-     * Get a registered Widget Definition.
+     * Get a Widget Definition.
      * 
      * @return WidgetDefinitionInterface
      */

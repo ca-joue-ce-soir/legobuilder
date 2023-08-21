@@ -4,23 +4,42 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Zone;
 
-class Zone
+use Legobuilder\Framework\Renderer\RendererInterface;
+use Legobuilder\Framework\Widget\Widget;
+use Legobuilder\Framework\Widget\WidgetInterface;
+
+final class Zone implements ZoneInterface
 {
     /**
      * @var string
      */
-    private $identifier;
-
-    public function __construct(string $identifier)
-    {
-        $this->identifier = $identifier;
-    }
+    private $definition;
 
     /**
-     * Get Zone Identifier
+     * @var array
      */
-    public function getIdentifier(): string
+    private $parameters;
+
+    /**
+     * @var WidgetInterface[]
+     */
+    private $widgets;
+
+    public function addWidget(WidgetInterface $widget)
     {
-        return $this->identifier;
+        $widgets[] = $widget;
+
+        return $this;
+    }
+
+    public function render(RendererInterface $renderer): string
+    {
+        $zoneRender = '';
+
+        foreach ($this->widgets as $widget) {
+            $zoneRender .= $widget->render($renderer);
+        }
+
+        return $zoneRender;
     }
 }

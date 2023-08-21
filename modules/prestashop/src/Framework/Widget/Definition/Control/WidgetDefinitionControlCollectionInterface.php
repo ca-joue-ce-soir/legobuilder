@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Legobuilder\Framework\Control;
+namespace Legobuilder\Framework\Control\Widget\Definition\Control;
 
 use Countable;
 use Iterator;
 
-interface ControlCollectionInterface extends Iterator, Countable
+interface WidgetDefinitionControlCollectionInterface extends Iterator, Countable
 {
     /**
      * Add control to collection.

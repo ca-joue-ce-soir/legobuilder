@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Legobuilder\Framework\Control;
+namespace Legobuilder\Framework\Widget\Definition\Control;
 
 use Legobuilder\Framework\Collection\AbstractCollection;
+use Legobuilder\Framework\Control\Widget\Definition\Control\WidgetDefinitionControlCollectionInterface;
 
-final class ControlCollection extends AbstractCollection implements ControlCollectionInterface
+final class WidgetDefinitionControlCollection extends AbstractCollection implements WidgetDefinitionControlCollectionInterface
 {
     /**
      * Add widget defition to collection.

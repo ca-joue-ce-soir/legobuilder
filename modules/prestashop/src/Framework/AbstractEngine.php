@@ -9,13 +9,15 @@ use Legobuilder\Framework\Control\Base\NumberControl;
 use Legobuilder\Framework\Control\Base\TextControl;
 use Legobuilder\Framework\Control\Registry\ControlRegistry;
 use Legobuilder\Framework\Control\Registry\ControlRegistryInterface;
+use Legobuilder\Framework\Database\Bridge\DatabaseBridgeInterface;
+use Legobuilder\Framework\Database\Repository\WidgetModelRepository;
 use Legobuilder\Framework\Endpoint\EndpointInterface;
 use Legobuilder\Framework\Endpoint\EngineEndpoint;
 use Legobuilder\Framework\Renderer\RendererInterface;
 use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistry;
 use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
-use Legobuilder\Framework\Zone\Registry\ZoneRegistry;
-use Legobuilder\Framework\Zone\Registry\ZoneRegistryInterface;
+use Legobuilder\Framework\Zone\Definition\Registry\ZoneDefinitionRegistry;
+use Legobuilder\Framework\Zone\Definition\Registry\ZoneDefinitionRegistryInterface;
 
 abstract class AbstractEngine implements EngineInterface
 {
@@ -30,26 +32,31 @@ abstract class AbstractEngine implements EngineInterface
     protected $endpoint;
 
     /**
-     * @var ZoneRegistryInterface
-     */
-    protected $zoneRegistry;
-
-    /**
      * @var ControlRegistryInterface
      */
     protected $controlRegistry;
+
+    /**
+     * @var ZoneDefinitionRegistryInterface
+     */
+    protected $zoneDefinitionRegistry;
 
     /**
      * @var WidgetDefinitionRegistryInterface
      */
     protected $widgetDefinitionRegistry;
 
-    public function __construct(RendererInterface $renderer)
+    /**
+     * @var  WidgetModelRepository
+     */
+    protected $widgetModelRepository;
+
+    public function __construct(RendererInterface $renderer, DatabaseBridgeInterface $databaseBridge)
     {
         $this->renderer = $renderer;
         $this->controlRegistry = new ControlRegistry();
+        $this->zoneDefinitionRegistry = new ZoneDefinitionRegistry();
         $this->widgetDefinitionRegistry = new WidgetDefinitionRegistry();
-        $this->zoneRegistry = new ZoneRegistry();
 
         $this->controlRegistry
             ->registerControl(new TextControl())
@@ -64,35 +71,9 @@ abstract class AbstractEngine implements EngineInterface
         $this->endpoint = new EngineEndpoint($this);
     }
 
-    /**
-     * Handles the register of all the Controls for the platform, methods
-     * differ for PrestaShop or Wordpress for example.
-     */
-    public abstract function registerPlatformControls(): void;
-
-    /**
-     * Handles the register of all the Widgets Definitions for the platform.
-     */
-    public abstract function registerPlatformWidgetsDefinitions(): void;
-
-    /**
-     * Handles the register of all the Zones for the platform.
-     */
-    public abstract function registerPlatformZones(): void;
-
-    public function getRenderer(): RendererInterface
+    public function getZoneDefinitionRegistry(): ZoneDefinitionRegistryInterface
     {
-        return $this->renderer;
-    }
-
-    public function getZoneRegistry(): ZoneRegistryInterface
-    {
-        return $this->zoneRegistry;
-    }
-
-    public function getWidgetDefinitionRegistry(): WidgetDefinitionRegistryInterface
-    {
-        return $this->widgetDefinitionRegistry;
+        return $this->zoneDefinitionRegistry;
     }
 
     public function getControlRegistry(): ControlRegistryInterface

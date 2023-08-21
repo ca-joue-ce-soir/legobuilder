@@ -17,5 +17,5 @@ interface WidgetFactoryInterface
      * 
      * @return WidgetInterface
      */
-    public function loadWidget(WidgetModel $widgetModel, bool $useCache = false): WidgetInterface;
+    public function getWidget(WidgetModel $widgetModel, bool $useCache = false): WidgetInterface;
 }

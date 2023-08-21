@@ -11,21 +11,21 @@ final class WidgetDefinitionRegistry implements WidgetDefinitionRegistryInterfac
     /**
      * @var array
      */
-    private $registeredDefinitions;
+    private $widgetsDefinitions;
 
     public function __construct()
     {
-        $this->registeredDefinitions = [];
+        $this->widgetsDefinitions = [];
     }
 
     /**
-     * Get Widgets registered.
+     * Get Widgets.
      *
      * @return array
      */
-    public function getRegisteredWidgetsDefinitions(): array
+    public function getWidgetsDefinitions(): array
     {
-        return $this->registeredDefinitions;
+        return $this->widgetsDefinitions;
     }
 
     /**
@@ -35,18 +35,18 @@ final class WidgetDefinitionRegistry implements WidgetDefinitionRegistryInterfac
      */
     public function registerWidgetDefinition(WidgetDefinitionInterface $widgetDefinition): self
     {
-        $this->registeredDefinitions[$widgetDefinition->getId()] = $widgetDefinition;
+        $this->widgetsDefinitions[$widgetDefinition->getId()] = $widgetDefinition;
 
         return $this;
     }
 
     /**
-     * Get a registered Widget Definition.
+     * Get a Widget Definition.
      * 
      * @return WidgetDefinitionInterface
      */
     public function getWidgetDefinition(string $id): WidgetDefinitionInterface
     {
-        return $this->registeredDefinitions[$id];
+        return $this->widgetsDefinitions[$id];
     }
 }

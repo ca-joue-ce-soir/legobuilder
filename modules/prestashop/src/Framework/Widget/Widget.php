@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Widget;
 
-use Legobuilder\Framework\Widget\Data\WidgetDataInterface;
+use Legobuilder\Framework\Endpoint\Type\WidgetDefinitionType;
 use Legobuilder\Framework\Widget\Definition\WidgetDefinitionInterface;
-use Legobuilder\Framework\Zone\Zone;
 
-final class Widget implements WidgetInterface
+final class Widget
 {
     /**
      * @var int
@@ -21,59 +20,20 @@ final class Widget implements WidgetInterface
     private $zone;
 
     /**
-     * @var WidgetDefinitionInterface
+     * @var $array
      */
-    private $definition;
+    private $controlSettings;
 
     /**
-     * @var WidgetDataInterface
+     * @var WidgetDefinitionInterface
      */
-    private $data;
+    private $widgetDefinition;
 
-    public function __construct(int $id, string $zone, WidgetDefinitionInterface $widgetDefinition)
+    public function __construct(int $id, string $zone, array $controlSettings, WidgetDefinitionInterface $widgetDefinition)
     {
         $this->id = $id;
         $this->zone = $zone;
-        $this->definition = $widgetDefinition;
-    }
-
-    /**
-     * Get Widget ID.
-     * 
-     * @return int
-     */
-    public function getIdentifier(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get the zone in which the widget is located.
-     * 
-     * @return Zone
-     */
-    public function getZone(): Zone
-    {
-        return $this->zone;
-    }
-
-    /**
-     * Get Widget definition.
-     *
-     * @return WidgetDefinitionInterface
-     */
-    public function getDefinition(): WidgetDefinitionInterface
-    {
-        return $this->definition;
-    }
-
-    /**
-     * Get Widget data.
-     *
-     * @return WidgetDataInterface
-     */
-    public function getData(): WidgetDataInterface
-    {
-        return $this->data;
+        $this->controlSettings = $controlSettings;
+        $this->widgetDefinition = $widgetDefinition;
     }
 }

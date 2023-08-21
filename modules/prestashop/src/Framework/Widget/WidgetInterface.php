@@ -4,37 +4,24 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Widget;
 
-use Legobuilder\Framework\Widget\Data\WidgetDataInterface;
+use Legobuilder\Framework\Renderer\RendererInterface;
 use Legobuilder\Framework\Widget\Definition\WidgetDefinitionInterface;
-use Legobuilder\Framework\Zone\Zone;
 
 interface WidgetInterface
 {
-    /**
-     * Get Widget ID.
-     * 
-     * @return int
-     */
-    public function getIdentifier(): int;
-
-    /**
-     * Get the zone in which the widget is located.
-     * 
-     * @return Zone
-     */
-    public function getZone(): Zone;
-
     /**
      * Get Widget definition.
      *
      * @return WidgetDefinitionInterface
      */
-    public function getDefinition(): WidgetDefinitionInterface;
+    public function getDefinition();
 
     /**
      * Get Widget data.
      *
-     * @return WidgetDataInterface
+     * @return array
      */
-    public function getData(): WidgetDataInterface;
+    public function getData();
+
+    public function render(RendererInterface $renderer): string;
 }
