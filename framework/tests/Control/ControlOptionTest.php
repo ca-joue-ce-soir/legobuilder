@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Legobuilder\Framework\Tests\Control;
-
 use Legobuilder\Framework\Control\Option\ControlOptions;
 use PHPUnit\Framework\TestCase;
 

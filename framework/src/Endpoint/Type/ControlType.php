@@ -13,7 +13,8 @@ final class ControlType extends ObjectType
 
     public function __construct()
     {
-        parent::__construct([
+        parent::__construct(
+            [
             'name' => 'Control',
             'description' => 'Controls are properties that users can modify to configure a widget.',
             'fields' => [
@@ -26,7 +27,8 @@ final class ControlType extends ObjectType
                     'description' => 'Dynamic control options, represented as JSON'
                 ]
             ]
-        ]);
+            ]
+        );
     }
 
     public static function type() 

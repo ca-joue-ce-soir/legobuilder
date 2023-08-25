@@ -43,14 +43,12 @@ class EngineEndpoint implements EndpointInterface
             ->register(ControlType::class)
             ->register(WidgetType::class)
             ->register(ZoneType::class)
-            ->register(WidgetDefinitionType::class)
-        ;
+            ->register(WidgetDefinitionType::class);
 
         $schemaConfig = SchemaConfig::create()
             ->setTypeLoader([$this->typeLoader, 'get'])
             ->setQuery(new QueryType($zoneResolver, $widgetResolver, $controlResolver))
-            ->setMutation(new MutationType())
-        ;
+            ->setMutation(new MutationType());
 
         $this->schema = new Schema($schemaConfig);
     }
@@ -58,8 +56,8 @@ class EngineEndpoint implements EndpointInterface
     /**
      * Execute GraphQL query based on the endpoint schema.
      *
-     * @param string $query
-     * @param ?array $variableValues
+     * @param  string $query
+     * @param  ?array $variableValues
      * @return array Output result
      */
     public function execute(string $query, ?array $variableValues = null): array

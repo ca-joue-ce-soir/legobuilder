@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Endpoint\Loader;
 
+use GraphQL\Type\Definition\Type;
+
 class TypeLoader implements TypeLoaderInterface
 {
     /**
@@ -18,7 +20,7 @@ class TypeLoader implements TypeLoaderInterface
 
     public function register(string $typeClass): self
     {
-        if (!is_subclass_of($typeClass, GraphQL\Type\Definition\Type::class)) {
+        if (!is_subclass_of($typeClass, Type::class)) {
             return $this;
         }
 

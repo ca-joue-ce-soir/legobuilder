@@ -12,9 +12,9 @@ interface WidgetDefinitionControlCollectionInterface extends Iterator, Countable
     /**
      * Add control to collection.
      *
-     * @param string $id
+     * @param string                  $id
      * @param ControlInterface::class $type
-     * @param array $options
+     * @param array                   $options
      *
      * @return self
      */
@@ -23,7 +23,7 @@ interface WidgetDefinitionControlCollectionInterface extends Iterator, Countable
     /**
      * Remove control from collection.
      *
-     * @param string $id
+     * @param  string $id
      * @return self
      */
     public function remove(string $id): self;

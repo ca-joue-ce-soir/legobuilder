@@ -15,9 +15,10 @@ final class QueryType extends ObjectType
     public function __construct(
         ZoneResolver $zoneResolver, 
         WidgetResolver $widgetResolver, 
-        ControlResolver $controlResolver)
-    {
-        parent::__construct([
+        ControlResolver $controlResolver
+    ) {
+        parent::__construct(
+            [
             'name' => 'Query',
             'fields' => [
                 'zones' => [
@@ -46,6 +47,7 @@ final class QueryType extends ObjectType
                     'resolve' => [$controlResolver, 'getRegisteredControls']
                 ]
             ]
-        ]);
+            ]
+        );
     }
 }

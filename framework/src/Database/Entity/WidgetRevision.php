@@ -29,7 +29,7 @@ class WidgetRevision
     /**
      * Get the value of id
      *
-     * @return  int
+     * @return int
      */ 
     public function getId()
     {
@@ -39,9 +39,9 @@ class WidgetRevision
     /**
      * Set the value of id
      *
-     * @param  int  $id
+     * @param int $id
      *
-     * @return  self
+     * @return self
      */ 
     public function setId(int $id)
     {
@@ -53,7 +53,7 @@ class WidgetRevision
     /**
      * Get the value of type
      *
-     * @return  string
+     * @return string
      */ 
     public function getType()
     {
@@ -63,9 +63,9 @@ class WidgetRevision
     /**
      * Set the value of type
      *
-     * @param  string  $type
+     * @param string $type
      *
-     * @return  self
+     * @return self
      */ 
     public function setType(string $type)
     {
@@ -77,7 +77,7 @@ class WidgetRevision
     /**
      * Get the value of zone
      *
-     * @return  string
+     * @return string
      */ 
     public function getZone()
     {
@@ -87,9 +87,9 @@ class WidgetRevision
     /**
      * Set the value of zone
      *
-     * @param  string  $zone
+     * @param string $zone
      *
-     * @return  self
+     * @return self
      */ 
     public function setZone(string $zone)
     {
@@ -101,7 +101,7 @@ class WidgetRevision
     /**
      * Get the value of controlSettings
      *
-     * @return  array
+     * @return array
      */ 
     public function getControlSettings()
     {
@@ -111,9 +111,9 @@ class WidgetRevision
     /**
      * Set the value of controlSettings
      *
-     * @param  array  $controlSettings
+     * @param array $controlSettings
      *
-     * @return  self
+     * @return self
      */ 
     public function setControlSettings(array $controlSettings)
     {

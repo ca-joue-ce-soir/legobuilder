@@ -10,7 +10,7 @@ interface RendererInterface
      * Render a template with parameters.
      *
      * @param string $templatePath
-     * @param array $parameters
+     * @param array  $parameters
      * 
      * @return string Rendered Widget
      */

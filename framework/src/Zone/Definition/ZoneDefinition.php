@@ -33,7 +33,7 @@ class ZoneDefinition implements ZoneDefinitionInterface
     /**
      * Get the value of parameters
      *
-     * @return  array
+     * @return array
      */ 
     public function getParameters()
     {
@@ -43,9 +43,9 @@ class ZoneDefinition implements ZoneDefinitionInterface
     /**
      * Set the value of parameters
      *
-     * @param  array  $parameters
+     * @param array $parameters
      *
-     * @return  self
+     * @return self
      */ 
     public function setParameters(array $parameters)
     {

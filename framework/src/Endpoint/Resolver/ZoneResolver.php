@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Endpoint\Resolver;
 
-use Legobuilder\Framework\Zone\Registry\ZoneRegistryInterface;
+use Legobuilder\Framework\Zone\Definition\Registry\ZoneDefinitionRegistryInterface;
 
 class ZoneResolver
 {
     /**
-     * @var ZoneRegistryInterface 
+     * @var ZoneDefinitionRegistryInterface 
      */
-    private $zoneRegistry;
+    private $zoneDefinitionRegistry;
 
-    public function __construct(ZoneRegistryInterface $zoneRegistry)
+    public function __construct(ZoneDefinitionRegistryInterface $zoneDefinitionRegistry)
     {
-        $this->zoneRegistry = $zoneRegistry;
+        $this->zoneDefinitionRegistry = $zoneDefinitionRegistry;
     }
 
     /**
@@ -26,7 +26,7 @@ class ZoneResolver
      */
     public function getRegisteredZones(): array
     {
-        $registeredZones = $this->zoneRegistry->getRegisteredZones();
+        $registeredZones = $this->zoneDefinitionRegistry->getZones();
         $registeredZonesFormatted = [];
 
         foreach ($registeredZones as $zone) {

@@ -11,7 +11,8 @@ final class WidgetDefinitionType extends ObjectType
 {
     public function __construct()
     {
-        parent::__construct([
+        parent::__construct(
+            [
             'name' => 'WidgetDefinition',
             'description' => 'Widget Definition is the set of possible widgets to be created by the user.',
             'fields' => [
@@ -28,7 +29,8 @@ final class WidgetDefinitionType extends ObjectType
                     'type' => Type::listOf(ControlType::type())
                 ]
             ]
-        ]);
+            ]
+        );
     }
 
     public static function type() 

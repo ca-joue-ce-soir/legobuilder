@@ -10,8 +10,8 @@ use Iterator;
 abstract class AbstractCollection implements Iterator, Countable
 {
     /**
-    * @var array
-    */
+     * @var array
+     */
     protected $items = [];
 
     /**
@@ -47,8 +47,8 @@ abstract class AbstractCollection implements Iterator, Countable
     }
 
      /**
-     * {@inheritdoc}
-     */
+      * {@inheritdoc}
+      */
     public function rewind(): void
     {
         reset($this->items);

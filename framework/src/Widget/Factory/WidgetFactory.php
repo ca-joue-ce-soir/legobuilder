@@ -30,7 +30,7 @@ final class WidgetFactory implements WidgetFactoryInterface
      * Create Widget with controls data.
      *
      * @param WidgetModel $widgetModel
-     * @param bool $useCache
+     * @param bool        $useCache
      * 
      * @return WidgetInterface
      */

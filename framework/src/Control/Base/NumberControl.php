@@ -23,7 +23,6 @@ class NumberControl extends AbstractControl
     {
         return (parent::getOptions())
             ->addOption('min', true, null, 'is_int')
-            ->addOption('max', true, null, 'is_int')
-        ;
+            ->addOption('max', true, null, 'is_int');
     }
 }

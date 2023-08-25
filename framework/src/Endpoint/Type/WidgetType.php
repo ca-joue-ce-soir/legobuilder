@@ -13,7 +13,8 @@ final class WidgetType extends ObjectType
 
     public function __construct()
     {
-        parent::__construct([
+        parent::__construct(
+            [
             'name' => 'Widget',
             'description' => 'Widget that are saved in specific zone',
             'fields' => [
@@ -27,7 +28,8 @@ final class WidgetType extends ObjectType
                     'type' => Type::nonNull(Type::string())
                 ]
             ]
-        ]);
+            ]
+        );
     }
 
     public static function type() 

@@ -24,7 +24,7 @@ class ZoneFactory implements ZoneFactoryInterface
      * ZoneFactory constructor.
      *
      * @param ZoneDefinitionRegistryInterface $zoneDefinitionRegistry
-     * @param WidgetFactoryInterface $widgetFactory
+     * @param WidgetFactoryInterface          $widgetFactory
      */
     public function __construct(
         ZoneDefinitionRegistryInterface $zoneDefinitionRegistry,
@@ -37,7 +37,7 @@ class ZoneFactory implements ZoneFactoryInterface
     /**
      * Get a zone by its identifier.
      *
-     * @param string $zoneIdentifier
+     * @param  string $zoneIdentifier
      * @return Zone
      */
     public function getZone(string $zoneIdentifier): Zone

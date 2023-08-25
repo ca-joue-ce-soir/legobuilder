@@ -9,7 +9,7 @@ use Legobuilder\Framework\Database\Bridge\DatabaseBridgeInterface;
 class MigrationExecutor
 {
     /**
-     * @var AbstractMigration[]
+     * @var MigrationInterface[]
      */
     protected $migrations;
 
@@ -26,7 +26,7 @@ class MigrationExecutor
 
     public function registerMigration(string $migration): MigrationExecutor
     {
-        if (!is_subclass_of($migration, AbstractMigration::class)) {
+        if (!is_subclass_of($migration, MigrationInterface::class)) {
             return $this;
         }
 

@@ -10,7 +10,7 @@ class HTMLRenderer implements RendererInterface
      * Render a template with parameters.
      *
      * @param string $templatePath
-     * @param array $parameters
+     * @param array  $parameters
      * 
      * @return string Rendered Widget
      */
@@ -18,7 +18,7 @@ class HTMLRenderer implements RendererInterface
     {
         ob_start();
         extract($parameters);
-        require_once $templatePath;
+        include_once $templatePath;
         return ob_get_flush();
     }
 }

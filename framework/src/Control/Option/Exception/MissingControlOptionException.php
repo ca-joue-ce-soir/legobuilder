@@ -10,6 +10,6 @@ final class MissingControlOptionException extends InvalidArgumentException
 {
     public function __construct(string $optionKey)
     {
-        parent::__construct(sprintf('.', $optionKey));
+        parent::__construct(sprintf('Control %s is missing.', $optionKey));
     }
 }

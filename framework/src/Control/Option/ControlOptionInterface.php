@@ -9,7 +9,7 @@ interface ControlOptionInterface
     /**
      * Set the default value for the control option.
      *
-     * @param mixed $default
+     * @param  mixed $default
      * @return self
      */
     public function setDefault($default = null): self;
@@ -17,7 +17,7 @@ interface ControlOptionInterface
     /**
      * Indicate whether the control option are necessary or not.
      *
-     * @param mixed $default
+     * @param  mixed $default
      * @return self
      */
     public function setRequired(bool $required): self;
@@ -26,7 +26,7 @@ interface ControlOptionInterface
      * Specify the validation method (which can be a function name or a closure) that
      * validates whether the given control value is correct.
      *
-     * @param callable $validator
+     * @param  callable $validator
      * @return self
      */
     public function setValidator(callable $validator): self;

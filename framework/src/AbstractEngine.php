@@ -47,7 +47,7 @@ abstract class AbstractEngine implements EngineInterface
     protected $widgetDefinitionRegistry;
 
     /**
-     * @var  WidgetModelRepository
+     * @var WidgetModelRepository
      */
     protected $widgetModelRepository;
 
@@ -61,8 +61,7 @@ abstract class AbstractEngine implements EngineInterface
         $this->controlRegistry
             ->registerControl(new TextControl())
             ->registerControl(new NumberControl())
-            ->registerControl(new ColorControl())
-        ;
+            ->registerControl(new ColorControl());
 
         $this->registerPlatformControls();
         $this->registerPlatformWidgetsDefinitions();

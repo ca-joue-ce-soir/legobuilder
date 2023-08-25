@@ -34,7 +34,7 @@ class ZoneDefinitionRegistry implements ZoneDefinitionRegistryInterface
     /**
      * Get a specific zone by identifier.
      *
-     * @param string $zoneIdentifier
+     * @param  string $zoneIdentifier
      * @return Zone
      */
     public function getZone(string $zoneIdentifier): Zone
@@ -45,7 +45,7 @@ class ZoneDefinitionRegistry implements ZoneDefinitionRegistryInterface
     /**
      * Check if a zone exists.
      *
-     * @param string $zoneIdentifier
+     * @param  string $zoneIdentifier
      * @return bool
      */
     public function hasZone(string $zoneIdentifier): bool
@@ -56,7 +56,7 @@ class ZoneDefinitionRegistry implements ZoneDefinitionRegistryInterface
     /**
      * Register a new zone.
      *
-     * @param Zone $zone
+     * @param  Zone $zone
      * @return ZoneDefinitionRegistry
      */
     public function registerZone(Zone $zone): ZoneDefinitionRegistry

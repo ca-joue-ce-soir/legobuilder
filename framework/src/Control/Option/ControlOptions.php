@@ -20,12 +20,12 @@ class ControlOptions
         $this->options = [];
     }
 
-    public function addOption(string $key, bool $required = false, $default = null, ?callable $validator = null): self {
+    public function addOption(string $key, bool $required = false, $default = null, ?callable $validator = null): self
+    {
         $this->options[$key] = (new ControlOption())
             ->setDefault($default)
             ->setRequired($required)
-            ->setValidator($validator)
-        ;
+            ->setValidator($validator);
 
         return $this;
     }

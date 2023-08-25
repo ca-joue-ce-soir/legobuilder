@@ -1,20 +1,35 @@
 name: (CI) Framework
 on: [push]
 jobs:
-    test:
-        name: Static analysis
+    analysis-test:
+        name: Analysis and Test
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout
                 uses: actions/checkout@v3
+
+            -   name: Cache Composer dependencies
+                uses: actions/cache@v3
+                with:
+                    path: /tmp/composer-cache
+                    key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
 
             -   name: Install dependecies
                 uses: php-actions/composer@v6
                 with:
                     php_version: 7.4
                     working_dir: framework
+                    dev: no
+                    progress: yes
 
             -   name: Static analysis
-                uses: php-actions/phpstan@v3
-                with:
-                    path: framework/src
+                run: composer phpstan:analyse
+                continue-on-error: true
+
+            -   name: PHP Code Sniffer
+                run: composer phpcs:analyse
+                continue-on-error: true
+
+            -   name: Tests
+                run: composer test
+                

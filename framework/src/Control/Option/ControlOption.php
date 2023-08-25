@@ -24,7 +24,7 @@ class ControlOption implements ControlOptionInterface
     /**
      * Set the value of default
      *
-     * @param $default
+     * @param  $default
      * @return self
      */
     public function setDefault($default = null): self
@@ -37,7 +37,7 @@ class ControlOption implements ControlOptionInterface
     /**
      * Set the value of required
      *
-     * @param bool $required
+     * @param  bool $required
      * @return self
      */
     public function setRequired(bool $required): self
@@ -50,7 +50,7 @@ class ControlOption implements ControlOptionInterface
     /**
      * Set the value of validator
      *
-     * @param callable $validator
+     * @param  callable $validator
      * @return self
      */
     public function setValidator(callable $validator = null): self

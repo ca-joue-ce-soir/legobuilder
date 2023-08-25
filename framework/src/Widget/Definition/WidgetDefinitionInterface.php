@@ -33,7 +33,7 @@ interface WidgetDefinitionInterface
     /**
      * Render the widget.
      * 
-     * @param RendererInterface $renderer
+     * @param  RendererInterface $renderer
      * @return string Rendered widget
      */
     public function render(RendererInterface $renderer): string;

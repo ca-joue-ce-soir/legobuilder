@@ -22,7 +22,6 @@ class TextControl extends AbstractControl
     public function getOptions(): ControlOptions
     {
         return (parent::getOptions())
-            ->addOption('default', false, null, 'is_string')
-        ;
+            ->addOption('default', false, null, 'is_string');
     }
 }

@@ -22,7 +22,6 @@ class ColorControl extends AbstractControl
     public function getOptions(): ControlOptions
     {
         return (parent::getOptions())
-            ->addOption('color', true, null, 'is_string')
-        ;
+            ->addOption('color', true, null, 'is_string');
     }
 }
