@@ -1,0 +1,116 @@
+name: Framework
+
+on: 
+    push:
+        paths:
+            - 'framework/**'
+    pull_request:
+        paths:
+            - 'framework/**'
+
+permissions:
+    contents: read
+
+jobs:
+    bootstrap:
+        name: Bootstrap
+        runs-on: ubuntu-latest
+
+        defaults:
+            run:
+                working-directory: framework
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Cache Composer dependencies
+                uses: actions/cache@v3
+                with:
+                    path: /tmp/composer-cache
+                    key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+            -   name: Install dependecies
+                uses: php-actions/composer@v6
+                with:
+                    php_version: 7.4
+                    working_dir: framework
+                    dev: yes
+                    progress: yes
+
+    static-analysis:
+        needs: bootstrap
+        name: Static Analysis
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Cache Composer dependencies
+                uses: actions/cache@v3
+                with:
+                    path: /tmp/composer-cache
+                    key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+            -   name: Install dependecies
+                uses: php-actions/composer@v6
+                with:
+                    php_version: 7.4
+                    working_dir: framework
+                    dev: yes
+                    progress: yes
+
+            -   name: Static analysis
+                run: composer phpstan:analyse
+                continue-on-error: true
+
+    phpcs:
+        needs: bootstrap
+        name: PHP Code Sniffer
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Cache Composer dependencies
+                uses: actions/cache@v3
+                with:
+                    path: /tmp/composer-cache
+                    key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+            -   name: Install dependecies
+                uses: php-actions/composer@v6
+                with:
+                    php_version: 7.4
+                    working_dir: framework
+                    dev: yes
+                    progress: yes
+
+            -   name: PHP Code Sniffer
+                run: composer phpcs:analyse
+                continue-on-error: true
+
+    test:
+        needs: bootstrap
+        name: Test
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Cache Composer dependencies
+                uses: actions/cache@v3
+                with:
+                    path: /tmp/composer-cache
+                    key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+            -   name: Install dependecies
+                uses: php-actions/composer@v6
+                with:
+                    php_version: 7.4
+                    working_dir: framework
+                    dev: yes
+                    progress: yes
+
+            -   name: Tests
+                run: composer test
