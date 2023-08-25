@@ -4,6 +4,11 @@ jobs:
     analysis-test:
         name: Analysis and Test
         runs-on: ubuntu-latest
+
+        defaults:
+            run:
+                working-directory: framework
+
         steps:
             -   name: Checkout
                 uses: actions/checkout@v3
@@ -18,8 +23,7 @@ jobs:
                 uses: php-actions/composer@v6
                 with:
                     php_version: 7.4
-                    working_dir: framework
-                    dev: no
+                    dev: yes
                     progress: yes
 
             -   name: Static analysis
