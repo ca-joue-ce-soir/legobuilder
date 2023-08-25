@@ -23,6 +23,7 @@ jobs:
                 uses: php-actions/composer@v6
                 with:
                     php_version: 7.4
+                    working_dir: framework
                     dev: yes
                     progress: yes
 
