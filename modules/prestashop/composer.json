@@ -10,12 +10,18 @@
         "preferred-install": "dist",
         "prepend-autoloader": false
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/var/www/legobuilder-framework/"
+        }
+    ],
     "require-dev": {
         "squizlabs/php_codesniffer": "*",
         "phpstan/phpstan": "1.11.x-dev",
         "phpunit/phpunit": "9.6.x-dev"
     },
     "require": {
-        "webonyx/graphql-php": "^15.5"
+        "legobuilder/framework": "dev-main"
     }
 }

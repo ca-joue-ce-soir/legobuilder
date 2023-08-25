@@ -1,0 +1,20 @@
+name: (CI) Framework
+on: [push]
+jobs:
+    test:
+        name: Static analysis
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Install dependecies
+                uses: php-actions/composer@v6
+                with:
+                    php_version: 7.4
+                    working_dir: framework
+
+            -   name: Static analysis
+                uses: php-actions/phpstan@v3
+                with:
+                    path: framework/src

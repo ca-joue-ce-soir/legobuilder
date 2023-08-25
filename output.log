@@ -1,0 +1,57 @@
+Running php-build composer
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+Pulling docker.pkg.github.com/ca-joue-ce-soir/legobuilder/php-actions_composer_legobuilder:php-7.4-build2.1.0
+Error response from daemon: manifest unknown
+Dockerfile:
+FROM php:7.4-cli-alpine
+RUN apk add --update --no-cache zip git bash openssh
+#0 building with "default" instance using docker driver
+
+#1 [internal] load .dockerignore
+#1 transferring context: 2B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile-php-build
+#2 transferring dockerfile: 124B 0.0s done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/php:7.4-cli-alpine
+#3 DONE 0.4s
+
+#4 [1/2] FROM docker.io/library/php:7.4-cli-alpine@sha256:0d67d81f60f4a400f1b68e3a41e910c98c5e08f49e515f6855561a0f24d37852
+#4 DONE 0.0s
+
+#5 importing cache manifest from docker.pkg.github.com/ca-joue-ce-soir/legobuilder/php-actions_composer_legobuilder:php-7.4-build2.1.0
+#5 DONE 0.0s
+
+#6 [2/2] RUN apk add --update --no-cache zip git bash openssh
+#6 CACHED
+
+#7 exporting to image
+#7 exporting layers done
+#7 writing image sha256:a1bf8d3b716f00bc3da9614bdc383a1a47597f82629f553e99885245c5e7a52c done
+#7 naming to docker.pkg.github.com/ca-joue-ce-soir/legobuilder/php-actions_composer_legobuilder:php-7.4-build2.1.0 done
+#7 DONE 0.0s
+The push refers to repository [docker.pkg.github.com/ca-joue-ce-soir/legobuilder/php-actions_composer_legobuilder]
+b91d15ecc356: Preparing
+69dccaf3bf17: Preparing
+d4a8cf9787fa: Preparing
+3467d2e41661: Preparing
+4d3b3659e3fd: Preparing
+0ec5e7e1b3c1: Preparing
+9e0d4f458c69: Preparing
+93b39fc78a34: Preparing
+5a30d9e50c50: Preparing
+e5e13b0c77cb: Preparing
+0ec5e7e1b3c1: Waiting
+9e0d4f458c69: Waiting
+93b39fc78a34: Waiting
+5a30d9e50c50: Waiting
+e5e13b0c77cb: Waiting
+denied: permission_denied: The token provided does not match expected scopes.
+WARNING: Failed to push Docker image to "docker.pkg.github.com/ca-joue-ce-soir/legobuilder/php-actions_composer_legobuilder:php-7.4-build2.1.0", this is probably due to missing permissions on GitHub.
+Will continue as this is just an optimization to improve speed of next build.
