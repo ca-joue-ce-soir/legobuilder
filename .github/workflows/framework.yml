@@ -112,5 +112,5 @@ jobs:
                     dev: yes
                     progress: yes
 
-            -   name: Tests
-                run: composer test
+            -   name: Unit Testing
+                run: composer run test
