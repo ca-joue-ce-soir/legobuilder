@@ -15,11 +15,6 @@ jobs:
     bootstrap:
         name: Bootstrap
         runs-on: ubuntu-latest
-
-        defaults:
-            run:
-                working-directory: framework
-
         steps:
             -   name: Checkout
                 uses: actions/checkout@v3
@@ -62,7 +57,7 @@ jobs:
 
             -   name: Static analysis
                 run: composer phpstan:analyse
-                continue-on-error: true
+                working-directory: framework
 
     phpcs:
         needs: bootstrap
@@ -88,7 +83,7 @@ jobs:
 
             -   name: PHP Code Sniffer
                 run: composer phpcs:analyse
-                continue-on-error: true
+                working-directory: framework
 
     test:
         needs: bootstrap
@@ -113,4 +108,5 @@ jobs:
                     progress: yes
 
             -   name: Unit Testing
-                run: composer run test
+                run: composer test
+                working-directory: framework

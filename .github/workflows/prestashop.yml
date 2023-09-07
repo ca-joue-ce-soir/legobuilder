@@ -40,7 +40,9 @@ jobs:
                 run: npm run build
 
             -   name: Copy dist to prestashop
-                run: cp -vr ./editor/editor/dist/ ./modules/prestashop/views/
+                run: | 
+                    ls ${{ github.workspace }}
+                    cp -vr ./editor/client/dist/ ./modules/prestashop/views/
 
             -   name: Create release artifact
                 run: zip release.zip ./modules/prestashop/* -r
