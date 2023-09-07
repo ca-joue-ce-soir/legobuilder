@@ -1,0 +1,28 @@
+{
+    "name": "legobuilder/framework",
+    "autoload": {
+        "psr-4": {
+            "Legobuilder\\Framework\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Thomas DELAPORTE",
+            "email": "thomas.d@arpa3.fr"
+        }
+    ],
+    "require": {
+        "webonyx/graphql-php": "^15.5"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*",
+        "phpstan/phpstan": "1.11.x-dev",
+        "phpunit/phpunit": "9.6.x-dev"
+    },
+    "scripts": {
+        "phpstan:analyse": "phpstan analyse src",
+        "phpcs:analyse": "phpcs src",
+        "phpcs:fix": "phpcbf fix src",
+        "test": "phpunit"
+    }
+}

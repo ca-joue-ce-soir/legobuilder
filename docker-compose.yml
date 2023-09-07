@@ -47,6 +47,7 @@ services:
         volumes:
             - prestashop_data:/var/www/html
             - ./modules/prestashop:/var/www/html/modules/legobuilder
+            - ./framework:/var/www/legobuilder-framework/
         
 networks:
     app_network:
