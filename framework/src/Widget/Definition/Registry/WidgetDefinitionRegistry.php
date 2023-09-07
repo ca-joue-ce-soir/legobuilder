@@ -11,42 +11,44 @@ final class WidgetDefinitionRegistry implements WidgetDefinitionRegistryInterfac
     /**
      * @var array
      */
-    private $widgetsDefinitions;
+    private $widgetDefinitions;
 
     public function __construct()
     {
-        $this->widgetsDefinitions = [];
+        $this->widgetDefinitions = [];
     }
 
     /**
-     * Get Widgets.
+     * Returns all the registered widget definitions.
      *
      * @return array
      */
     public function getWidgetsDefinitions(): array
     {
-        return $this->widgetsDefinitions;
+        return $this->widgetDefinitions;
     }
 
     /**
-     * Register a new widget definition.
-     * 
+     * Registers a new widget definition by adding it to the array of widget definitions.
+     *
      * @param WidgetDefinitionInterface $widgetDefinition
+     * @return self
      */
     public function registerWidgetDefinition(WidgetDefinitionInterface $widgetDefinition): self
     {
-        $this->widgetsDefinitions[$widgetDefinition->getId()] = $widgetDefinition;
+        $this->widgetDefinitions[$widgetDefinition->getId()] = $widgetDefinition;
 
         return $this;
     }
 
     /**
-     * Get a Widget Definition.
-     * 
+     * Retrieves a specific widget definition by its ID.
+     *
+     * @param string $id
      * @return WidgetDefinitionInterface
      */
     public function getWidgetDefinition(string $id): WidgetDefinitionInterface
     {
-        return $this->widgetsDefinitions[$id];
+        return $this->widgetDefinitions[$id];
     }
 }

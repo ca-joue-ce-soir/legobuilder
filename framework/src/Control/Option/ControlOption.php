@@ -22,9 +22,9 @@ class ControlOption implements ControlOptionInterface
     private $validator;
 
     /**
-     * Set the value of default
+     * Set the default value of the control option.
      *
-     * @param  $default
+     * @param mixed $default The default value
      * @return self
      */
     public function setDefault($default = null): self
@@ -35,9 +35,9 @@ class ControlOption implements ControlOptionInterface
     }
 
     /**
-     * Set the value of required
+     * Set the required flag of the control option.
      *
-     * @param  bool $required
+     * @param bool $required The required flag
      * @return self
      */
     public function setRequired(bool $required): self
@@ -48,12 +48,12 @@ class ControlOption implements ControlOptionInterface
     }
 
     /**
-     * Set the value of validator
+     * Set the validator function of the control option.
      *
-     * @param  callable $validator
+     * @param callable $validator The validator function
      * @return self
      */
-    public function setValidator(callable $validator = null): self
+    public function setValidator(callable $validator): self
     {
         $this->validator = $validator;
 
@@ -63,18 +63,28 @@ class ControlOption implements ControlOptionInterface
     /**
      * Check if the control option is required.
      *
-     * @return bool Required
+     * @return bool True if the control option is required, false otherwise
      */
     public function isRequired(): bool
     {
         return $this->required;
     }
 
+    /**
+     * Get the validator function of the control option.
+     *
+     * @return callable The validator function
+     */
     public function getValidator(): callable
     {
         return $this->validator;
     }
 
+    /**
+     * Get the default value of the control option.
+     *
+     * @return mixed The default value
+     */
     public function getDefault()
     {
         return $this->default;

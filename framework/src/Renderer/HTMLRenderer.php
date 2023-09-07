@@ -9,10 +9,10 @@ class HTMLRenderer implements RendererInterface
     /**
      * Render a template with parameters.
      *
-     * @param string $templatePath
-     * @param array  $parameters
+     * @param string $templatePath The path to the template file.
+     * @param array  $parameters   The parameters to be passed to the template.
      * 
-     * @return string Rendered Widget
+     * @return string The rendered widget.
      */
     public function view(string $templatePath, array $parameters = []): string
     {
