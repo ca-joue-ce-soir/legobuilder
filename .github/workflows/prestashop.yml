@@ -9,7 +9,8 @@ permissions:
     contents: read
 
 jobs:
-    release:
+    bootstrap:
+        name: Bootstrap
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout
@@ -37,19 +38,21 @@ jobs:
             -   name: Install Node dependencies 
                 run: npm ci
 
+    release:
+        needs: bootstrap
+        name: Create Release
+        runs-on: ubuntu-latest
+        steps:
             -   name: Build editor
                 run: npm run build
 
-            -   name: Copy dist to prestashop
+            -   name: Copy editor dist
                 run: | 
                     ls ${{ github.workspace }}
                     cp -vr ./editor/client/dist/ ./modules/prestashop/views/
-
-            -   name: Create release artifact
-                run: zip release.zip ./modules/prestashop/* -r
                     
             -   name: Upload artifact
                 uses: actions/upload-artifact@v3
                 with:
                     name: prestashop-${{github.ref_name}}
-                    path: release.zip
+                    path: modules/prestashop/
