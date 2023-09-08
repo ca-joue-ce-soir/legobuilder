@@ -12,9 +12,9 @@ interface WidgetDefinitionControlCollectionInterface extends Iterator, Countable
     /**
      * Add control to collection.
      *
-     * @param string                  $id
-     * @param ControlInterface::class $type
-     * @param array                   $options
+     * @param string        $id
+     * @param class-string  $type
+     * @param array         $options
      *
      * @return self
      */

@@ -13,8 +13,7 @@ class MigrationDefaultWidgetTable extends AbstractDatabaseMigration
      */
     public function up(): bool
     {
-        return $this->databaseBridge->execute(
-            '
+        return $this->databaseBridge->execute('
             CREATE TABLE IF NOT EXISTS `{prefix}lb_widget` (
                 `id_widget` INT(10) NOT NULL,
                 `definition_id` VARCHAR(255) NOT NULL,
@@ -22,8 +21,7 @@ class MigrationDefaultWidgetTable extends AbstractDatabaseMigration
                 `control_settings` TEXT,
                 PRIMARY KEY (`id_widget`)
             ) ENGINE={engine} DEFAULT CHARSET=utf8;
-        '
-        );
+        ');
     }
 
     /**
@@ -33,10 +31,8 @@ class MigrationDefaultWidgetTable extends AbstractDatabaseMigration
      */
     public function down(): bool
     {
-        return $this->databaseBridge->execute(
-            '
+        return $this->databaseBridge->execute('
             DROP TABLE IF EXISTS `{prefix}lb_widget`
-        '
-        );
+        ');
     }
 }

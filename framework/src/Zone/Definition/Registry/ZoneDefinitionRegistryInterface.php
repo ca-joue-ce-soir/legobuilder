@@ -15,7 +15,6 @@ interface ZoneDefinitionRegistryInterface
      *
      * @param  string $zoneIdentifier The identifier of the zone to retrieve.
      * @return ZoneDefinitionInterface The zone definition object that matches the provided zoneIdentifier.
-     * @throws Exception\InvalidArgumentException if the zone cannot be retrieved
      */
     public function getZoneDefinition(string $zoneIdentifier): ZoneDefinitionInterface;
 
@@ -34,7 +33,7 @@ interface ZoneDefinitionRegistryInterface
     /**
      * Register a new zone.
      *
-     * @param Zone $zone
+     * @param ZoneDefinitionInterface $zoneDefinition
      */
     public function registerZoneDefinition(ZoneDefinitionInterface $zoneDefinition): self;
 }

@@ -35,8 +35,8 @@ class EngineEndpoint implements EndpointInterface
 
     public function __construct(EngineInterface $engine)
     {
-        $zoneResolver    = new ZoneResolver($engine->getZoneRegistry());
-        $widgetResolver  = new WidgetResolver($engine->getWidgetDefinitionRegistry());
+        $zoneResolver = new ZoneResolver($engine->getZoneDefinitionRegistry());
+        $widgetResolver = new WidgetResolver($engine->getWidgetDefinitionRegistry());
         $controlResolver = new ControlResolver($engine->getControlRegistry());
 
         $this->typeLoader = (new TypeLoader())

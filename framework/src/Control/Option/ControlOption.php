@@ -85,7 +85,7 @@ class ControlOption implements ControlOptionInterface
      *
      * @return mixed The default value
      */
-    public function getDefault()
+    public function getDefault(): mixed
     {
         return $this->default;
     }

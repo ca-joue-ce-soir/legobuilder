@@ -35,7 +35,7 @@ class ZoneDefinition implements ZoneDefinitionInterface
      *
      * @return array
      */
-    public function getParameters()
+    public function getParameters(): array
     {
         return $this->parameters;
     }

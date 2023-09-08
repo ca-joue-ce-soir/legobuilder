@@ -32,6 +32,11 @@ abstract class AbstractEngine implements EngineInterface
     protected $renderer;
 
     /**
+     * @var DatabaseBridgeInterface
+     */
+    protected $databaseBridge;
+
+    /**
      * @var ContainerBuilder Container used for the engine.
      */
     protected $container;
@@ -45,6 +50,7 @@ abstract class AbstractEngine implements EngineInterface
     public function __construct(RendererInterface $renderer, DatabaseBridgeInterface $databaseBridge)
     {
         $this->renderer = $renderer;
+        $this->databaseBridge = $databaseBridge;
 
         $container = new ContainerBuilder();
 

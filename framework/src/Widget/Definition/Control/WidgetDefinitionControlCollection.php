@@ -13,7 +13,7 @@ final class WidgetDefinitionControlCollection extends AbstractCollection impleme
      * Add widget defition to collection.
      *
      * @param  string           $id
-     * @param  ControlInterface $type
+     * @param  class-string $type
      * @param  ?array           $options
      * @return self
      */

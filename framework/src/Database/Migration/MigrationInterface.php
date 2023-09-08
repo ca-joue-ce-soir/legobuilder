@@ -9,7 +9,6 @@ interface MigrationInterface
     /**
      * Run the migration.
      *
-     * @throws DatabaseException
      * @return bool Success
      */
     public function up(): bool;
@@ -17,7 +16,6 @@ interface MigrationInterface
     /**
      * Reverse the migration.
      *
-     * @throws DatabaseException
      * @return bool Success
      */
     public function down(): bool;

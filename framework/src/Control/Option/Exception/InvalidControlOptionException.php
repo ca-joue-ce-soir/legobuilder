@@ -10,6 +10,6 @@ final class InvalidControlOptionException extends InvalidArgumentException
 {
     public function __construct(string $optionKey, mixed $value)
     {
-        parent::__construct(sprintf('Control option %s is invalid.', $optionKey));
+        parent::__construct(sprintf('Control option %s with value (%s) is invalid.', $optionKey, $value));
     }
 }

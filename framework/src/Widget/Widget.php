@@ -15,12 +15,12 @@ final class Widget implements WidgetInterface
     private $id;
 
     /**
-     * @var Zone
+     * @var ZoneInterface
      */
     private $zone;
 
     /**
-     * @var $array
+     * @var array
      */
     private $controlSettings;
 

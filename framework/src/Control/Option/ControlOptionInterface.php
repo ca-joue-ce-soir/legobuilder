@@ -17,7 +17,7 @@ interface ControlOptionInterface
     /**
      * Indicate whether the control option are necessary or not.
      *
-     * @param  mixed $default
+     * @param  bool $required
      * @return self
      */
     public function setRequired(bool $required): self;
@@ -38,7 +38,17 @@ interface ControlOptionInterface
      */
     public function isRequired(): bool;
 
+    /**
+     * Get the validator of Control.
+     * 
+     * @return callable
+     */
     public function getValidator(): callable;
 
-    public function getDefault();
+    /**
+     * Get the default value of Control.
+     * 
+     * @return mixed
+     */
+    public function getDefault(): mixed;
 }

@@ -56,7 +56,7 @@ class ZoneDefinitionRegistry implements ZoneDefinitionRegistryInterface
     /**
      * Register a new zone.
      *
-     * @param  Zone $zone
+     * @param  ZoneDefinitionInterface $zoneDefinition
      * @return ZoneDefinitionRegistry
      */
     public function registerZoneDefinition(ZoneDefinitionInterface $zoneDefinition): ZoneDefinitionRegistry

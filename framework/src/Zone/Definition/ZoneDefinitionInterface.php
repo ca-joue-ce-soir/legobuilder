@@ -9,12 +9,12 @@ interface ZoneDefinitionInterface
     /**
      * Get Zone Identifier
      */
-    public function getIdentifier();
+    public function getIdentifier(): string;
 
     /**
      * Get the value of parameters
      *
      * @return array
      */
-    public function getParameters();
+    public function getParameters(): array;
 }

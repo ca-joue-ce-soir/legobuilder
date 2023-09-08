@@ -92,4 +92,9 @@ class WidgetModel
 
         return $this;
     }
+
+    public function getControlSettings(): array
+    {
+        return [];
+    }
 }
