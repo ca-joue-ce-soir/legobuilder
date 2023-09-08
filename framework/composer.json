@@ -22,7 +22,7 @@
     "scripts": {
         "phpstan:analyse": "phpstan analyse src",
         "phpcs:analyse": "phpcs src",
-        "phpcs:fix": "phpcbf fix src",
+        "phpcs:fix": "phpcbf src",
         "test": "phpunit"
     }
 }

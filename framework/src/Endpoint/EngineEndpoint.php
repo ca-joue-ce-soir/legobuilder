@@ -35,8 +35,8 @@ class EngineEndpoint implements EndpointInterface
 
     public function __construct(EngineInterface $engine)
     {
-        $zoneResolver = new ZoneResolver($engine->getZoneRegistry());
-        $widgetResolver = new WidgetResolver($engine->getWidgetDefinitionRegistry());
+        $zoneResolver    = new ZoneResolver($engine->getZoneRegistry());
+        $widgetResolver  = new WidgetResolver($engine->getWidgetDefinitionRegistry());
         $controlResolver = new ControlResolver($engine->getControlRegistry());
 
         $this->typeLoader = (new TypeLoader())
@@ -63,7 +63,7 @@ class EngineEndpoint implements EndpointInterface
     public function execute(string $query, ?array $variableValues = null): array
     {
         $result = GraphQL::executeQuery($this->schema, $query, null, null, $variableValues);
-        
+
         return $result->toArray(DebugFlag::INCLUDE_TRACE | DebugFlag::INCLUDE_DEBUG_MESSAGE);
     }
 }

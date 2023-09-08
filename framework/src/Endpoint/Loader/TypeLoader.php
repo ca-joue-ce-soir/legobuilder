@@ -16,7 +16,7 @@ class TypeLoader implements TypeLoaderInterface
     /**
      * Returns the type with the given name from the registered types.
      *
-     * @param string $typeName The name of the type to get.
+     * @param  string $typeName The name of the type to get.
      * @return mixed The type with the given name.
      */
     public function get(string $typeName)
@@ -27,7 +27,7 @@ class TypeLoader implements TypeLoaderInterface
     /**
      * Registers a new type by creating an instance of the provided type class and storing it in the types array.
      *
-     * @param string $typeClass The class name of the type to register.
+     * @param  string $typeClass The class name of the type to register.
      * @return self The TypeLoader instance.
      */
     public function register(string $typeClass): self

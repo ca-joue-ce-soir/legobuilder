@@ -15,6 +15,6 @@ interface ZoneDefinitionInterface
      * Get the value of parameters
      *
      * @return array
-     */ 
+     */
     public function getParameters();
 }

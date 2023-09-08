@@ -10,14 +10,15 @@ use Legobuilder\Framework\Control\Base\TextControl;
 use Legobuilder\Framework\Control\Registry\ControlRegistry;
 use Legobuilder\Framework\Control\Registry\ControlRegistryInterface;
 use Legobuilder\Framework\Database\Bridge\DatabaseBridgeInterface;
-use Legobuilder\Framework\Database\Repository\WidgetModelRepository;
 use Legobuilder\Framework\Endpoint\EndpointInterface;
 use Legobuilder\Framework\Endpoint\EngineEndpoint;
 use Legobuilder\Framework\Renderer\RendererInterface;
 use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistry;
-use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
+use Legobuilder\Framework\Widget\Factory\WidgetFactory;
 use Legobuilder\Framework\Zone\Definition\Registry\ZoneDefinitionRegistry;
 use Legobuilder\Framework\Zone\Definition\Registry\ZoneDefinitionRegistryInterface;
+use Legobuilder\Framework\Zone\Factory\ZoneFactory;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * The `AbstractEngine` class is an abstract class that implements the `EngineInterface`.
@@ -31,53 +32,44 @@ abstract class AbstractEngine implements EngineInterface
     protected $renderer;
 
     /**
-     * @var EndpointInterface The endpoint of the engine.
+     * @var ContainerBuilder Container used for the engine.
      */
-    protected $endpoint;
+    protected $container;
 
     /**
-     * @var ControlRegistryInterface The control registry used by the engine.
-     */
-    protected $controlRegistry;
-
-    /**
-     * @var ZoneDefinitionRegistryInterface The zone definition registry used by the engine.
-     */
-    protected $zoneDefinitionRegistry;
-
-    /**
-     * @var WidgetDefinitionRegistryInterface The widget definition registry used by the engine.
-     */
-    protected $widgetDefinitionRegistry;
-
-    /**
-     * @var WidgetModelRepository The widget model repository used by the engine.
-     */
-    protected $widgetModelRepository;
-
-    /**
-     * Initializes the engine with a renderer and a database bridge.
-     * It also initializes the control registry, zone definition registry, and widget definition registry.
-     * It registers the default controls and platform-specific controls, widget definitions, and zones.
-     * Finally, it creates the engine endpoint.
+     * Initializes the engine.
      *
-     * @param RendererInterface $renderer The renderer to be used by the engine.
+     * @param RendererInterface       $renderer       The renderer to be used by the engine.
      * @param DatabaseBridgeInterface $databaseBridge The database bridge to be used by the engine.
      */
     public function __construct(RendererInterface $renderer, DatabaseBridgeInterface $databaseBridge)
     {
         $this->renderer = $renderer;
-        $this->controlRegistry = new ControlRegistry();
-        $this->zoneDefinitionRegistry = new ZoneDefinitionRegistry();
-        $this->widgetDefinitionRegistry = new WidgetDefinitionRegistry();
+
+        $container = new ContainerBuilder();
+
+        $container->register('registry.control_registry', ControlRegistry::class);
+        $container->register('registry.zone_definition_registry', ZoneDefinitionRegistry::class);
+        $container->register('registry.widget_definition_registry', WidgetDefinitionRegistry::class);
+
+        $container->register('factory.widget_factory', WidgetFactory::class);
+        $container->register('factory.zone_factory', ZoneFactory::class);
+
+        $container->register('endpoint', EngineEndpoint::class)
+            ->setArguments([ $this ]);
+
+        $this->configureContainer($container);
+
+        $this->container = $container;
+        $this->container->compile();
 
         $this->registerDefaultControls();
         $this->registerPlatformControls();
         $this->registerPlatformWidgetsDefinitions();
         $this->registerPlatformZones();
-
-        $this->endpoint = new EngineEndpoint($this);
     }
+
+    abstract public function configureContainer(ContainerBuilder $container);
 
     /**
      * Returns the zone definition registry.
@@ -86,7 +78,7 @@ abstract class AbstractEngine implements EngineInterface
      */
     public function getZoneDefinitionRegistry(): ZoneDefinitionRegistryInterface
     {
-        return $this->zoneDefinitionRegistry;
+        return $this->container->get('registry.zone_definition_registry');
     }
 
     /**
@@ -96,7 +88,7 @@ abstract class AbstractEngine implements EngineInterface
      */
     public function getControlRegistry(): ControlRegistryInterface
     {
-        return $this->controlRegistry;
+        return $this->$this->container->get('registry.control_registry');
     }
 
     /**
@@ -106,7 +98,7 @@ abstract class AbstractEngine implements EngineInterface
      */
     public function getEndpoint(): EndpointInterface
     {
-        return $this->endpoint;
+        return $this->$this->container->get('endpoint');
     }
 
     /**
@@ -114,7 +106,7 @@ abstract class AbstractEngine implements EngineInterface
      */
     protected function registerDefaultControls(): void
     {
-        $this->controlRegistry
+        $this->getControlRegistry()
             ->registerControl(new TextControl())
             ->registerControl(new NumberControl())
             ->registerControl(new ColorControl());

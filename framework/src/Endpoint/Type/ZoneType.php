@@ -13,19 +13,19 @@ final class ZoneType extends ObjectType
     {
         parent::__construct(
             [
-            'name' => 'Zone',
-            'description' => 'Zones are sections that can be modified from the editor and can be dynamic (linked to properties such as a page identifier).',
-            'fields' => [
-                'id' => [
-                    'type' => Type::nonNull(Type::string()),
-                    'description' => 'Unique identifier of the zone'
+                'name'        => 'Zone',
+                'description' => 'Zones are sections that can be modified from the editor and can be dynamic (linked to properties such as a page identifier).',
+                'fields'      => [
+                    'id' => [
+                        'type'        => Type::nonNull(Type::string()),
+                        'description' => 'Unique identifier of the zone',
+                    ],
                 ],
-            ]
             ]
         );
     }
 
-    public static function type() 
+    public static function type()
     {
         return new ZoneType();
     }

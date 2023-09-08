@@ -15,7 +15,7 @@ final class WidgetFactory implements WidgetFactoryInterface
      * @var WidgetDefinitionRegistryInterface
      */
     private $widgetDefinitionRegistry;
-    
+
     /**
      * @var array
      */
@@ -24,14 +24,14 @@ final class WidgetFactory implements WidgetFactoryInterface
     public function __construct(WidgetDefinitionRegistryInterface $widgetDefinitionRegistry)
     {
         $this->widgetDefinitionRegistry = $widgetDefinitionRegistry;
-    }    
+    }
 
     /**
      * Create Widget with controls data.
      *
      * @param WidgetModel $widgetModel
      * @param bool        $useCache
-     * 
+     *
      * @return WidgetInterface
      */
     public function getWidget(WidgetModel $widgetModel, bool $useCache = false): WidgetInterface

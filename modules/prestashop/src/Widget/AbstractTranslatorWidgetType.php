@@ -2,10 +2,10 @@
 
 namespace Legobuilder\Widget;
 
-use Legobuilder\Framework\Widget\Definition\WidgetDefinitionInterface;
+use Legobuilder\Framework\Widget\Definition\AbstractWidgetDefinition;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-abstract class AbstractTranslatorWidgetDefinition implements WidgetDefinitionInterface
+abstract class AbstractTranslatorWidgetDefinition extends AbstractWidgetDefinition
 {
     /**
      * @var TranslatorInterface

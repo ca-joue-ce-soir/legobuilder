@@ -21,7 +21,7 @@ class MigrationExecutor
     public function __construct(DatabaseBridgeInterface $databaseBridge)
     {
         $this->databaseBridge = $databaseBridge;
-        $this->migrations = [];
+        $this->migrations     = [];
     }
 
     public function registerMigration(string $migration): MigrationExecutor
@@ -59,6 +59,5 @@ class MigrationExecutor
 
     public function rollback()
     {
-
     }
 }

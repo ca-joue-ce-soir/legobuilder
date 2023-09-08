@@ -6,11 +6,9 @@ namespace Legobuilder\Framework\Database\Migration;
 
 class MigrationDefaultWidgetTable extends AbstractDatabaseMigration
 {
-
-  
     /**
      * Create the widget table.
-     * 
+     *
      * {@inheritdoc}
      */
     public function up(): bool
@@ -30,7 +28,7 @@ class MigrationDefaultWidgetTable extends AbstractDatabaseMigration
 
     /**
      * Delete the widget table.
-     * 
+     *
      * {@inheritdoc}
      */
     public function down(): bool

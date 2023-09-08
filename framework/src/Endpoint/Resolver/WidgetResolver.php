@@ -9,7 +9,7 @@ use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistryInt
 class WidgetResolver
 {
     /**
-     * @var WidgetDefinitionRegistryInterface 
+     * @var WidgetDefinitionRegistryInterface
      */
     private $widgetDefinitionRegistry;
 
@@ -19,9 +19,9 @@ class WidgetResolver
     }
 
     /**
-     * Retrieve all the widgets saved for the current engine and 
+     * Retrieve all the widgets saved for the current engine and
      * formats them correctly to match the GraphQL type.
-     * 
+     *
      * @return array Registered widegets
      */
     public function getRegisteredWidgets(): array
@@ -33,27 +33,27 @@ class WidgetResolver
     {
         return [
             'definition' => 'de',
-            'data' => 'da',
-            'zone' => 'z'
+            'data'       => 'da',
+            'zone'       => 'z',
         ];
     }
 
     /**
-     * Retrieve all the widgetsdefinitions registered in the current engine and 
+     * Retrieve all the widgetsdefinitions registered in the current engine and
      * formats them correctly to match the GraphQL type.
-     * 
+     *
      * @return array Registered widgets definitions
      */
     public function getRegisteredWidgetsDefinitions(): array
     {
-        $registeredWidgetsDefinitions = $this->widgetDefinitionRegistry->getRegisteredWidgetsDefinitions();
+        $registeredWidgetsDefinitions          = $this->widgetDefinitionRegistry->getRegisteredWidgetsDefinitions();
         $registeredWidgetsDefinitionsFormatted = [];
 
         foreach ($registeredWidgetsDefinitions as $widgetDefinition) {
             $registeredWidgetsDefinitionsFormatted[] = [
-                'id' => $widgetDefinition->getId(),
-                'name' => $widgetDefinition->getName(),
-                'template_path' => $widgetDefinition->getTemplatePath()
+                'id'            => $widgetDefinition->getId(),
+                'name'          => $widgetDefinition->getName(),
+                'template_path' => $widgetDefinition->getTemplatePath(),
             ];
         }
 

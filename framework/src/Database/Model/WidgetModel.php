@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Legobuilder\Framework\Database\Entity;
+namespace Legobuilder\Framework\Database\Model;
 
-class WidgetRevision
+class WidgetModel
 {
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 
@@ -22,15 +22,10 @@ class WidgetRevision
     private $zone;
 
     /**
-     * @var array
-     */
-    private $controlSettings;
-
-    /**
      * Get the value of id
      *
      * @return int
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -42,7 +37,7 @@ class WidgetRevision
      * @param int $id
      *
      * @return self
-     */ 
+     */
     public function setId(int $id)
     {
         $this->id = $id;
@@ -54,7 +49,7 @@ class WidgetRevision
      * Get the value of type
      *
      * @return string
-     */ 
+     */
     public function getType()
     {
         return $this->type;
@@ -66,7 +61,7 @@ class WidgetRevision
      * @param string $type
      *
      * @return self
-     */ 
+     */
     public function setType(string $type)
     {
         $this->type = $type;
@@ -78,7 +73,7 @@ class WidgetRevision
      * Get the value of zone
      *
      * @return string
-     */ 
+     */
     public function getZone()
     {
         return $this->zone;
@@ -90,34 +85,10 @@ class WidgetRevision
      * @param string $zone
      *
      * @return self
-     */ 
+     */
     public function setZone(string $zone)
     {
         $this->zone = $zone;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of controlSettings
-     *
-     * @return array
-     */ 
-    public function getControlSettings()
-    {
-        return $this->controlSettings;
-    }
-
-    /**
-     * Set the value of controlSettings
-     *
-     * @param array $controlSettings
-     *
-     * @return self
-     */ 
-    public function setControlSettings(array $controlSettings)
-    {
-        $this->controlSettings = $controlSettings;
 
         return $this;
     }

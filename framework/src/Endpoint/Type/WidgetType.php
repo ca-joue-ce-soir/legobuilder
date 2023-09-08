@@ -15,24 +15,24 @@ final class WidgetType extends ObjectType
     {
         parent::__construct(
             [
-            'name' => 'Widget',
-            'description' => 'Widget that are saved in specific zone',
-            'fields' => [
-                'definition' => [
-                    'type' => Type::nonNull(WidgetDefinitionType::type())
+                'name'        => 'Widget',
+                'description' => 'Widget that are saved in specific zone',
+                'fields'      => [
+                    'definition' => [
+                        'type' => Type::nonNull(WidgetDefinitionType::type()),
+                    ],
+                    'data'       => [
+                        'type' => Type::string(),
+                    ],
+                    'zone'       => [
+                        'type' => Type::nonNull(Type::string()),
+                    ],
                 ],
-                'data' => [
-                    'type' => Type::string()
-                ],
-                'zone' =>  [
-                    'type' => Type::nonNull(Type::string())
-                ]
-            ]
             ]
         );
     }
 
-    public static function type() 
+    public static function type()
     {
         return self::$type ??= new WidgetType();
     }

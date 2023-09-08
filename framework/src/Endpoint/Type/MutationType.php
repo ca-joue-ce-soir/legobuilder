@@ -12,10 +12,8 @@ final class MutationType extends ObjectType
     {
         parent::__construct(
             [
-            'name' => 'Mutation',
-            'fields' => [
-                
-            ]
+                'name'   => 'Mutation',
+                'fields' => [],
             ]
         );
     }

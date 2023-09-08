@@ -18,14 +18,14 @@ interface WidgetDefinitionRegistryInterface
 
     /**
      * Register a new Widget Definition.
-     * 
+     *
      * @param WidgetDefinitionInterface $widgetDefinition
      */
     public function registerWidgetDefinition(WidgetDefinitionInterface $widgetDefinition): self;
 
     /**
      * Get a Widget Definition.
-     * 
+     *
      * @return WidgetDefinitionInterface
      */
     public function getWidgetDefinition(string $id): WidgetDefinitionInterface;

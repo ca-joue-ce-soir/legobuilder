@@ -36,21 +36,21 @@ interface EngineInterface
 
     /**
      * Get Control Registry.
-     * 
+     *
      * @return ControlRegistryInterface
      */
     public function getControlRegistry(): ControlRegistryInterface;
 
     /**
      * Get Zone Definition Registry.
-     * 
+     *
      * @return ZoneDefinitionRegistryInterface
      */
     public function getZoneDefinitionRegistry(): ZoneDefinitionRegistryInterface;
 
     /**
      * Get Widget Definition Registry.
-     * 
+     *
      * @return WidgetDefinitionRegistryInterface
      */
     public function getWidgetDefinitionRegistry(): WidgetDefinitionRegistryInterface;

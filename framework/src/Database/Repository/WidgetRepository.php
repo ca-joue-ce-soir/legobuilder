@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Legobuilder\Framework\Database\Repository;
 
 use Legobuilder\Framework\Database\Bridge\DatabaseBridgeInterface;
-use Legobuilder\Framework\Database\Entity\WidgetRevision;
+use Legobuilder\Framework\Database\Model\WidgetModel;
 
-class WidgetRevisionRepository
+class WidgetRepository implements WidgetRepositoryInterface
 {
     /**
      * @var DatabaseBridgeInterface
@@ -19,17 +19,13 @@ class WidgetRevisionRepository
         $this->databaseBridge = $databaseBridge;
     }
 
-    /**
-     * 
-     * 
-     * @return WidgetRevision[] 
-     */
-    public function getWidgetsInZone(string $zoneIdentifier): array
+    public function find(int $widgetId): WidgetModel
     {
-        $widgetsModels = [];
+        return new WidgetModel();
+    }
 
-        
-
-        return $widgetsModels;
+    public function findByZone(string $zone): array
+    {
+        return [];
     }
 }

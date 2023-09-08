@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Zone;
 
-use Legobuilder\Framework\Renderer\RendererInterface;
+use Legobuilder\Framework\Widget\WidgetInterface;
 
 interface ZoneInterface
 {
-    public function render(RendererInterface $renderer): string;
+    /**
+     * @return WidgetInterface[]
+     */
+    public function getWidgets(): array;
 }

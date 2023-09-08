@@ -11,7 +11,7 @@ interface RendererInterface
      *
      * @param string $templatePath
      * @param array  $parameters
-     * 
+     *
      * @return string Rendered Widget
      */
     public function view(string $templatePath, array $parameters = []): string;

@@ -19,7 +19,10 @@ final class WidgetDefinitionControlCollection extends AbstractCollection impleme
      */
     public function add($id, $type, ?array $options = []): self
     {
-        $this->items[$id] = [$type, $options];
+        $this->items[$id] = [
+            $type,
+            $options,
+        ];
 
         return $this;
     }

@@ -12,7 +12,7 @@ class ControlOption implements ControlOptionInterface
     private $default;
 
     /**
-     * @var bool
+     * @var boolean
      */
     private $required;
 
@@ -24,7 +24,7 @@ class ControlOption implements ControlOptionInterface
     /**
      * Set the default value of the control option.
      *
-     * @param mixed $default The default value
+     * @param  mixed $default The default value
      * @return self
      */
     public function setDefault($default = null): self
@@ -37,7 +37,7 @@ class ControlOption implements ControlOptionInterface
     /**
      * Set the required flag of the control option.
      *
-     * @param bool $required The required flag
+     * @param  bool $required The required flag
      * @return self
      */
     public function setRequired(bool $required): self
@@ -50,7 +50,7 @@ class ControlOption implements ControlOptionInterface
     /**
      * Set the validator function of the control option.
      *
-     * @param callable $validator The validator function
+     * @param  callable $validator The validator function
      * @return self
      */
     public function setValidator(callable $validator): self

@@ -14,7 +14,7 @@ interface WidgetFactoryInterface
      *
      * @param WidgetModel $widgetModel
      * @param bool        $useCache
-     * 
+     *
      * @return WidgetInterface
      */
     public function getWidget(WidgetModel $widgetModel, bool $useCache = false): WidgetInterface;

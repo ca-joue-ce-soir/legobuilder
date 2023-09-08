@@ -15,23 +15,23 @@ final class ControlType extends ObjectType
     {
         parent::__construct(
             [
-            'name' => 'Control',
-            'description' => 'Controls are properties that users can modify to configure a widget.',
-            'fields' => [
-                'type' => [
-                    'type' => Type::nonNull(Type::string()),
-                    'description' => 'Type of the control (color, text, number, etc...)'
+                'name'        => 'Control',
+                'description' => 'Controls are properties that users can modify to configure a widget.',
+                'fields'      => [
+                    'type'    => [
+                        'type'        => Type::nonNull(Type::string()),
+                        'description' => 'Type of the control (color, text, number, etc...)',
+                    ],
+                    'options' => [
+                        'type'        => Type::string(),
+                        'description' => 'Dynamic control options, represented as JSON',
+                    ],
                 ],
-                'options' => [
-                    'type' => Type::string(),
-                    'description' => 'Dynamic control options, represented as JSON'
-                ]
-            ]
             ]
         );
     }
 
-    public static function type() 
+    public static function type()
     {
         return self::$type ??= new ControlType();
     }

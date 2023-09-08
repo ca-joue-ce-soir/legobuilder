@@ -31,7 +31,7 @@ final class WidgetDefinitionRegistry implements WidgetDefinitionRegistryInterfac
     /**
      * Registers a new widget definition by adding it to the array of widget definitions.
      *
-     * @param WidgetDefinitionInterface $widgetDefinition
+     * @param  WidgetDefinitionInterface $widgetDefinition
      * @return self
      */
     public function registerWidgetDefinition(WidgetDefinitionInterface $widgetDefinition): self
@@ -44,7 +44,7 @@ final class WidgetDefinitionRegistry implements WidgetDefinitionRegistryInterfac
     /**
      * Retrieves a specific widget definition by its ID.
      *
-     * @param string $id
+     * @param  string $id
      * @return WidgetDefinitionInterface
      */
     public function getWidgetDefinition(string $id): WidgetDefinitionInterface

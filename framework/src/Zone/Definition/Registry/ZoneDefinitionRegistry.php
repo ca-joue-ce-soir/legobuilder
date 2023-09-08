@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Zone\Definition\Registry;
 
+use Legobuilder\Framework\Zone\Definition\ZoneDefinitionInterface;
 use Legobuilder\Framework\Zone\Zone;
 
 class ZoneDefinitionRegistry implements ZoneDefinitionRegistryInterface
 {
     /**
-     * @var Zone[]
+     * @var ZoneDefinitionInterface[]
      */
-    private $registeredZones;
+    private $zoneDefinitions;
 
     /**
      * ZoneDefinitionRegistry constructor.
      */
     public function __construct()
     {
-        $this->registeredZones = [];
+        $this->zoneDefinitions = [];
     }
 
     /**
@@ -26,20 +27,19 @@ class ZoneDefinitionRegistry implements ZoneDefinitionRegistryInterface
      *
      * @return array
      */
-    public function getZones(): array
+    public function getZoneDefinitions(): array
     {
-        return $this->registeredZones;
+        return $this->zoneDefinitions;
     }
 
     /**
      * Get a specific zone by identifier.
      *
-     * @param  string $zoneIdentifier
-     * @return Zone
+     * {@inheritdoc}
      */
-    public function getZone(string $zoneIdentifier): Zone
+    public function getZoneDefinition(string $zoneIdentifier): ZoneDefinitionInterface
     {
-        return $this->registeredZones[$zoneIdentifier];
+        return $this->zoneDefinitions[$zoneIdentifier];
     }
 
     /**
@@ -48,9 +48,9 @@ class ZoneDefinitionRegistry implements ZoneDefinitionRegistryInterface
      * @param  string $zoneIdentifier
      * @return bool
      */
-    public function hasZone(string $zoneIdentifier): bool
+    public function hasZoneDefinition(string $zoneIdentifier): bool
     {
-        return isset($this->registeredZones[$zoneIdentifier]);
+        return isset($this->zoneDefinitions[$zoneIdentifier]);
     }
 
     /**
@@ -59,9 +59,9 @@ class ZoneDefinitionRegistry implements ZoneDefinitionRegistryInterface
      * @param  Zone $zone
      * @return ZoneDefinitionRegistry
      */
-    public function registerZone(Zone $zone): ZoneDefinitionRegistry
+    public function registerZoneDefinition(ZoneDefinitionInterface $zoneDefinition): ZoneDefinitionRegistry
     {
-        $this->registeredZones[$zone->getIdentifier()] = $zone;
+        $this->zoneDefinitions[$zoneDefinition->getIdentifier()] = $zoneDefinition;
 
         return $this;
     }

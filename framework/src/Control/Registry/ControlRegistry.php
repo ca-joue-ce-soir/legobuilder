@@ -30,7 +30,7 @@ class ControlRegistry implements ControlRegistryInterface
 
     /**
      * Register a new control.
-     * 
+     *
      * @param ControlInterface $control
      */
     public function registerControl(ControlInterface $control): self

@@ -6,5 +6,4 @@ namespace Legobuilder\Framework\Zone\Factory;
 
 interface ZoneFactoryInterface
 {
-
 }

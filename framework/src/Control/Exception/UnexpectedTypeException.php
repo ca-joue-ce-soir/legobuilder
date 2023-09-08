@@ -10,8 +10,8 @@ final class UnexpectedTypeException extends ControlException
     {
         parent::__construct(
             sprintf(
-                'Expected argument of type "%s", "%s" given', 
-                $expectedType, 
+                'Expected argument of type "%s", "%s" given',
+                $expectedType,
                 get_debug_type($value)
             )
         );

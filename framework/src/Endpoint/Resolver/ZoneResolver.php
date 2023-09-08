@@ -9,7 +9,7 @@ use Legobuilder\Framework\Zone\Definition\Registry\ZoneDefinitionRegistryInterfa
 class ZoneResolver
 {
     /**
-     * @var ZoneDefinitionRegistryInterface 
+     * @var ZoneDefinitionRegistryInterface
      */
     private $zoneDefinitionRegistry;
 
@@ -19,19 +19,19 @@ class ZoneResolver
     }
 
     /**
-     * Retrieve all the zones saved for the current engine and 
+     * Retrieve all the zones saved for the current engine and
      * formats them correctly to match the GraphQL type.
-     * 
+     *
      * @return array Registered zones
      */
     public function getRegisteredZones(): array
     {
-        $registeredZones = $this->zoneDefinitionRegistry->getZones();
+        $registeredZones          = $this->zoneDefinitionRegistry->getZones();
         $registeredZonesFormatted = [];
 
         foreach ($registeredZones as $zone) {
-            $registeredZonesFormatted[] =  [
-                'id' => $zone->getIdentifier()
+            $registeredZonesFormatted[] = [
+                'id' => $zone->getIdentifier(),
             ];
         }
 
