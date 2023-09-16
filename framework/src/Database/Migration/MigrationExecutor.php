@@ -13,24 +13,18 @@ class MigrationExecutor
      */
     protected $migrations;
 
-    /**
-     * @var DatabaseBridgeInterface
-     */
-    protected $databaseBridge;
-
-    public function __construct(DatabaseBridgeInterface $databaseBridge)
+    public function __construct()
     {
-        $this->databaseBridge = $databaseBridge;
-        $this->migrations     = [];
+        $this->migrations = [];
     }
 
-    public function registerMigration(string $migration): MigrationExecutor
+    public function registerMigration(object $migration): MigrationExecutor
     {
         if (!is_subclass_of($migration, MigrationInterface::class)) {
             return $this;
         }
 
-        $this->migrations[] = new $migration($this->databaseBridge);
+        $this->migrations[] = $migration;
 
         return $this;
     }

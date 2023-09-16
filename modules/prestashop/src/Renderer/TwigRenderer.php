@@ -1,6 +1,6 @@
 <?php
 
-namespace Legobuilder\Engine;
+namespace Legobuilder\Renderer;
 
 use Legobuilder\Framework\Renderer\RendererInterface;
 

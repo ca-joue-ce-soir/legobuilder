@@ -3,6 +3,7 @@ FROM prestashop/prestashop:8.0.3
 RUN php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');" && php /tmp/composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer && rm -rf /tmp/composer-setup.php
 RUN apt-get update && apt-get install -y nodejs npm unzip
 
+COPY framework /var/www/legobuilder-framework
 COPY modules/prestashop /var/www/html/modules/legobuilder
 
 CMD bash -c "composer install --working-dir /var/www/html/modules/legobuilder && /tmp/docker_run.sh"

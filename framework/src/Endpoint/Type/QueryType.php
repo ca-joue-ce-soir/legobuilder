@@ -6,57 +6,28 @@ namespace Legobuilder\Framework\Endpoint\Type;
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
+use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
 use Legobuilder\Framework\Endpoint\Resolver\ControlResolver;
 use Legobuilder\Framework\Endpoint\Resolver\WidgetResolver;
+use Legobuilder\Framework\Endpoint\Resolver\ZoneDefinitionResolver;
 use Legobuilder\Framework\Endpoint\Resolver\ZoneResolver;
 
 final class QueryType extends ObjectType
 {
     public function __construct(
-        ZoneResolver $zoneResolver,
+        TypeLoaderInterface $typeLoader,
+        ZoneDefinitionResolver $zoneDefinitionResolver,
         WidgetResolver $widgetResolver,
         ControlResolver $controlResolver
     ) {
         parent::__construct(
             [
-                'name'   => 'Query',
+                'name' => 'Query',
                 'fields' => [
-                    'zones'    => [
-                        'type'        => Type::listOf(ZoneType::type()),
-                        'description' => 'Get all the zones registered in the engine',
-                        'resolve'     => [
-                            $zoneResolver,
-                            'getRegisteredZones',
-                        ],
-                    ],
-                    'widgets'  => [
-                        'type'        => Type::listOf(WidgetType::type()),
-                        'description' => '',
-                        'resolve'     => [
-                            $widgetResolver,
-                            'getRegisteredWidgets',
-                        ],
-                    ],
-                    'widget'   => [
-                        'type'        => WidgetType::type(),
-                        'description' => 'Retrieves information about a specific widget',
-                        'args'        => [
-                            'id' => [
-                                'type' => Type::id(),
-                            ],
-                        ],
-                        'resolve'     => [
-                            $widgetResolver,
-                            'getRegisteredWidget',
-                        ],
-                    ],
-                    'controls' => [
-                        'type'        => Type::listOf(ControlType::type()),
-                        'description' => '',
-                        'resolve'     => [
-                            $controlResolver,
-                            'getRegisteredControls',
-                        ],
+                    'zoneDefinitions' => [
+                        'type' => Type::listOf($typeLoader->get(ZoneDefinitionType::class)),
+                        'description' => 'Get all the zones definition in the engine.',
+                        'resolve' => [$zoneDefinitionResolver, 'getZoneDefinitions'],
                     ],
                 ],
             ]

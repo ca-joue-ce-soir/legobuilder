@@ -29,8 +29,12 @@ final class Widget implements WidgetInterface
      */
     private $widgetDefinition;
 
-    public function __construct(int $id, string $zone, array $controlSettings, WidgetDefinitionInterface $widgetDefinition)
-    {
+    public function __construct(
+        int $id,
+        string $zone,
+        array $controlSettings,
+        WidgetDefinitionInterface $widgetDefinition
+    ) {
         $this->id   = $id;
         $this->zone = $zone;
         $this->controlSettings  = $controlSettings;
@@ -44,8 +48,8 @@ final class Widget implements WidgetInterface
      */
     public function getId(): int
     {
-    return $this->id;
-}
+        return $this->id;
+    }
 
     /**
      * Get Widget zone.

@@ -8,6 +8,7 @@ use Legobuilder\Framework\Database\Repository\WidgetRepositoryInterface;
 use Legobuilder\Framework\Widget\Factory\WidgetFactoryInterface;
 use Legobuilder\Framework\Zone\Definition\Registry\ZoneDefinitionRegistryInterface;
 use Legobuilder\Framework\Zone\Zone;
+use Legobuilder\Framework\Zone\ZoneInterface;
 
 class ZoneFactory implements ZoneFactoryInterface
 {
@@ -39,7 +40,7 @@ class ZoneFactory implements ZoneFactoryInterface
     ) {
         $this->zoneDefinitionRegistry = $zoneDefinitionRegistry;
         $this->widgetRepository       = $widgetRepository;
-        $this->widgetFactory          = $widgetFactory;
+        $this->widgetFactory = $widgetFactory;
     }
 
     /**
@@ -48,7 +49,7 @@ class ZoneFactory implements ZoneFactoryInterface
      * @param  string $zoneIdentifier
      * @return Zone
      */
-    public function getZone(string $zoneIdentifier): Zone
+    public function getZone(string $zoneIdentifier): ZoneInterface
     {
         $zoneDefinition   = $this->zoneDefinitionRegistry->getZoneDefinition($zoneIdentifier);
         $widgetsRevisions = $this->widgetRepository->findByZone($zoneIdentifier);

@@ -18,7 +18,8 @@
         "squizlabs/php_codesniffer": "*",
         "phpstan/phpstan": "1.11.x-dev",
         "phpunit/phpunit": "9.6.x-dev",
-        "symfony/dependency-injection": "^5.4"
+        "symfony/dependency-injection": "^5.4",
+        "doctrine/dbal": "^3.6"
     },
     "scripts": {
         "phpstan:analyse": "phpstan analyse src",

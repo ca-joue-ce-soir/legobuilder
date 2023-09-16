@@ -11,9 +11,9 @@ interface ControlRegistryInterface
     /**
      * Get Controls registered.
      *
-     * @return array
+     * @return ControlInterface[]
      */
-    public function getRegisteredControls(): array;
+    public function getControls(): array;
 
     /**
      * Register a new control.

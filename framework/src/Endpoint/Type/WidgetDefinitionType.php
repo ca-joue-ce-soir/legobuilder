@@ -13,16 +13,13 @@ final class WidgetDefinitionType extends ObjectType
     {
         parent::__construct(
             [
-                'name'        => 'WidgetDefinition',
+                'name' => 'WidgetDefinition',
                 'description' => 'Widget Definition is the set of possible widgets to be created by the user.',
-                'fields'      => [
-                    'id'       => [
+                'fields' => [
+                    'id' => [
                         'type' => Type::nonNull(Type::string()),
                     ],
-                    'name'     => [
-                        'type' => Type::nonNull(Type::string()),
-                    ],
-                    'template' => [
+                    'name' => [
                         'type' => Type::nonNull(Type::string()),
                     ],
                     'controls' => [
@@ -31,10 +28,5 @@ final class WidgetDefinitionType extends ObjectType
                 ],
             ]
         );
-    }
-
-    public static function type()
-    {
-        return new WidgetDefinitionType();
     }
 }

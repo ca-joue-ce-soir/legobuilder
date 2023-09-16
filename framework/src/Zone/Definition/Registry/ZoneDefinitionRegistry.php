@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Legobuilder\Framework\Zone\Definition\Registry;
 
 use Legobuilder\Framework\Zone\Definition\ZoneDefinitionInterface;
-use Legobuilder\Framework\Zone\Zone;
 
 class ZoneDefinitionRegistry implements ZoneDefinitionRegistryInterface
 {

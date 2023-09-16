@@ -13,6 +13,13 @@ class TypeLoader implements TypeLoaderInterface
      */
     private $types;
 
+    public function __construct(iterable $types)
+    {
+        foreach ($types as $type) {
+            $this->types[get_class($type)] = $type;
+        }
+    }
+
     /**
      * Returns the type with the given name from the registered types.
      *

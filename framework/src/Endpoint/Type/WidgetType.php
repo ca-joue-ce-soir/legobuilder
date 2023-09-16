@@ -6,34 +6,25 @@ namespace Legobuilder\Framework\Endpoint\Type;
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
+use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
 
 final class WidgetType extends ObjectType
 {
-    private static $type;
-
-    public function __construct()
+    public function __construct(TypeLoaderInterface $typeLoader)
     {
         parent::__construct(
             [
-                'name'        => 'Widget',
+                'name' => 'Widget',
                 'description' => 'Widget that are saved in specific zone',
-                'fields'      => [
+                'fields' => [
                     'definition' => [
-                        'type' => Type::nonNull(WidgetDefinitionType::type()),
+                        'type' => Type::nonNull($typeLoader->get(WidgetDefinitionType::class)),
                     ],
-                    'data'       => [
-                        'type' => Type::string(),
-                    ],
-                    'zone'       => [
+                    'zone' => [
                         'type' => Type::nonNull(Type::string()),
                     ],
                 ],
             ]
         );
-    }
-
-    public static function type()
-    {
-        return self::$type ??= new WidgetType();
     }
 }

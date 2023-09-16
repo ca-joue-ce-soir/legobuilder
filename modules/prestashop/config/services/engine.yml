@@ -4,14 +4,10 @@ services:
         public: true
         arguments:
             - '@legobuilder.engine.smarty_renderer'
-            - '@prestashop.core.hook.dispatcher'
+            - '@doctrine.dbal.default_connection'
+            - '%database_prefix%'
 
     legobuilder.engine.smarty_renderer:
-        class: Legobuilder\Engine\SmartyRenderer
+        class: Legobuilder\Renderer\SmartyRenderer
         arguments:
-            - '@prestashop.smarty'
-
-    legobuilder.database.database_adapter:
-        class: Legobuilder\Database\Adapter\PrestashopDatabaseAdapter
-        arguments:
-            - '@doctrine.dbal.default_connection'
+            - '@=service("prestashop.adapter.legacy.context").getSmarty()'

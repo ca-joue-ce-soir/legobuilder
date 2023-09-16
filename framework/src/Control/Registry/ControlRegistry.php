@@ -21,9 +21,9 @@ class ControlRegistry implements ControlRegistryInterface
     /**
      * Get Widgets registered.
      *
-     * @return array
+     * {@inheritdoc}
      */
-    public function getRegisteredControls(): array
+    public function getControls(): array
     {
         return $this->registeredControls;
     }
@@ -31,7 +31,7 @@ class ControlRegistry implements ControlRegistryInterface
     /**
      * Register a new control.
      *
-     * @param ControlInterface $control
+     * {@inheritdoc}
      */
     public function registerControl(ControlInterface $control): self
     {

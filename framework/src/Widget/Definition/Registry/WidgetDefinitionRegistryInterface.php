@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Widget\Definition\Registry;
 
-use Legobuilder\Framework\Widget\Definition\WidgetDefinition;
 use Legobuilder\Framework\Widget\Definition\WidgetDefinitionInterface;
 
 interface WidgetDefinitionRegistryInterface

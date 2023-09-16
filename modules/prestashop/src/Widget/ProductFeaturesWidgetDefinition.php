@@ -6,7 +6,6 @@ use Legobuilder\Framework\Control\Base\TextControl;
 use Legobuilder\Framework\Control\Widget\Definition\Control\WidgetDefinitionControlCollectionInterface;
 use Legobuilder\Framework\Renderer\RendererInterface;
 use Legobuilder\Framework\Widget\Definition\Control\WidgetDefinitionControlCollection;
-use Legobuilder\Framework\Widget\Widget;
 use Legobuilder\Framework\Widget\WidgetInterface;
 
 class ProductFeaturesWidgetDefinition extends AbstractTranslatorWidgetDefinition

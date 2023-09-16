@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Database\Migration;
 
-class MigrationDefaultWidgetTable extends AbstractDatabaseMigration
+use Doctrine\DBAL\Schema\Table;
+use Legobuilder\Framework\Database\AbstractDatabaseAware;
+use Exception;
+
+class MigrationDefaultWidgetTable extends AbstractDatabaseAware
 {
     /**
      * Create the widget table.
@@ -13,15 +17,21 @@ class MigrationDefaultWidgetTable extends AbstractDatabaseMigration
      */
     public function up(): bool
     {
-        return $this->databaseBridge->execute('
-            CREATE TABLE IF NOT EXISTS `{prefix}lb_widget` (
-                `id_widget` INT(10) NOT NULL,
-                `definition_id` VARCHAR(255) NOT NULL,
-                `zone` VARCHAR(255) NOT NULL,
-                `control_settings` TEXT,
-                PRIMARY KEY (`id_widget`)
-            ) ENGINE={engine} DEFAULT CHARSET=utf8;
-        ');
+        try {
+            $schemaManager = $this->connection->createSchemaManager();
+
+            $widgetTable = new Table($this->databasePrefix . 'widget');
+            $widgetTable->addColumn('id_widget', 'integer', ['unsigned' => true]);
+            $widgetTable->addColumn('type', 'string', ['length' => '32']);
+            $widgetTable->addColumn('zone', 'string', ['length' => 32]);
+            $widgetTable->setPrimaryKey(['id_widget']);
+
+            $schemaManager->createTable($widgetTable);
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -31,8 +41,13 @@ class MigrationDefaultWidgetTable extends AbstractDatabaseMigration
      */
     public function down(): bool
     {
-        return $this->databaseBridge->execute('
-            DROP TABLE IF EXISTS `{prefix}lb_widget`
-        ');
+        try {
+            $schemaManager = $this->connection->createSchemaManager();
+            $schemaManager->dropTable($this->databasePrefix . 'widget');
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return true;
     }
 }

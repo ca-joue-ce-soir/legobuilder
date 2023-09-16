@@ -1,8 +1,2 @@
 imports:
-    - { resource: services/engine.yml }
-    - { resource: services/controller.yml }
-
-services:
-    _defaults:
-        public: true
-        autoconfigure: false
+    - { resource: ./common.yml }

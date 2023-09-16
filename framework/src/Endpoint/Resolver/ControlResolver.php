@@ -26,13 +26,13 @@ class ControlResolver
      */
     public function getRegisteredControls(): array
     {
-        $registeredControls          = $this->controlRegistry->getRegisteredControls();
+        $registeredControls = $this->controlRegistry->getControls();
         $registeredControlsFormatted = [];
 
         foreach ($registeredControls as $control) {
             $registeredControlsFormatted[] = [
-                'type'    => $control->getType(),
-                'options' => 'a',
+                'type' => $control->getType(),
+                'options' => $control->getOptions(),
             ];
         }
 

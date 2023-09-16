@@ -11,7 +11,7 @@ use Legobuilder\Framework\Control\Option\Exception\UnknownControlOptionException
 class ControlOptions
 {
     /**
-     * @var array<ControlOptionInterface>
+     * @var ControlOptionInterface[]
      */
     private $options;
 

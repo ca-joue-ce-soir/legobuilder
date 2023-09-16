@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Zone\Definition\Registry;
 
+use Legobuilder\Framework\Zone\Definition\ZoneDefinition;
 use Legobuilder\Framework\Zone\Definition\ZoneDefinitionInterface;
-use Legobuilder\Framework\Zone\Zone;
-use Legobuilder\Framework\Zone\ZoneInterface;
 
 interface ZoneDefinitionRegistryInterface
 {
@@ -26,7 +25,7 @@ interface ZoneDefinitionRegistryInterface
     /**
      * Get Zone registered.
      *
-     * @return array
+     * @return ZoneDefinitionInterface[]
      */
     public function getZoneDefinitions(): array;
 

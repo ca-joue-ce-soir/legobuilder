@@ -13,8 +13,9 @@ class WidgetResolver
      */
     private $widgetDefinitionRegistry;
 
-    public function __construct(WidgetDefinitionRegistryInterface $widgetDefinitionRegistry)
-    {
+    public function __construct(
+        WidgetDefinitionRegistryInterface $widgetDefinitionRegistry
+    ) {
         $this->widgetDefinitionRegistry = $widgetDefinitionRegistry;
     }
 
@@ -29,7 +30,7 @@ class WidgetResolver
         return [];
     }
 
-    public function getRegisteredWidget($rootValue, array $args): array
+    public function getWidget($rootValue, array $args): array
     {
         return [
             'definition' => 'de',
@@ -44,19 +45,19 @@ class WidgetResolver
      *
      * @return array Registered widgets definitions
      */
-    public function getRegisteredWidgetsDefinitions(): array
+    public function getWidgetDefinitions(): array
     {
-        $registeredWidgetsDefinitions          = $this->widgetDefinitionRegistry->getRegisteredWidgetsDefinitions();
-        $registeredWidgetsDefinitionsFormatted = [];
+        $widgetDefinitions = $this->widgetDefinitionRegistry->getWidgetsDefinitions();
+        $widgetDefinitionsFormatted = [];
 
-        foreach ($registeredWidgetsDefinitions as $widgetDefinition) {
-            $registeredWidgetsDefinitionsFormatted[] = [
-                'id'            => $widgetDefinition->getId(),
-                'name'          => $widgetDefinition->getName(),
-                'template_path' => $widgetDefinition->getTemplatePath(),
+        foreach ($widgetDefinitions as $widgetDefinition) {
+            $widgetDefinitionsFormatted[] = [
+                'id' => $widgetDefinition->getId(),
+                'name' => $widgetDefinition->getName(),
+                'controls' => []
             ];
         }
 
-        return $registeredWidgetsDefinitionsFormatted;
+        return $widgetDefinitionsFormatted;
     }
 }

@@ -4,28 +4,64 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Database\Repository;
 
-use Legobuilder\Framework\Database\Bridge\DatabaseBridgeInterface;
+use Legobuilder\Framework\Database\AbstractDatabaseAware;
 use Legobuilder\Framework\Database\Model\WidgetModel;
 
-class WidgetRepository implements WidgetRepositoryInterface
+class WidgetRepository extends AbstractDatabaseAware implements WidgetRepositoryInterface
 {
     /**
-     * @var DatabaseBridgeInterface
+     * Retrieves a widget by its ID.
+     *
+     * {@inheritdoc}
      */
-    protected $databaseBridge;
-
-    public function __construct(DatabaseBridgeInterface $databaseBridge)
-    {
-        $this->databaseBridge = $databaseBridge;
-    }
-
     public function find(int $widgetId): WidgetModel
     {
-        return new WidgetModel();
+        $widgetData = $this->connection->createQueryBuilder()
+            ->from($this->databasePrefix . 'widget', 'w')
+            ->select('w.id_widget, w.type, w.zone')
+            ->where('w.id_widget = :id_widget')
+            ->setParameter('id_widget', $widgetId)
+            ->executeQuery()
+            ->fetchOne()
+        ;
+
+        if (false === $widgetData) {
+            return null;
+        }
+
+        return (new WidgetModel())
+            ->setId($widgetData['id_widget'])
+            ->setZone($widgetData['zone'])
+            ->setType($widgetData['type'])
+        ;
     }
 
+    /**
+     * Retrieves widgets by their zone.
+     *
+     * {@inheritdoc}
+     */
     public function findByZone(string $zone): array
     {
-        return [];
+        $widgetsData = $this->connection->createQueryBuilder()
+            ->from($this->databasePrefix . 'widget', 'w')
+            ->select('w.id_widget, w.type, w.zone')
+            ->where('w.zone = :zone')
+            ->setParameter('zone', $zone)
+            ->executeQuery()
+            ->fetchAllAssociative()
+        ;
+        
+        $widgets = [];
+
+        foreach ($widgetsData as $widgetData) {
+            $widgets[] = (new WidgetModel())
+                ->setId($widgetData['id_widget'])
+                ->setZone($widgetData['zone'])
+                ->setType($widgetData['type'])
+            ;
+        }
+
+        return $widgets;
     }
 }

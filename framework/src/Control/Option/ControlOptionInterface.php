@@ -40,14 +40,14 @@ interface ControlOptionInterface
 
     /**
      * Get the validator of Control.
-     * 
+     *
      * @return callable
      */
     public function getValidator(): callable;
 
     /**
      * Get the default value of Control.
-     * 
+     *
      * @return mixed
      */
     public function getDefault(): mixed;

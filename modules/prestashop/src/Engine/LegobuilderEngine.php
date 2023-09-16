@@ -3,29 +3,19 @@
 namespace Legobuilder\Engine;
 
 use Legobuilder\Framework\AbstractEngine;
+use Legobuilder\Framework\Database\Bridge\DatabaseBridgeInterface;
 use Legobuilder\Framework\Renderer\RendererInterface;
 use PrestaShop\PrestaShop\Core\Hook\HookDispatcherInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class LegobuilderEngine extends AbstractEngine
 {
-    /**
-     * @var HookDispatcherInterface
-     */
-    private $hookDispatcher;
-
-    public function __construct(RendererInterface $renderer, HookDispatcherInterface $hookDispatcher)
-    {
-        $this->hookDispatcher = $hookDispatcher;
-
-        parent::__construct($renderer);
-    }
-
     /**
      * Register all the "controls" that are added through PrestaShop modules.
      */
     public function registerPlatformControls(): void
     {
-        $this->hookDispatcher->dispatchWithParameters('actionLegobuilderRegisterControls', [
+        \Hook::exec('actionLegobuilderRegisterControls', [
             'registry' => $this->getControlRegistry()
         ]);
     }
@@ -35,7 +25,7 @@ final class LegobuilderEngine extends AbstractEngine
      */
     public function registerPlatformWidgetsDefinitions(): void
     {
-        $this->hookDispatcher->dispatchWithParameters('actionLegobuilderRegisterWidgetsDefinitions', [
+        \Hook::exec('actionLegobuilderRegisterWidgetsDefinitions', [
             'registry' => $this->getWidgetDefinitionRegistry()
         ]);
     }
@@ -45,8 +35,8 @@ final class LegobuilderEngine extends AbstractEngine
      */
     public function registerPlatformZones(): void
     {        
-        $this->hookDispatcher->dispatchWithParameters('actionLegobuilderRegisterZones', [
-            'registry' => $this->getZoneRegistry()
+        \Hook::exec('actionLegobuilderRegisterZones', [
+            'registry' => $this->getZoneDefinitionRegistry()
         ]);
     }
 }
