@@ -51,7 +51,7 @@ class ZoneFactory implements ZoneFactoryInterface
      */
     public function getZone(string $zoneIdentifier): ZoneInterface
     {
-        $zoneDefinition   = $this->zoneDefinitionRegistry->getZoneDefinition($zoneIdentifier);
+        $zoneDefinition  = $this->zoneDefinitionRegistry->getZoneDefinition($zoneIdentifier);
         $widgetsRevisions = $this->widgetRepository->findByZone($zoneIdentifier);
 
         $zone = new Zone($zoneDefinition);

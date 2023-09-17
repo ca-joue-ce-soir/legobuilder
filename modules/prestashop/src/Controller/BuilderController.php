@@ -2,6 +2,7 @@
 
 namespace Legobuilder\Controller;
 
+use Exception;
 use Legobuilder\Endpoint\EndpointRequest;
 use Legobuilder\Framework\EngineInterface;
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
@@ -61,7 +62,7 @@ final class BuilderController extends FrameworkBundleAdminController
         if (count($errors) > 0) {
             return new JsonResponse(['errors' => $errors, 'request' => $input]);
         }
-
+        
         $builderEndpoint = $this->engine->getEndpoint();
         $endpointResult = $builderEndpoint->execute($endpointRequest->getQuery(), $endpointRequest->getVariables());
 

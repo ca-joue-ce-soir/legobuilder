@@ -13,7 +13,6 @@ final class ZoneDefinitionType extends ObjectType
     {
         parent::__construct(
             [
-                'name' => 'Zone Definition',
                 'fields' => [
                     'id' => [
                         'type' => Type::nonNull(Type::string()),

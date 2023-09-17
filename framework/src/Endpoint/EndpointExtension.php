@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Endpoint;
 
+use GraphQL\Type\Definition\NamedType;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoader;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
 use Legobuilder\Framework\Endpoint\Resolver\ControlResolver;
 use Legobuilder\Framework\Endpoint\Resolver\WidgetResolver;
-use Legobuilder\Framework\Endpoint\Resolver\ZoneResolver;
-use Legobuilder\Framework\Endpoint\Type\QueryType;
+use Legobuilder\Framework\Endpoint\Resolver\ZoneDefinitionResolver;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
-
-use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class EndpointExtension extends Extension
 {
@@ -28,20 +28,16 @@ class EndpointExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $container->autowire('endpoint.resolver.control_resolver', ControlResolver::class);
-        $container->autowire('endpoint.resolver.zone_resolver', ZoneResolver::class);
-        $container->autowire('endpoint.resolver.widget_resolver', WidgetResolver::class);
+        $configurationLoader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Ressources/config'));
+        $configurationLoader->load('services.yml');
 
-        $container->registerForAutoconfiguration(QueryType::class)
-            ->addTag('endpoint.type')
-            ->setAutowired(true)
-        ;
+        $container->autowire(ControlResolver::class);
+        $container->autowire(ZoneDefinitionResolver::class);
+        $container->autowire(WidgetResolver::class);
 
-        $container->register('endpoint.type_loader', TypeLoader::class)
-            ->addArgument([tagged_iterator('endpoint.type')]);
-        $container->setAlias(TypeLoaderInterface::class, 'endpoint.type_loader');
+        $container->setAlias(TypeLoaderInterface::class, 'type_loader');
 
-        $container->register('endpoint', Endpoint::class)->setPublic(true);
-        $container->registerAliasForArgument(Endpo)
+        $container->autowire('endpoint', Endpoint::class)->setPublic(true);
+        $container->registerAliasForArgument(EndpointInterface::class, 'endpoint');
     }
 }

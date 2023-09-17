@@ -20,18 +20,17 @@ class ZoneDefinitionResolver
     private $zoneDefinitionTransformer;
 
     public function __construct(
-        ZoneDefinitionRegistryInterface $zoneDefinitionRegistry,
-        ZoneDefinitionTransformer $zoneDefinitionTransformer
+        ZoneDefinitionRegistryInterface $zoneDefinitionRegistry
     ) {
         $this->zoneDefinitionRegistry = $zoneDefinitionRegistry;
-        $this->zoneDefinitionTransformer = $zoneDefinitionTransformer;
+        $this->zoneDefinitionTransformer = new ZoneDefinitionTransformer();
     }
 
     /**
-     * Retrieve all the zones definitions saved for the engine and
-     * formats them correctly to match the GraphQL type.
+     * Retrieve all the zone definitions saved for the engine and format them 
+     * correctly to match the GraphQL type.
      *
-     * @return array Registered zones
+     * @return array The registered zone definitions
      */
     public function getZoneDefinitions(): array
     {
@@ -42,9 +41,16 @@ class ZoneDefinitionResolver
         }, $zoneDefinitions);
     }
     
+    /**
+     * Retrieve a specific zone definition identified by the given identifier 
+     * and format it to match the GraphQL type.
+     *
+     * @param string $zoneDefinitionIdentifier The identifier of the zone definition
+     * @return array The formatted zone definition
+     */
     public function getZoneDefinition(string $zoneDefinitionIdentifier): array
     {
         $zoneDefinition = $this->zoneDefinitionRegistry->getZoneDefinition($zoneDefinitionIdentifier);
-        return (array) $this->zoneDefinitionTransformer->transform($zoneDefinition);
+        return $this->zoneDefinitionTransformer->transform($zoneDefinition);
     }
 }

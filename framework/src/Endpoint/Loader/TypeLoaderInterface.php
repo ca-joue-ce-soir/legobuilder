@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Endpoint\Loader;
 
+use GraphQL\Type\Definition\ObjectType;
+
 interface TypeLoaderInterface
 {
-    public function get(string $typeName);
-
-    public function register(string $typeClass): self;
+    public function get(string $typeName): ObjectType;
 }

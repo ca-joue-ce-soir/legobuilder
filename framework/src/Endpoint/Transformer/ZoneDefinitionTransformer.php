@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Endpoint\Transformer;
 
+use Legobuilder\Framework\Zone\Definition\ZoneDefinitionInterface;
+
 final class ZoneDefinitionTransformer implements TypeTransformerInterface
 {
-    public function transform(mixed $value)
+    /**
+     * @param ZoneDefinitionInterface $zoneDefinition
+     * @return array Zone definitions
+     */
+    public function transform(mixed $zoneDefinition)
     {
-
-    }
-
-    public function reverseTransform(mixed $value)
-    {
-
+        return [
+            'id' => $zoneDefinition->getIdentifier(),
+            'parameters' => array_keys($zoneDefinition->getParameters())
+        ];
     }
 }

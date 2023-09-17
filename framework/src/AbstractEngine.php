@@ -91,11 +91,11 @@ abstract class AbstractEngine implements EngineInterface
             ->setPublic(true);
 
         $container->register('repository.widget_repository', WidgetRepository::class)
-            ->addArgument('%database_prefix%');
+            ->addArgument(['ps_']);
         $container->setAlias(WidgetRepositoryInterface::class, 'repository.widget_repository');
 
         $container->registerExtension(new EndpointExtension());
-        $container->loadFromExtension('engine_endpoint');
+        $container->loadFromExtension('endpoint', );
     }
 
     /**

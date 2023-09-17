@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Endpoint\Loader;
 
-use GraphQL\Type\Definition\Type;
+use GraphQL\Type\Definition\ObjectType;
+use Legobuilder\Framework\Endpoint\Exception\EndpointTypeException;
+use Symfony\Component\DependencyInjection\ServiceLocator;
 
 class TypeLoader implements TypeLoaderInterface
 {
     /**
-     * @var array $types An array that stores the registered types.
+     * @var ServiceLocator
      */
-    private $types;
+    private $typeLocator;
 
-    public function __construct(iterable $types)
+    public function __construct(ServiceLocator $typeLocator)
     {
-        foreach ($types as $type) {
-            $this->types[get_class($type)] = $type;
-        }
+        $this->typeLocator = $typeLocator;
     }
 
     /**
@@ -26,25 +26,16 @@ class TypeLoader implements TypeLoaderInterface
      * @param  string $typeName The name of the type to get.
      * @return mixed The type with the given name.
      */
-    public function get(string $typeName)
+    public function get(string $typeName): ObjectType
     {
-        return $this->types[$typeName];
-    }
+        if (!$this->typeLocator->has($typeName)) {
+            $typeName = 'Legobuilder\Framework\Endpoint\Type\\' . $typeName . 'Type';
 
-    /**
-     * Registers a new type by creating an instance of the provided type class and storing it in the types array.
-     *
-     * @param  string $typeClass The class name of the type to register.
-     * @return self The TypeLoader instance.
-     */
-    public function register(string $typeClass): self
-    {
-        if (!is_subclass_of($typeClass, Type::class)) {
-            return $this;
+            if (!$this->typeLocator->has($typeName)) {
+                throw new EndpointTypeException($typeName);
+            }
         }
 
-        $this->types[$typeClass] = new $typeClass($this);
-
-        return $this;
+        return $this->typeLocator->get($typeName);
     }
 }

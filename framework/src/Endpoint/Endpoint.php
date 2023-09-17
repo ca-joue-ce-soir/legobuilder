@@ -8,8 +8,10 @@ use GraphQL\Error\DebugFlag;
 use GraphQL\GraphQL;
 use GraphQL\Type\Schema;
 use GraphQL\Type\SchemaConfig;
+use GraphQL\Validator\DocumentValidator;
+use GraphQL\Validator\Rules\DisableIntrospection;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
-use Legobuilder\Framework\Endpoint\Type\MutationType;
+use Legobuilder\Framework\Endpoint\Type\QueryType;
 
 class Endpoint implements EndpointInterface
 {
@@ -23,7 +25,7 @@ class Endpoint implements EndpointInterface
         $schemaConfig = SchemaConfig::create()
             ->setTypeLoader([$typeLoader, 'get'])
             ->setQuery($typeLoader->get(QueryType::class))
-            ->setMutation($typeLoader->get(MutationType::class));
+        ;
 
         $this->schema = new Schema($schemaConfig);
     }
@@ -35,8 +37,9 @@ class Endpoint implements EndpointInterface
      */
     public function execute(string $query, ?array $variableValues = null): array
     {
-        $result = GraphQL::executeQuery($this->schema, $query, null, null, $variableValues);
+        DocumentValidator::addRule(new DisableIntrospection(DisableIntrospection::DISABLED));
 
+        $result = GraphQL::executeQuery($this->schema, $query, null, null, $variableValues);
         return $result->toArray(DebugFlag::INCLUDE_TRACE | DebugFlag::INCLUDE_DEBUG_MESSAGE);
     }
 }

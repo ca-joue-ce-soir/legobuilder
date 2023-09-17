@@ -19,7 +19,8 @@
         "phpstan/phpstan": "1.11.x-dev",
         "phpunit/phpunit": "9.6.x-dev",
         "symfony/dependency-injection": "^5.4",
-        "doctrine/dbal": "^3.6"
+        "doctrine/dbal": "^3.6",
+        "symfony/config": "^5.4"
     },
     "scripts": {
         "phpstan:analyse": "phpstan analyse src",
