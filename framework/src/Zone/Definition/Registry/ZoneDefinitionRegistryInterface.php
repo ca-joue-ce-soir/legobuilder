@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Zone\Definition\Registry;
 
-use Legobuilder\Framework\Zone\Definition\ZoneDefinition;
 use Legobuilder\Framework\Zone\Definition\ZoneDefinitionInterface;
 
 interface ZoneDefinitionRegistryInterface
@@ -15,7 +14,7 @@ interface ZoneDefinitionRegistryInterface
      * @param  string $zoneIdentifier The identifier of the zone to retrieve.
      * @return ZoneDefinitionInterface The zone definition object that matches the provided zoneIdentifier.
      */
-    public function getZoneDefinition(string $zoneIdentifier): ZoneDefinitionInterface;
+    public function getZoneDefinition(string $zoneIdentifier): ?ZoneDefinitionInterface;
 
     /**
      * Returns whether the given zone identifier is registered.

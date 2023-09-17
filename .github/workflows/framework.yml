@@ -1,9 +1,6 @@
 name: Framework
 
 on: 
-    push:
-        paths:
-            - 'framework/**'
     pull_request:
         paths:
             - 'framework/**'

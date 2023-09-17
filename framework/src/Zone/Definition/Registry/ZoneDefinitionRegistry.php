@@ -36,9 +36,9 @@ class ZoneDefinitionRegistry implements ZoneDefinitionRegistryInterface
      *
      * {@inheritdoc}
      */
-    public function getZoneDefinition(string $zoneIdentifier): ZoneDefinitionInterface
+    public function getZoneDefinition(string $zoneIdentifier): ?ZoneDefinitionInterface
     {
-        return $this->zoneDefinitions[$zoneIdentifier];
+        return $this->zoneDefinitions[$zoneIdentifier] ?? null;
     }
 
     /**

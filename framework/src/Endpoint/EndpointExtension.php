@@ -35,7 +35,7 @@ class EndpointExtension extends Extension
         $container->autowire(ZoneDefinitionResolver::class);
         $container->autowire(WidgetResolver::class);
 
-        $container->setAlias(TypeLoaderInterface::class, 'type_loader');
+        $container->setAlias(TypeLoaderInterface::class, 'endpoint_type_loader');
 
         $container->autowire('endpoint', Endpoint::class)->setPublic(true);
         $container->registerAliasForArgument(EndpointInterface::class, 'endpoint');

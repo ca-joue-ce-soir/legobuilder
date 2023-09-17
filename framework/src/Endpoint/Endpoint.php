@@ -23,8 +23,8 @@ class Endpoint implements EndpointInterface
     public function __construct(TypeLoaderInterface $typeLoader)
     {
         $schemaConfig = SchemaConfig::create()
-            ->setTypeLoader([$typeLoader, 'get'])
-            ->setQuery($typeLoader->get(QueryType::class))
+            ->setTypeLoader([$typeLoader, 'getByTypeName'])
+            ->setQuery($typeLoader->getByClassName(QueryType::class))
         ;
 
         $this->schema = new Schema($schemaConfig);

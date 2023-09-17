@@ -46,11 +46,16 @@ class ZoneDefinitionResolver
      * and format it to match the GraphQL type.
      *
      * @param string $zoneDefinitionIdentifier The identifier of the zone definition
-     * @return array The formatted zone definition
+     * @return ?array The formatted zone definition
      */
-    public function getZoneDefinition(string $zoneDefinitionIdentifier): array
+    public function getZoneDefinition($rootValue, array $args): ?array
     {
-        $zoneDefinition = $this->zoneDefinitionRegistry->getZoneDefinition($zoneDefinitionIdentifier);
+        $zoneDefinition = $this->zoneDefinitionRegistry->getZoneDefinition($args['id']);
+        
+        if (null == $zoneDefinition) {
+            return null;
+        }
+
         return $this->zoneDefinitionTransformer->transform($zoneDefinition);
     }
 }

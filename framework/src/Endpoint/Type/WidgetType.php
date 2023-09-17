@@ -14,11 +14,10 @@ final class WidgetType extends ObjectType
     {
         parent::__construct(
             [
-                'name' => 'Widget',
                 'description' => 'Widget that are saved in specific zone',
                 'fields' => [
                     'definition' => [
-                        'type' => Type::nonNull($typeLoader->get(WidgetDefinitionType::class)),
+                        'type' => Type::nonNull($typeLoader->getByClassName(WidgetDefinitionType::class)),
                     ],
                     'zone' => [
                         'type' => Type::nonNull(Type::string()),
