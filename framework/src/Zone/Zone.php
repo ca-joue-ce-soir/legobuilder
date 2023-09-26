@@ -32,6 +32,16 @@ final class Zone implements ZoneInterface
         $this->definition = $definition;
     }
 
+    public function getDefinition(): ZoneDefinitionInterface
+    {
+        return $this->definition;
+    }
+
+    public function getParameters(): ?array
+    {
+        return $this->parameters;
+    }
+
     /**
      * Adds a widget to the zone.
      *

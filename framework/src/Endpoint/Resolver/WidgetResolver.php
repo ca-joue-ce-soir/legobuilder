@@ -4,60 +4,23 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Endpoint\Resolver;
 
-use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
+use Legobuilder\Framework\Widget\Factory\WidgetFactoryInterface;
+use Legobuilder\Framework\Widget\WidgetInterface;
 
 class WidgetResolver
 {
     /**
-     * @var WidgetDefinitionRegistryInterface
+     * @var WidgetFactoryInterface
      */
-    private $widgetDefinitionRegistry;
+    private $widgetFactory;
 
-    public function __construct(
-        WidgetDefinitionRegistryInterface $widgetDefinitionRegistry
-    ) {
-        $this->widgetDefinitionRegistry = $widgetDefinitionRegistry;
+    public function __construct(WidgetFactoryInterface $widgetFactory)
+    {
+        $this->widgetFactory = $widgetFactory;
     }
 
-    /**
-     * Retrieve all the widgets saved for the current engine and
-     * formats them correctly to match the GraphQL type.
-     *
-     * @return array Registered widegets
-     */
-    public function getRegisteredWidgets(): array
+    public function getWidget($rootValue, array $args): ?WidgetInterface
     {
         return [];
-    }
-
-    public function getWidget($rootValue, array $args): array
-    {
-        return [
-            'definition' => 'de',
-            'data'       => 'da',
-            'zone'       => 'z',
-        ];
-    }
-
-    /**
-     * Retrieve all the widgetsdefinitions registered in the current engine and
-     * formats them correctly to match the GraphQL type.
-     *
-     * @return array Registered widgets definitions
-     */
-    public function getWidgetDefinitions(): array
-    {
-        $widgetDefinitions = $this->widgetDefinitionRegistry->getWidgetsDefinitions();
-        $widgetDefinitionsFormatted = [];
-
-        foreach ($widgetDefinitions as $widgetDefinition) {
-            $widgetDefinitionsFormatted[] = [
-                'id' => $widgetDefinition->getId(),
-                'name' => $widgetDefinition->getName(),
-                'controls' => []
-            ];
-        }
-
-        return $widgetDefinitionsFormatted;
     }
 }

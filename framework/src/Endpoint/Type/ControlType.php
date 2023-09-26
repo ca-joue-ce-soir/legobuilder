@@ -9,8 +9,6 @@ use GraphQL\Type\Definition\Type;
 
 final class ControlType extends ObjectType
 {
-    private static $type;
-
     public function __construct()
     {
         parent::__construct(
@@ -29,10 +27,5 @@ final class ControlType extends ObjectType
                 ],
             ]
         );
-    }
-
-    public static function type()
-    {
-        return self::$type ??= new ControlType();
     }
 }

@@ -6,10 +6,12 @@ namespace Legobuilder\Framework\Endpoint\Type;
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
+use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
+use Legobuilder\Framework\Widget\Definition\WidgetDefinitionInterface;
 
 final class WidgetDefinitionType extends ObjectType
 {
-    public function __construct()
+    public function __construct(TypeLoaderInterface $typeLoader)
     {
         parent::__construct(
             [
@@ -18,12 +20,21 @@ final class WidgetDefinitionType extends ObjectType
                 'fields' => [
                     'id' => [
                         'type' => Type::nonNull(Type::string()),
+                        'resolve' => function (WidgetDefinitionInterface $widgetDefinition) {
+                            return $widgetDefinition->getId();
+                        }
                     ],
                     'name' => [
                         'type' => Type::nonNull(Type::string()),
+                        'resolve' => function (WidgetDefinitionInterface $widgetDefinition) {
+                            return $widgetDefinition->getName();
+                        }
                     ],
                     'controls' => [
-                        'type' => Type::listOf(ControlType::type()),
+                        'type' => Type::listOf($typeLoader->getByClassName(ControlType::class)),
+                        'resolve' => function (WidgetDefinitionInterface $widgetDefinition) {
+                            return $widgetDefinition->getControls();
+                        }
                     ],
                 ],
             ]

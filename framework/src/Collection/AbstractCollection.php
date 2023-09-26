@@ -6,8 +6,9 @@ namespace Legobuilder\Framework\Collection;
 
 use Countable;
 use Iterator;
+use Traversable;
 
-abstract class AbstractCollection implements Iterator, Countable
+abstract class AbstractCollection implements Iterator, Countable, Traversable
 {
     /**
      * @var array

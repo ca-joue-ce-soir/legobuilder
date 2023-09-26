@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Widget\Definition;
 
-use Legobuilder\Framework\Control\Widget\Definition\Control\WidgetDefinitionControlCollectionInterface;
+use Legobuilder\Framework\Widget\Definition\Control\WidgetDefinitionControlCollectionInterface;
 use Legobuilder\Framework\Renderer\RendererInterface;
 use Legobuilder\Framework\Widget\WidgetInterface;
 

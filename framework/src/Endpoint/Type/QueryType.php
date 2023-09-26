@@ -7,13 +7,15 @@ namespace Legobuilder\Framework\Endpoint\Type;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
+use Legobuilder\Framework\Endpoint\Resolver\WidgetDefinitionResolver;
 use Legobuilder\Framework\Endpoint\Resolver\ZoneDefinitionResolver;
 
 final class QueryType extends ObjectType
 {
     public function __construct(
         TypeLoaderInterface $typeLoader,
-        ZoneDefinitionResolver $zoneDefinitionResolver
+        ZoneDefinitionResolver $zoneDefinitionResolver,
+        WidgetDefinitionResolver $widgetDefinitionResolver
     ) {
         parent::__construct(
             [
@@ -41,6 +43,11 @@ final class QueryType extends ObjectType
                                 'type' => Type::id()
                             ]
                         ],
+                    ],
+                    'widgetDefinitions' => [
+                        'type' => Type::listOf($typeLoader->getByClassName(WidgetDefinitionType::class)),
+                        'description' => '',
+                        'resolve' => [$widgetDefinitionResolver, 'getWidgetDefinitions']
                     ],
                     'widget' => [
                         'type' => $typeLoader->getByClassName(WidgetType::class),

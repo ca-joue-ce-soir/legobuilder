@@ -24,7 +24,7 @@ final class ZoneRender implements ZoneRendererInterface
      * Renders a zone by iterating over its widgets and calling their
      * render method with the provided renderer.
      *
-     * @param  ZoneInterface $zone The zone to render.
+     * @param ZoneInterface $zone The zone to render.
      * @return string The rendered zone.
      */
     public function render(ZoneInterface $zone): string

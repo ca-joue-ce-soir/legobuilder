@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Zone\Factory;
 
+use Exception;
 use Legobuilder\Framework\Database\Repository\WidgetRepositoryInterface;
 use Legobuilder\Framework\Widget\Factory\WidgetFactoryInterface;
 use Legobuilder\Framework\Zone\Definition\Registry\ZoneDefinitionRegistryInterface;
@@ -49,11 +50,15 @@ class ZoneFactory implements ZoneFactoryInterface
      * @param  string $zoneIdentifier
      * @return Zone
      */
-    public function getZone(string $zoneIdentifier): ZoneInterface
+    public function getZone(string $zoneIdentifier): ?ZoneInterface
     {
-        $zoneDefinition  = $this->zoneDefinitionRegistry->getZoneDefinition($zoneIdentifier);
-        $widgetsRevisions = $this->widgetRepository->findByZone($zoneIdentifier);
+        $zoneDefinition = $this->zoneDefinitionRegistry->getZoneDefinition($zoneIdentifier);
 
+        if (null == $zoneDefinition) {
+            return null;
+        }
+
+        $widgetsRevisions = $this->widgetRepository->findByZone($zoneIdentifier);
         $zone = new Zone($zoneDefinition);
 
         foreach ($widgetsRevisions as $widgetRevision) {

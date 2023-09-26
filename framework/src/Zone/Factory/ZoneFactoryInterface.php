@@ -12,7 +12,7 @@ interface ZoneFactoryInterface
      * Get a zone by its identifier.
      *
      * @param  string $zoneIdentifier
-     * @return Zone
+     * @return ?ZoneInterface
      */
-    public function getZone(string $zoneIdentifier): ZoneInterface;
+    public function getZone(string $zoneIdentifier): ?ZoneInterface;
 }

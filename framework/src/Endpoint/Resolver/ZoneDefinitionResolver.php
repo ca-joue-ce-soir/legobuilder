@@ -6,6 +6,7 @@ namespace Legobuilder\Framework\Endpoint\Resolver;
 
 use Legobuilder\Framework\Endpoint\Transformer\ZoneDefinitionTransformer;
 use Legobuilder\Framework\Zone\Definition\Registry\ZoneDefinitionRegistryInterface;
+use Legobuilder\Framework\Zone\Definition\ZoneDefinitionInterface;
 
 class ZoneDefinitionResolver
 {
@@ -14,16 +15,9 @@ class ZoneDefinitionResolver
      */
     private $zoneDefinitionRegistry;
 
-    /**
-     * @var ZoneDefinitionTransformer
-     */
-    private $zoneDefinitionTransformer;
-
-    public function __construct(
-        ZoneDefinitionRegistryInterface $zoneDefinitionRegistry
-    ) {
+    public function __construct(ZoneDefinitionRegistryInterface $zoneDefinitionRegistry) 
+    {
         $this->zoneDefinitionRegistry = $zoneDefinitionRegistry;
-        $this->zoneDefinitionTransformer = new ZoneDefinitionTransformer();
     }
 
     /**
@@ -34,28 +28,20 @@ class ZoneDefinitionResolver
      */
     public function getZoneDefinitions(): array
     {
-        $zoneDefinitions = $this->zoneDefinitionRegistry->getZoneDefinitions();
-
-        return array_map(function($zoneDefinition) {
-            return $this->zoneDefinitionTransformer->transform($zoneDefinition);
-        }, $zoneDefinitions);
+        return $this->zoneDefinitionRegistry->getZoneDefinitions();
     }
     
     /**
      * Retrieve a specific zone definition identified by the given identifier 
      * and format it to match the GraphQL type.
      *
-     * @param string $zoneDefinitionIdentifier The identifier of the zone definition
-     * @return ?array The formatted zone definition
+     * @param $rootValue
+     * @param array $args
+     * 
+     * @return ?ZoneDefinitionInterface The formatted zone definition
      */
-    public function getZoneDefinition($rootValue, array $args): ?array
+    public function getZoneDefinition($rootValue, array $args): ?ZoneDefinitionInterface
     {
-        $zoneDefinition = $this->zoneDefinitionRegistry->getZoneDefinition($args['id']);
-        
-        if (null == $zoneDefinition) {
-            return null;
-        }
-
-        return $this->zoneDefinitionTransformer->transform($zoneDefinition);
+        return $this->zoneDefinitionRegistry->getZoneDefinition($args['id']);
     }
 }

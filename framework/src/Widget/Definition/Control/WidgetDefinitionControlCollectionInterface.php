@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Legobuilder\Framework\Control\Widget\Definition\Control;
+namespace Legobuilder\Framework\Widget\Definition\Control;
 
 use Countable;
 use Iterator;
