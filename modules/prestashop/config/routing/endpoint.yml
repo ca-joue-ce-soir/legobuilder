@@ -11,3 +11,5 @@ legobuilder_endpoint:
     methods: [GET, POST]
     defaults:
         _controller: 'Legobuilder\Controller\BuilderController::endpointAction'
+        _legacy_controller: 'BuilderController'
+        _legacy_link: 'BuilderController'

@@ -8,7 +8,7 @@ use Legobuilder\Framework\Widget\WidgetInterface;
 use Legobuilder\Framework\Zone\Definition\ZoneDefinitionInterface;
 
 interface ZoneInterface
-{
+{    
     public function getDefinition(): ZoneDefinitionInterface;
 
     public function getParameters(): ?array;
@@ -17,4 +17,6 @@ interface ZoneInterface
      * @return WidgetInterface[]
      */
     public function getWidgets(): array;
+
+    public function render(ZoneInterface $zone): string;
 }

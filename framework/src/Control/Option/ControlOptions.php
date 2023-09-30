@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Control\Option;
 
+use ArrayIterator;
+use IteratorAggregate;
 use Legobuilder\Framework\Control\Option\Exception\InvalidControlOptionException;
 use Legobuilder\Framework\Control\Option\Exception\MissingControlOptionException;
 use Legobuilder\Framework\Control\Option\Exception\UnknownControlOptionException;
+use Traversable;
 
-class ControlOptions
+class ControlOptions implements Traversable, IteratorAggregate
 {
     /**
      * @var ControlOptionInterface[]
@@ -23,6 +26,7 @@ class ControlOptions
     public function addOption(string $key, bool $required = false, $default = null, ?callable $validator = null): self
     {
         $this->options[$key] = (new ControlOption())
+            ->setIdentifier($key)
             ->setDefault($default)
             ->setRequired($required)
             ->setValidator($validator);
@@ -94,5 +98,11 @@ class ControlOptions
         }
 
         return true;
+    }
+
+    /* Methods */
+    public function getIterator(): Traversable
+    {
+        return new ArrayIterator($this->options);
     }
 }

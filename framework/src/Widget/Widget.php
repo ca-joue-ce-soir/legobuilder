@@ -15,7 +15,7 @@ final class Widget implements WidgetInterface
     private $id;
 
     /**
-     * @var ZoneInterface
+     * @var string
      */
     private $zone;
 
@@ -35,9 +35,9 @@ final class Widget implements WidgetInterface
         array $controlSettings,
         WidgetDefinitionInterface $widgetDefinition
     ) {
-        $this->id   = $id;
+        $this->id = $id;
         $this->zone = $zone;
-        $this->controlSettings  = $controlSettings;
+        $this->controlSettings = $controlSettings;
         $this->widgetDefinition = $widgetDefinition;
     }
 
@@ -52,11 +52,11 @@ final class Widget implements WidgetInterface
     }
 
     /**
-     * Get Widget zone.
+     * Get Widget Zone identifier.
      *
-     * @return ZoneInterface
+     * @return string
      */
-    public function getZone(): ZoneInterface
+    public function getZoneIdentifier(): string
     {
         return $this->zone;
     }

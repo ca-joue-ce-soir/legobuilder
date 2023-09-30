@@ -51,4 +51,11 @@ interface ControlOptionInterface
      * @return mixed
      */
     public function getDefault(): mixed;
+
+    /**
+     * Get the value of identifier
+     *
+     * @return  string
+     */ 
+    public function getIdentifier(): string;
 }

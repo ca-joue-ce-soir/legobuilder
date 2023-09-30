@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Zone\Factory;
 
-use Exception;
-use Legobuilder\Framework\Database\Repository\WidgetRepositoryInterface;
+use Legobuilder\Framework\Persistence\Repository\WidgetRepositoryInterface;
 use Legobuilder\Framework\Widget\Factory\WidgetFactoryInterface;
 use Legobuilder\Framework\Zone\Definition\Registry\ZoneDefinitionRegistryInterface;
 use Legobuilder\Framework\Zone\Zone;
@@ -28,26 +27,20 @@ class ZoneFactory implements ZoneFactoryInterface
      */
     private $widgetFactory;
 
-    /**
-     * ZoneFactory constructor.
-     *
-     * @param ZoneDefinitionRegistryInterface $zoneDefinitionRegistry
-     * @param WidgetFactoryInterface          $widgetFactory
-     */
     public function __construct(
         ZoneDefinitionRegistryInterface $zoneDefinitionRegistry,
         WidgetRepositoryInterface $widgetRepository,
         WidgetFactoryInterface $widgetFactory
     ) {
         $this->zoneDefinitionRegistry = $zoneDefinitionRegistry;
-        $this->widgetRepository       = $widgetRepository;
+        $this->widgetRepository = $widgetRepository;
         $this->widgetFactory = $widgetFactory;
     }
 
     /**
      * Get a zone by its identifier.
      *
-     * @param  string $zoneIdentifier
+     * @param string $zoneIdentifier
      * @return Zone
      */
     public function getZone(string $zoneIdentifier): ?ZoneInterface
@@ -58,11 +51,11 @@ class ZoneFactory implements ZoneFactoryInterface
             return null;
         }
 
-        $widgetsRevisions = $this->widgetRepository->findByZone($zoneIdentifier);
+        $widgetsData = $this->widgetRepository->findByZone($zoneIdentifier);
         $zone = new Zone($zoneDefinition);
 
-        foreach ($widgetsRevisions as $widgetRevision) {
-            $widget = $this->widgetFactory->getWidget($widgetRevision->getIdentifier());
+        foreach ($widgetsData as $widgetData) {
+            $widget = $this->widgetFactory->getWidget($widgetData);
             $zone->addWidget($widget);
         }
 

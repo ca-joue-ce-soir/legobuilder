@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Legobuilder\Framework\Widget\Definition;
 
 use Legobuilder\Framework\Widget\Definition\Control\WidgetDefinitionControlCollectionInterface;
-use Legobuilder\Framework\Renderer\RendererInterface;
 use Legobuilder\Framework\Widget\WidgetInterface;
 
 interface WidgetDefinitionInterface
@@ -34,10 +33,8 @@ interface WidgetDefinitionInterface
     /**
      * Render the widget from the definition.
      *
-     * @param WidgetInterface   $widget
-     * @param RendererInterface $renderer
-     *
+     * @param WidgetInterface $widget
      * @return string Rendered widget
      */
-    public function render(WidgetInterface $widget, RendererInterface $renderer): string;
+    public function render(WidgetInterface $widget): string;
 }

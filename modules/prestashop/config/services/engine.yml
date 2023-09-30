@@ -3,11 +3,15 @@ services:
         class: Legobuilder\Engine\LegobuilderEngine
         public: true
         arguments:
-            - '@legobuilder.engine.smarty_renderer'
+            - '@legobuilder.repository.widget_repository'
+
+    Legobuilder\Database\AbstractDatabaseAware:
+        abstract:  true
+        arguments: 
             - '@doctrine.dbal.default_connection'
             - '%database_prefix%'
-
-    legobuilder.engine.smarty_renderer:
-        class: Legobuilder\Renderer\SmartyRenderer
-        arguments:
-            - '@=service("prestashop.adapter.legacy.context").getSmarty()'
+    
+    legobuilder.repository.widget_repository:
+        class: Legobuilder\Database\Repository\WidgetRepository
+        parent: Legobuilder\Database\AbstractDatabaseAware
+    

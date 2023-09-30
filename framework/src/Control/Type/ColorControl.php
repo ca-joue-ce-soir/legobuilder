@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Legobuilder\Framework\Control\Base;
+namespace Legobuilder\Framework\Control\Type;
 
 use Legobuilder\Framework\Control\AbstractControl;
 use Legobuilder\Framework\Control\Option\ControlOptions;

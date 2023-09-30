@@ -2,9 +2,9 @@
 
 namespace Legobuilder\Controller;
 
-use Exception;
 use Legobuilder\Endpoint\EndpointRequest;
 use Legobuilder\Framework\EngineInterface;
+use Legobuilder\Framework\Helper\Vite\Manifest;
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,6 +26,7 @@ final class BuilderController extends FrameworkBundleAdminController
 
     /**
      * Handles the displaying of the builder client.
+     * 
      * @AdminSecurity("is_granted('read', request.get('_legacy_controller'))", message="Access denied.")
      * 
      * @return Response
@@ -33,10 +34,12 @@ final class BuilderController extends FrameworkBundleAdminController
     public function editorAction(): Response
     {
         $viteDevelopmentPort = getenv('LEGOBUILDER_VITE');
+        $viteManifest = new Manifest('');
 
         return $this->render('@Modules/legobuilder/views/templates/admin/editor.html.twig', [
             'endpoint_link' => $this->generateUrl('legobuilder_endpoint'),
-            'vite_port' => $viteDevelopmentPort
+            'vite_port' => $viteDevelopmentPort,
+            'vite_manifest' => $viteManifest
         ]);
     }
 

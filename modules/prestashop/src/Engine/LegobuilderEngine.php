@@ -3,10 +3,6 @@
 namespace Legobuilder\Engine;
 
 use Legobuilder\Framework\AbstractEngine;
-use Legobuilder\Framework\Database\Bridge\DatabaseBridgeInterface;
-use Legobuilder\Framework\Renderer\RendererInterface;
-use PrestaShop\PrestaShop\Core\Hook\HookDispatcherInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class LegobuilderEngine extends AbstractEngine
 {

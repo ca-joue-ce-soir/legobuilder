@@ -6,10 +6,12 @@ namespace Legobuilder\Framework\Endpoint\Type;
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
+use Legobuilder\Framework\Control\ControlInterface;
+use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
 
 final class ControlType extends ObjectType
 {
-    public function __construct()
+    public function __construct(TypeLoaderInterface $typeLoader)
     {
         parent::__construct(
             [
@@ -19,11 +21,22 @@ final class ControlType extends ObjectType
                     'type' => [
                         'type' => Type::nonNull(Type::string()),
                         'description' => 'Type of the control (color, text, number, etc...)',
+                        'resolve' => function (ControlInterface $control) {
+                            return $control->getType();
+                        }
                     ],
                     'options' => [
-                        'type' => Type::string(),
-                        'description' => 'Dynamic control options, represented as JSON',
+                        'type' => Type::listOf($typeLoader->getByClassName(ControlOptionType::class)),
+                        'resolve' => function (ControlInterface $control) {
+                            return $control->getOptions();
+                        }
                     ],
+                    'class' => [
+                        'type' => Type::nonNull(Type::string()),
+                        'resolve' => function (ControlInterface $control) {
+                            return get_class($control);
+                        }
+                    ]
                 ],
             ]
         );

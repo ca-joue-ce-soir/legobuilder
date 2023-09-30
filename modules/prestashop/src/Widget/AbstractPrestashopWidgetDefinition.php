@@ -2,19 +2,27 @@
 
 namespace Legobuilder\Widget;
 
+use Exception;
 use Legobuilder\Framework\Widget\Definition\AbstractWidgetDefinition;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Smarty_Data;
 
-abstract class AbstractTranslatorWidgetDefinition extends AbstractWidgetDefinition
+abstract class AbstractPrestashopWidgetDefinition extends AbstractWidgetDefinition
 {
     /**
      * @var TranslatorInterface
      */
     private $translator;
 
-    public function __construct(TranslatorInterface $translator)
+    /**
+     * @var Smarty_Data
+     */
+    private $smarty;
+
+    public function __construct(TranslatorInterface $translator, Smarty_Data $smarty)
     {
         $this->translator = $translator;
+        $this->smarty = $smarty;
     }
 
     /**
@@ -32,12 +40,17 @@ abstract class AbstractTranslatorWidgetDefinition extends AbstractWidgetDefiniti
     }
 
     /**
-     * Get the translator.
+     * Render a template with smarty
      * 
-     * @return TranslatorInterface
+     * @return string Rendered template
      */
-    protected function getTranslator(): TranslatorInterface
+    protected function view(string $templatePath, array $parameters = []): string
     {
-        return $this->translator;
+        try {
+            $this->smarty->assign($parameters);
+            return $this->smarty->fetch($templatePath);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 }

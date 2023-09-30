@@ -2,26 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Legobuilder\Framework\Control\Base;
+namespace Legobuilder\Framework\Control\Type;
 
 use Legobuilder\Framework\Control\AbstractControl;
 use Legobuilder\Framework\Control\Option\ControlOptions;
 
-class TextControl extends AbstractControl
+class NumberControl extends AbstractControl
 {
     /**
-     * Get text control type.
+     * Get number control type.
      *
      * @return string Control type.
      */
     public function getType(): string
     {
-        return 'text';
+        return 'number';
     }
 
     public function getOptions(): ControlOptions
     {
         return (parent::getOptions())
-            ->addOption('default', false, null, 'is_string');
+            ->addOption('min', true, null, 'is_int')
+            ->addOption('max', true, null, 'is_int');
     }
 }

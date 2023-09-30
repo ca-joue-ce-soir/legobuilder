@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Legobuilder\Framework\Database\Exception;
+namespace Legobuilder\Framework\Persistence\Exception;
 
 use Exception;
 

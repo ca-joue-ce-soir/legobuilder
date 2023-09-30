@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Legobuilder\Framework\Database\Migration;
+namespace Legobuilder\Database\Migration;
 
 interface MigrationInterface
 {

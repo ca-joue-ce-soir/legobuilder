@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Endpoint\Loader;
 
-use GraphQL\Type\Definition\ObjectType;
+use GraphQL\Type\Definition\Type;
 use Legobuilder\Framework\Endpoint\Exception\EndpointTypeException;
 use Symfony\Component\DependencyInjection\ServiceLocator;
 
@@ -31,7 +31,7 @@ class DependecyInjectionTypeLoader implements TypeLoaderInterface
      * {@inheritdoc}
      * @throws EndpointTypeException If the object type is not found in the service locator
      */
-    public function getByClassName(string $className): ObjectType
+    public function getByClassName(string $className): Type
     {
         if (!$this->typeLocator->has($className)) {
             throw new EndpointTypeException($className);
@@ -46,10 +46,16 @@ class DependecyInjectionTypeLoader implements TypeLoaderInterface
      * {@inheritdoc}
      * @throws EndpointTypeException If the object type is not found in the service locator
      */
-    public function getByTypeName(string $typeName): ObjectType
+    public function getByTypeName(string $typeName): Type
     {
-        $className = 'Legobuilder\Framework\Endpoint\Type\\' . $typeName . 'Type';
+        $typesLoaded = $this->typeLocator->getProvidedServices();
+        
+        foreach ($typesLoaded as $typeClassName => $_) {
+            if (substr(strrchr($typeClassName, '\\'), 1) == $typeName . 'Type') {
+                return $this->getByClassName($typeClassName);
+            }
+        }
 
-        return $this->getByClassName($className);
+        return null;
     }
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Legobuilder\Framework\Database\Repository;
+namespace Legobuilder\Framework\Persistence\Repository;
 
-use Legobuilder\Framework\Database\Model\WidgetModel;
+use Legobuilder\Framework\Persistence\Model\WidgetModel;
 
 interface WidgetRepositoryInterface
 {
@@ -12,9 +12,9 @@ interface WidgetRepositoryInterface
      * Retrieves a widget by its ID.
      *
      * @param int $widgetId The ID of the widget to retrieve.
-     * @return WidgetModel|null The retrieved widget as a WidgetModel object, or null if not found.
+     * @return ?WidgetModel The retrieved widget as a WidgetModel object, or null if not found.
      */
-    public function find(int $widgetId): WidgetModel;
+    public function find(int $widgetId): ?WidgetModel;
     
     /**
      * Retrieves widgets by their zone.
@@ -23,4 +23,12 @@ interface WidgetRepositoryInterface
      * @return WidgetModel[] An array of widgets objects that belong to the specified zone.
      */
     public function findByZone(string $zone): array;
+
+    /**
+     * Saves the widget data.
+     * 
+     * @param WidgetModel $widget
+     * @return bool Success ave
+     */
+    public function save(WidgetModel $widget): bool;
 }

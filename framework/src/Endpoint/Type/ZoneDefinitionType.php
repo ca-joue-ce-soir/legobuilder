@@ -23,7 +23,7 @@ final class ZoneDefinitionType extends ObjectType
                         }
                     ],
                     'parameters' => [
-                        'type' => Type::string(),
+                        'type' => Type::listOf(Type::string()),
                         'description' => '',
                         'resolve' => function (ZoneDefinitionInterface $zoneDefinition) {
                             return $zoneDefinition->getParameters();

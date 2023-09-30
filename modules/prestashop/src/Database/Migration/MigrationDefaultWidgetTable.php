@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Legobuilder\Framework\Database\Migration;
+namespace Legobuilder\Database\Migration;
 
 use Doctrine\DBAL\Schema\Table;
-use Legobuilder\Framework\Database\AbstractDatabaseAware;
+use Legobuilder\Database\AbstractDatabaseAware;
 use Exception;
 
-class MigrationDefaultWidgetTable extends AbstractDatabaseAware
+class MigrationDefaultWidgetTable extends AbstractDatabaseAware implements MigrationInterface
 {
     /**
      * Create the widget table.
@@ -18,10 +18,10 @@ class MigrationDefaultWidgetTable extends AbstractDatabaseAware
     public function up(): bool
     {
         try {
-            $schemaManager = $this->connection->createSchemaManager();
+            $schemaManager = $this->connection->getSchemaManager();
 
             $widgetTable = new Table($this->databasePrefix . 'widget');
-            $widgetTable->addColumn('id_widget', 'integer', ['unsigned' => true]);
+            $widgetTable->addColumn('id_widget', 'integer', ['unsigned' => true, 'autoincrement' => true]);
             $widgetTable->addColumn('type', 'string', ['length' => '32']);
             $widgetTable->addColumn('zone', 'string', ['length' => 32]);
             $widgetTable->setPrimaryKey(['id_widget']);
@@ -42,7 +42,7 @@ class MigrationDefaultWidgetTable extends AbstractDatabaseAware
     public function down(): bool
     {
         try {
-            $schemaManager = $this->connection->createSchemaManager();
+            $schemaManager = $this->connection->getSchemaManager();
             $schemaManager->dropTable($this->databasePrefix . 'widget');
         } catch (Exception $e) {
             return false;

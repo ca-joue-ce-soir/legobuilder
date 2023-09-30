@@ -7,15 +7,12 @@ namespace Legobuilder\Framework\Endpoint\Type;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
-use Legobuilder\Framework\Zone\Renderer\ZoneRendererInterface;
 use Legobuilder\Framework\Zone\ZoneInterface;
 
 final class ZoneType extends ObjectType
 {
-    public function __construct(
-        TypeLoaderInterface $typeLoader,
-        ZoneRendererInterface $zoneRenderer
-    ) {
+    public function __construct(TypeLoaderInterface $typeLoader)
+    {
         parent::__construct(
             [
                 'fields' => [
@@ -39,8 +36,8 @@ final class ZoneType extends ObjectType
                     ],
                     'render' => [
                         'type' => Type::nonNull(Type::string()),
-                        'resolve' => function(ZoneInterface $zone) use ($zoneRenderer) {
-                            return $zoneRenderer->render($zone);
+                        'resolve' => function(ZoneInterface $zone) {
+                            return $zone->render($zone);
                         }
                     ]
                 ]

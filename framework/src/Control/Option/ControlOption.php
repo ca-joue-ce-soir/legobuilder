@@ -7,6 +7,11 @@ namespace Legobuilder\Framework\Control\Option;
 class ControlOption implements ControlOptionInterface
 {
     /**
+     * @var string
+     */
+    private $identifier;
+
+    /**
      * @var mixed
      */
     private $default;
@@ -88,5 +93,29 @@ class ControlOption implements ControlOptionInterface
     public function getDefault(): mixed
     {
         return $this->default;
+    }
+
+    /**
+     * Get the value of identifier
+     *
+     * @return  string
+     */ 
+    public function getIdentifier(): string
+    {
+        return $this->identifier;
+    }
+
+    /**
+     * Set the value of identifier
+     *
+     * @param  string  $identifier
+     *
+     * @return  self
+     */ 
+    public function setIdentifier(string $identifier)
+    {
+        $this->identifier = $identifier;
+
+        return $this;
     }
 }

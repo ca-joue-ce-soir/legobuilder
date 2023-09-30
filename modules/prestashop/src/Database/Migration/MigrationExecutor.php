@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Legobuilder\Framework\Database\Migration;
-
-use Legobuilder\Framework\Database\Bridge\DatabaseBridgeInterface;
+namespace Legobuilder\Database\Migration;
 
 class MigrationExecutor
 {

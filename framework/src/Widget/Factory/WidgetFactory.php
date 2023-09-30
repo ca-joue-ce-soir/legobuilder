@@ -4,13 +4,19 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Widget\Factory;
 
-use Legobuilder\Framework\Database\Model\WidgetModel;
+use Legobuilder\Framework\Persistence\Model\WidgetModel;
+use Legobuilder\Framework\Persistence\Repository\WidgetRepositoryInterface;
 use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
 use Legobuilder\Framework\Widget\Widget;
 use Legobuilder\Framework\Widget\WidgetInterface;
 
 final class WidgetFactory implements WidgetFactoryInterface
 {
+    /**
+     * @var WidgetRepositoryInterface
+     */
+    private $widgetRepository;
+
     /**
      * @var WidgetDefinitionRegistryInterface
      */
@@ -21,8 +27,11 @@ final class WidgetFactory implements WidgetFactoryInterface
      */
     private $widgetCache = [];
 
-    public function __construct(WidgetDefinitionRegistryInterface $widgetDefinitionRegistry)
+    public function __construct(
+        WidgetRepositoryInterface $widgetRepository,
+        WidgetDefinitionRegistryInterface $widgetDefinitionRegistry)
     {
+        $this->widgetRepository = $widgetRepository;
         $this->widgetDefinitionRegistry = $widgetDefinitionRegistry;
     }
 
@@ -54,5 +63,16 @@ final class WidgetFactory implements WidgetFactoryInterface
         );
 
         return $this->widgetCache[$widgetId] = $widget;
+    }
+
+    public function getWidgetById(int $id, bool $useCache = false): ?WidgetInterface
+    {
+        $widgetModel = $this->widgetRepository->find($id);
+
+        if (null == $widgetModel) {
+            return null;
+        }
+
+        return $this->getWidget($widgetModel);
     }
 }

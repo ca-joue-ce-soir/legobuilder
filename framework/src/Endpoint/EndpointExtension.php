@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Legobuilder\Framework\Endpoint;
 
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
+use Legobuilder\Framework\Endpoint\Mutator\ZoneMutator;
 use Legobuilder\Framework\Endpoint\Resolver\ControlResolver;
 use Legobuilder\Framework\Endpoint\Resolver\WidgetDefinitionResolver;
 use Legobuilder\Framework\Endpoint\Resolver\WidgetResolver;
 use Legobuilder\Framework\Endpoint\Resolver\ZoneDefinitionResolver;
+use Legobuilder\Framework\Endpoint\Resolver\ZoneResolver;
 use Legobuilder\Framework\Endpoint\Transformer\ControlTransformer;
 use Legobuilder\Framework\Endpoint\Transformer\WidgetDefinitionTransformer;
 use Legobuilder\Framework\Endpoint\Transformer\ZoneDefinitionTransformer;
@@ -43,6 +45,10 @@ class EndpointExtension extends Extension
         $container->autowire(ControlResolver::class);
         $container->autowire(ZoneDefinitionResolver::class);
         $container->autowire(WidgetResolver::class);
+        $container->autowire(ControlResolver::class);
+        $container->autowire(ZoneResolver::class);
+
+        $container->autowire(ZoneMutator::class);
 
         $container->setAlias(TypeLoaderInterface::class, 'endpoint_type_loader');
 

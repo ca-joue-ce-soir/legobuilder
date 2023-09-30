@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework;
 
-use Doctrine\DBAL\Connection;
-use Legobuilder\Framework\Control\Base\ColorControl;
-use Legobuilder\Framework\Control\Base\NumberControl;
-use Legobuilder\Framework\Control\Base\TextControl;
+use Legobuilder\Framework\Control\Type\ColorControl;
+use Legobuilder\Framework\Control\Type\NumberControl;
+use Legobuilder\Framework\Control\Type\TextControl;
 use Legobuilder\Framework\Control\Registry\ControlRegistry;
 use Legobuilder\Framework\Control\Registry\ControlRegistryInterface;
-use Legobuilder\Framework\Database\Repository\WidgetRepository;
-use Legobuilder\Framework\Database\Repository\WidgetRepositoryInterface;
+use Legobuilder\Framework\Persistence\Repository\WidgetRepositoryInterface;
 use Legobuilder\Framework\Endpoint\EndpointInterface;
 use Legobuilder\Framework\Endpoint\EndpointExtension;
-use Legobuilder\Framework\Renderer\RendererInterface;
 use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistry;
 use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
 use Legobuilder\Framework\Widget\Factory\WidgetFactory;
@@ -22,6 +19,7 @@ use Legobuilder\Framework\Widget\Factory\WidgetFactoryInterface;
 use Legobuilder\Framework\Zone\Definition\Registry\ZoneDefinitionRegistry;
 use Legobuilder\Framework\Zone\Definition\Registry\ZoneDefinitionRegistryInterface;
 use Legobuilder\Framework\Zone\Factory\ZoneFactory;
+use Legobuilder\Framework\Zone\Factory\ZoneFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
@@ -37,25 +35,10 @@ abstract class AbstractEngine implements EngineInterface
 
     /**
      * Initializes the engine.
-     *
-     * @param RendererInterface $renderer The renderer to be used by the engine.
-     * @param Connection $connection The database connection to be used by the engine.
      */
-    public function __construct(
-        RendererInterface $renderer, 
-        Connection $connection,
-        string $databasePrefix
-    ) {
-        $container = new ContainerBuilder();
-
-        $container->set('renderer', $renderer);
-        $container->set('connection', $connection);
-        $container->setParameter('database_prefix', $databasePrefix);
-
-        $this->configureContainer($container);
-
-        $this->container = $container;
-        $this->container->compile();
+    public function __construct(WidgetRepositoryInterface $widgetRepository)
+    {
+        $this->container = $this->createContainer($widgetRepository);
 
         $this->registerDefaultControls();
         $this->registerPlatformControls();
@@ -64,11 +47,11 @@ abstract class AbstractEngine implements EngineInterface
     }
 
     /**
-     * Configures the container with various registry and factory services.
+     * Create the container with various registry and factory services.
      *
-     * @param ContainerBuilder $container The container builder.
+     * @param WidgetRepositoryInterface $widgetRepository
      */
-    public function configureContainer(ContainerBuilder &$container)
+    private function createContainer(WidgetRepositoryInterface $widgetRepository)
     {
         $container = new ContainerBuilder();
 
@@ -81,21 +64,24 @@ abstract class AbstractEngine implements EngineInterface
         $container->register('registry.widget_definition_registry', WidgetDefinitionRegistry::class)->setPublic(true);
         $container->setAlias(WidgetDefinitionRegistryInterface::class, 'registry.widget_definition_registry');
 
-        $container->register('repository.widget_repository',  WidgetRepository::class);
-        $container->setAlias(WidgetRepositoryInterface::class, 'repository.widget_repository');
-
-        $container->autowire('factory.widget_factory', WidgetFactory::class)->setPublic(true);
+        $container->autowire('factory.widget_factory', WidgetFactory::class)
+            ->setPublic(true)
+            ->setArgument('$widgetRepository', $widgetRepository)
+        ;
         $container->setAlias(WidgetFactoryInterface::class, 'factory.widget_factory');
 
         $container->autowire('factory.zone_factory', ZoneFactory::class)
-            ->setPublic(true);
-
-        $container->register('repository.widget_repository', WidgetRepository::class)
-            ->addArgument(['ps_']);
-        $container->setAlias(WidgetRepositoryInterface::class, 'repository.widget_repository');
+            ->setPublic(true)
+            ->setArgument('$widgetRepository', $widgetRepository)
+        ;
+        $container->setAlias(ZoneFactoryInterface::class, 'factory.zone_factory');
 
         $container->registerExtension(new EndpointExtension());
-        $container->loadFromExtension('endpoint', );
+        $container->loadFromExtension('endpoint');
+
+        $container->compile();
+
+        return $container;
     }
 
     /**

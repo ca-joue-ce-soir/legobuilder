@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Legobuilder\Framework\Database\Model;
+namespace Legobuilder\Framework\Persistence\Model;
 
 class WidgetModel
 {

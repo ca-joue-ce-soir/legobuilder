@@ -2,19 +2,14 @@
 
 use Doctrine\DBAL\Connection;
 use Legobuilder\Control\ProductControl;
-use Legobuilder\Framework\Database\Migration\MigrationDefaultWidgetTable;
-use Legobuilder\Framework\Database\Migration\MigrationExecutor;
-use Legobuilder\Database\Adapter\PrestashopDatabaseAdapter;
+use Legobuilder\Database\Migration\MigrationDefaultWidgetTable;
+use Legobuilder\Database\Migration\MigrationExecutor;
 use Legobuilder\Framework\Control\Registry\ControlRegistryInterface;
-use Legobuilder\Framework\Zone\Registry\ZoneRegistryInterface;
 use Legobuilder\Framework\EngineInterface;
 use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
-use Legobuilder\Framework\Widget\Type\Registry\WidgetTypeRegistryInterface;
 use Legobuilder\Framework\Zone\Definition\Registry\ZoneDefinitionRegistryInterface;
 use Legobuilder\Framework\Zone\Definition\ZoneDefinition;
-use Legobuilder\Framework\Zone\Zone;
 use Legobuilder\Widget\ProductFeaturesWidgetDefinition;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
 if (!defined('_PS_VERSION_')) {
@@ -92,9 +87,9 @@ class Legobuilder extends Module implements WidgetInterface
         $widgetDefinitionRegistry = $params['registry'];
 
         $translator = $this->getTranslator();
-
+        
         $widgetDefinitionRegistry
-            ->registerWidgetDefinition(new ProductFeaturesWidgetDefinition($translator))
+            ->registerWidgetDefinition(new ProductFeaturesWidgetDefinition($translator, $this->smarty))
         ;
     }
 

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Legobuilder\Framework\Widget;
 
 use Legobuilder\Framework\Widget\Definition\WidgetDefinitionInterface;
-use Legobuilder\Framework\Zone\ZoneInterface;
 
 interface WidgetInterface
 {
@@ -17,11 +16,11 @@ interface WidgetInterface
     public function getId(): int;
 
     /**
-     * Get Widget zone.
+     * Get Widget Zone identifier.
      *
-     * @return ZoneInterface
+     * @return string
      */
-    public function getZone(): ZoneInterface;
+    public function getZoneIdentifier(): string;
 
     /**
      * Get Widget definition.

@@ -7,7 +7,7 @@ namespace Legobuilder\Framework\Endpoint\Type;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
-use Legobuilder\Framework\Renderer\HTMLRenderer;
+use Legobuilder\Framework\Endpoint\Type\Scalar\JsonType;
 use Legobuilder\Framework\Widget\WidgetInterface;
 
 final class WidgetType extends ObjectType
@@ -27,14 +27,19 @@ final class WidgetType extends ObjectType
                     'zone' => [
                         'type' => Type::nonNull(Type::string()),
                         'resolve' => function (WidgetInterface $widget) {
-                            return $widget->getZone();
+                            return $widget->getZoneIdentifier();
+                        }
+                    ],
+                    'settings' => [
+                        'type' => Type::listOf($typeLoader->getByClassName(JsonType::class)),
+                        'resolve' => function (WidgetInterface $widget) {
+                            return [['hello' => 'test']];
                         }
                     ],
                     'render' => [
                         'type' => Type::nonNull(Type::string()),
                         'resolve' => function (WidgetInterface $widget) {
-                            // TODO: Remove the HTML Renderer
-                            return $widget->getDefinition()->render($widget, new HTMLRenderer());
+                            return $widget->getDefinition()->render($widget);
                         }
                     ]
                 ],

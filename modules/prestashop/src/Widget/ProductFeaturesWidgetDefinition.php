@@ -3,12 +3,11 @@
 namespace Legobuilder\Widget;
 
 use Legobuilder\Framework\Control\Base\TextControl;
-use Legobuilder\Framework\Renderer\RendererInterface;
 use Legobuilder\Framework\Widget\Definition\Control\WidgetDefinitionControlCollectionInterface;
 use Legobuilder\Framework\Widget\Definition\Control\WidgetDefinitionControlCollection;
 use Legobuilder\Framework\Widget\WidgetInterface;
 
-class ProductFeaturesWidgetDefinition extends AbstractTranslatorWidgetDefinition
+class ProductFeaturesWidgetDefinition extends AbstractPrestashopWidgetDefinition
 {
     public function getId(): string
     {
@@ -45,9 +44,9 @@ class ProductFeaturesWidgetDefinition extends AbstractTranslatorWidgetDefinition
      * 
      * {@inheritdoc}
      */
-    public function render(WidgetInterface $widget, RendererInterface $renderer): string
+    public function render(WidgetInterface $widget): string
     {
-        return $renderer->view('module:legobuilder/views/templates/widget/product_features.tpl', [
+        return $this->view('module:legobuilder/views/templates/widget/product_features.tpl', [
             'products' => []
         ]);
     }

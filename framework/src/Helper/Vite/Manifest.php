@@ -16,7 +16,7 @@ final class Manifest
     public function __construct(string $manifestFilePath)
     {
         if (!file_exists($manifestFilePath)) {
-            throw new Exception(sprintf('Manifest file (path: %s) does not exist.', $manifestFilePath));
+            return;
         }
 
         $manifest = file_get_contents($manifestFilePath);
