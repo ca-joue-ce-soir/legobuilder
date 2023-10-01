@@ -15,6 +15,10 @@ interface ControlRegistryInterface
      */
     public function getControls(): array;
 
+    public function getControl(string $controlType): ?ControlInterface;
+
+    public function getControlByClass(string $controlClass): ?ControlInterface;
+
     /**
      * Register a new control.
      *

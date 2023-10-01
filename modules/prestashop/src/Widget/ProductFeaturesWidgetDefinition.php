@@ -2,18 +2,29 @@
 
 namespace Legobuilder\Widget;
 
-use Legobuilder\Framework\Control\Base\TextControl;
-use Legobuilder\Framework\Widget\Definition\Control\WidgetDefinitionControlCollectionInterface;
-use Legobuilder\Framework\Widget\Definition\Control\WidgetDefinitionControlCollection;
+use Legobuilder\Framework\Control\Type\ColorControl;
+use Legobuilder\Framework\Control\Type\NumberControl;
+use Legobuilder\Framework\Control\Type\TextControl;
+use Legobuilder\Framework\Widget\Definition\Control\WidgetDefinitionControlsBuilderInterface;
 use Legobuilder\Framework\Widget\WidgetInterface;
 
 class ProductFeaturesWidgetDefinition extends AbstractPrestashopWidgetDefinition
 {
+    /**
+     * Get identifier for the widget.
+     * 
+     * {@inheritdoc}
+     */
     public function getId(): string
     {
         return 'product-features';
     }
 
+    /**
+     * Get name of the widget.
+     * 
+     * {@inheritdoc}
+     */
     public function getName(): string
     {
         return $this->trans('Widget name', 'Modules.Legobuilder.Widget');
@@ -24,9 +35,9 @@ class ProductFeaturesWidgetDefinition extends AbstractPrestashopWidgetDefinition
      * 
      * {@inheritdoc}
      */
-    public function getControls(): WidgetDefinitionControlCollectionInterface
+    public function buildControls(WidgetDefinitionControlsBuilderInterface $widgetDefinitionControlsBuilder): void
     {
-        return (new WidgetDefinitionControlCollection())
+        $widgetDefinitionControlsBuilder
             ->add('control_0', TextControl::class, [
                 'label' => $this->trans('Control 0', 'Modules.Legobuilder.Widget')
             ])

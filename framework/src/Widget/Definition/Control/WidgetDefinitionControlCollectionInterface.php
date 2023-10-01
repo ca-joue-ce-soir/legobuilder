@@ -18,7 +18,7 @@ interface WidgetDefinitionControlCollectionInterface extends Iterator, Countable
      *
      * @return self
      */
-    public function add($id, $type, array $options = []): self;
+    public function add(WidgetDefinitionControl $widgetDefinitionControl): self;
 
     /**
      * Remove control from collection.

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Widget\Definition\Registry;
 
+use Legobuilder\Framework\Control\Registry\ControlRegistryInterface;
+use Legobuilder\Framework\Widget\Definition\Control\WidgetDefinitionControlsBuilder;
 use Legobuilder\Framework\Widget\Definition\WidgetDefinitionInterface;
 
 final class WidgetDefinitionRegistry implements WidgetDefinitionRegistryInterface
@@ -13,8 +15,14 @@ final class WidgetDefinitionRegistry implements WidgetDefinitionRegistryInterfac
      */
     private $widgetDefinitions;
 
-    public function __construct()
+    /**
+     * @var ControlRegistryInterface
+     */
+    private $controlRegistry;
+
+    public function __construct(ControlRegistryInterface $controlRegistry)
     {
+        $this->controlRegistry = $controlRegistry;
         $this->widgetDefinitions = [];
     }
 
@@ -30,12 +38,19 @@ final class WidgetDefinitionRegistry implements WidgetDefinitionRegistryInterfac
 
     /**
      * Registers a new widget definition by adding it to the array of widget definitions.
+     * 
+     * @todo Add the controls object to the widget definitions instead of type class.
      *
      * @param  WidgetDefinitionInterface $widgetDefinition
      * @return self
      */
     public function registerWidgetDefinition(WidgetDefinitionInterface $widgetDefinition): self
     {
+        $widgetDefinitionControlsBuilder = new WidgetDefinitionControlsBuilder($this->controlRegistry);
+        $widgetDefinition->buildControls($widgetDefinitionControlsBuilder);
+        
+        $widgetDefinition->setControls($widgetDefinitionControlsBuilder->getControls());
+
         $this->widgetDefinitions[$widgetDefinition->getId()] = $widgetDefinition;
 
         return $this;

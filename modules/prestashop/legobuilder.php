@@ -87,9 +87,9 @@ class Legobuilder extends Module implements WidgetInterface
         $widgetDefinitionRegistry = $params['registry'];
 
         $translator = $this->getTranslator();
-        
+
         $widgetDefinitionRegistry
-            ->registerWidgetDefinition(new ProductFeaturesWidgetDefinition($translator, $this->smarty))
+            ->registerWidgetDefinition(new ProductFeaturesWidgetDefinition($translator, $this->context->smarty))
         ;
     }
 

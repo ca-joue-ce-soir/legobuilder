@@ -56,6 +56,15 @@ final class QueryType extends ObjectType
                         'description' => 'Get all controls registered in the engine.',
                         'resolve' => [$controlResolver, 'getControls']
                     ],
+                    'control' => [
+                        'type' => $typeLoader->getByClassName(ControlType::class),
+                        'args' => [
+                            'id' => [
+                                'type' => Type::id()
+                            ]
+                        ],
+                        'resolve' => [$controlResolver, 'getControl']
+                    ],
                     'widgetDefinitions' => [
                         'type' => Type::listOf($typeLoader->getByClassName(WidgetDefinitionType::class)),
                         'description' => '',

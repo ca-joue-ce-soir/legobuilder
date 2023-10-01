@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Legobuilder\Framework\Control\Type;
 
 use Legobuilder\Framework\Control\AbstractControl;
-use Legobuilder\Framework\Control\Option\ControlOptions;
+use Legobuilder\Framework\Control\Option\ControlOptionCollectionInterface;
 
 class TextControl extends AbstractControl
 {
@@ -19,9 +19,9 @@ class TextControl extends AbstractControl
         return 'text';
     }
 
-    public function getOptions(): ControlOptions
+    public function getOptions(): ControlOptionCollectionInterface
     {
         return (parent::getOptions())
-            ->addOption('default', false, null, 'is_string');
+            ->add('default', false, null, 'is_string');
     }
 }

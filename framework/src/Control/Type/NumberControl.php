@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Legobuilder\Framework\Control\Type;
 
 use Legobuilder\Framework\Control\AbstractControl;
-use Legobuilder\Framework\Control\Option\ControlOptions;
+use Legobuilder\Framework\Control\Option\ControlOptionCollectionInterface;
 
 class NumberControl extends AbstractControl
 {
@@ -19,10 +19,10 @@ class NumberControl extends AbstractControl
         return 'number';
     }
 
-    public function getOptions(): ControlOptions
+    public function getOptions(): ControlOptionCollectionInterface
     {
         return (parent::getOptions())
-            ->addOption('min', true, null, 'is_int')
-            ->addOption('max', true, null, 'is_int');
+            ->add('min', true, null, 'is_int')
+            ->add('max', true, null, 'is_int');
     }
 }

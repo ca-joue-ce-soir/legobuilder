@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Legobuilder\Framework\Control\Type;
 
 use Legobuilder\Framework\Control\AbstractControl;
-use Legobuilder\Framework\Control\Option\ControlOptions;
+use Legobuilder\Framework\Control\Option\ControlOptionCollectionInterface;
 
 class ColorControl extends AbstractControl
 {
@@ -19,9 +19,9 @@ class ColorControl extends AbstractControl
         return 'color';
     }
 
-    public function getOptions(): ControlOptions
+    public function getOptions(): ControlOptionCollectionInterface
     {
         return (parent::getOptions())
-            ->addOption('color', true, null, 'is_string');
+            ->add('color', true, null, 'is_string');
     }
 }

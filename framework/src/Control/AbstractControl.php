@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Control;
 
-use Legobuilder\Framework\Control\Option\ControlOptions;
+use Legobuilder\Framework\Control\Option\ControlOptionCollection;
+use Legobuilder\Framework\Control\Option\ControlOptionCollectionInterface;
 
 /**
  * The AbstractControl class is an abstract implementation of the ControlInterface.
@@ -15,12 +16,12 @@ abstract class AbstractControl implements ControlInterface
     /**
      * Retrieves the control options.
      *
-     * @return ControlOptions The control options.
+     * {@inheritdoc}
      */
-    public function getOptions(): ControlOptions
+    public function getOptions(): ControlOptionCollectionInterface
     {
-        return (new ControlOptions())
-            ->addOption('label', true, null, 'is_string')
-            ->addOption('hint', false, null, 'is_string');
+        return (new ControlOptionCollection())
+            ->add('label', true, null, 'is_string')
+            ->add('hint', false, null, 'is_string');
     }
 }

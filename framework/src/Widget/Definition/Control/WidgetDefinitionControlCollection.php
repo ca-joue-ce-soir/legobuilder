@@ -16,12 +16,9 @@ final class WidgetDefinitionControlCollection extends AbstractCollection impleme
      * @param  ?array           $options
      * @return self
      */
-    public function add($id, $type, ?array $options = []): self
+    public function add(WidgetDefinitionControl $widgetDefinitionControl): self
     {
-        $this->items[$id] = [
-            'type' => $type,
-            'options' => $options,
-        ];
+        $this->items[$widgetDefinitionControl->getId()] = $widgetDefinitionControl; 
 
         return $this;
     }

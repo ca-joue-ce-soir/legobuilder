@@ -55,13 +55,13 @@ abstract class AbstractEngine implements EngineInterface
     {
         $container = new ContainerBuilder();
 
-        $container->register('registry.control_registry', ControlRegistry::class)->setPublic(true);
+        $container->autowire('registry.control_registry', ControlRegistry::class)->setPublic(true);
         $container->setAlias(ControlRegistryInterface::class, 'registry.control_registry');
 
-        $container->register('registry.zone_definition_registry', ZoneDefinitionRegistry::class)->setPublic(true);
+        $container->autowire('registry.zone_definition_registry', ZoneDefinitionRegistry::class)->setPublic(true);
         $container->setAlias(ZoneDefinitionRegistryInterface::class, 'registry.zone_definition_registry');
 
-        $container->register('registry.widget_definition_registry', WidgetDefinitionRegistry::class)->setPublic(true);
+        $container->autowire('registry.widget_definition_registry', WidgetDefinitionRegistry::class)->setPublic(true);
         $container->setAlias(WidgetDefinitionRegistryInterface::class, 'registry.widget_definition_registry');
 
         $container->autowire('factory.widget_factory', WidgetFactory::class)

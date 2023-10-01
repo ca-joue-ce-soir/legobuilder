@@ -7,7 +7,7 @@ namespace Legobuilder\Framework\Endpoint\Type;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
-use Legobuilder\Framework\Endpoint\Type\Scalar\JsonType;
+use Legobuilder\Framework\Widget\Definition\Control\WidgetDefinitionControl;
 use Legobuilder\Framework\Widget\Definition\WidgetDefinitionInterface;
 
 final class WidgetDefinitionControlType extends ObjectType
@@ -21,19 +21,16 @@ final class WidgetDefinitionControlType extends ObjectType
                 'fields' => [
                     'id' => [
                         'type' => Type::nonNull(Type::string()),
-                        'resolve' => function (WidgetDefinitionInterface $widgetDefinition) {
-                            return $widgetDefinition->getId();
+                        'resolve' => function (WidgetDefinitionControl $widgetDefinitionControl) {
+                            return $widgetDefinitionControl->getId();
                         }
                     ],
-                    'options' => [
-                        'type' => $typeLoader->getByClassName(JsonType::class),
-                    ],
-                    'controls' => [
-                        'type' => Type::listOf($typeLoader->getByClassName(ControlType::class)),
-                        'resolve' => function (WidgetDefinitionInterface $widgetDefinition) {
-                            return $widgetDefinition->getControls();
+                    'control' => [
+                        'type' => $typeLoader->getByClassName(ControlType::class),
+                        'resolve' => function (WidgetDefinitionControl $widgetDefinitionControl) {
+                            return  $widgetDefinitionControl->getControl();
                         }
-                    ],
+                    ]
                 ],
             ]
         );

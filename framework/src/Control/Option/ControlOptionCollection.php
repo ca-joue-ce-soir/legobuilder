@@ -5,27 +5,20 @@ declare(strict_types=1);
 namespace Legobuilder\Framework\Control\Option;
 
 use ArrayIterator;
-use IteratorAggregate;
+use Legobuilder\Framework\Collection\AbstractCollection;
 use Legobuilder\Framework\Control\Option\Exception\InvalidControlOptionException;
 use Legobuilder\Framework\Control\Option\Exception\MissingControlOptionException;
 use Legobuilder\Framework\Control\Option\Exception\UnknownControlOptionException;
 use Traversable;
 
-class ControlOptions implements Traversable, IteratorAggregate
+class ControlOptionCollection extends AbstractCollection implements ControlOptionCollectionInterface
 {
     /**
-     * @var ControlOptionInterface[]
+     * {@inheritdoc}
      */
-    private $options;
-
-    public function __construct()
+    public function add(string $key, bool $required = false, $default = null, ?callable $validator = null): self
     {
-        $this->options = [];
-    }
-
-    public function addOption(string $key, bool $required = false, $default = null, ?callable $validator = null): self
-    {
-        $this->options[$key] = (new ControlOption())
+        $this->items[$key] = (new ControlOption())
             ->setIdentifier($key)
             ->setDefault($default)
             ->setRequired($required)
@@ -36,11 +29,11 @@ class ControlOptions implements Traversable, IteratorAggregate
 
     public function setValidatorFor(string $optionKey, callable $validator): self
     {
-        if (!isset($this->options[$optionKey])) {
+        if (!isset($this->items[$optionKey])) {
             throw new UnknownControlOptionException($optionKey);
         }
 
-        $option = $this->options[$optionKey];
+        $option = $this->items[$optionKey];
         $option->setValidator($validator);
 
         return $this;
@@ -48,11 +41,11 @@ class ControlOptions implements Traversable, IteratorAggregate
 
     public function setDefaultFor(string $optionKey, mixed $default): self
     {
-        if (!isset($this->options[$optionKey])) {
+        if (!isset($this->items[$optionKey])) {
             throw new UnknownControlOptionException($optionKey);
         }
 
-        $option = $this->options[$optionKey];
+        $option = $this->items[$optionKey];
         $option->setDefault($default);
 
         return $this;
@@ -60,11 +53,11 @@ class ControlOptions implements Traversable, IteratorAggregate
 
     public function setRequiredFor(string $optionKey, bool $required): self
     {
-        if (!isset($this->options[$optionKey])) {
+        if (!isset($this->items[$optionKey])) {
             throw new UnknownControlOptionException($optionKey);
         }
 
-        $option = $this->options[$optionKey];
+        $option = $this->items[$optionKey];
         $option->setRequired($required);
 
         return $this;
@@ -72,16 +65,16 @@ class ControlOptions implements Traversable, IteratorAggregate
 
     public function getOption(string $optionKey): ControlOptionInterface
     {
-        if (!isset($this->options[$optionKey])) {
+        if (!isset($this->items[$optionKey])) {
             throw new UnknownControlOptionException($optionKey);
         }
 
-        return $this->options[$optionKey];
+        return $this->items[$optionKey];
     }
 
     public function validate(array $optionsToValidate): bool
     {
-        foreach ($this->options as $optionKey => $option) {
+        foreach ($this->items as $optionKey => $option) {
             if ($option->isRequired() && (!isset($option[$optionKey]) || empty($option[$optionKey]))) {
                 throw new MissingControlOptionException($optionKey);
             }
@@ -98,11 +91,5 @@ class ControlOptions implements Traversable, IteratorAggregate
         }
 
         return true;
-    }
-
-    /* Methods */
-    public function getIterator(): Traversable
-    {
-        return new ArrayIterator($this->options);
     }
 }

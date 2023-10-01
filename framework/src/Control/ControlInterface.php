@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Control;
 
-use Legobuilder\Framework\Control\Option\ControlOptions;
+use Legobuilder\Framework\Control\Option\ControlOptionCollectionInterface;
 
 interface ControlInterface
 {
@@ -18,7 +18,7 @@ interface ControlInterface
     /**
      * Get default date from the control.
      *
-     * @return ControlOptions
+     * @return ControlOptionCollectionInterface
      */
-    public function getOptions(): ControlOptions;
+    public function getOptions(): ControlOptionCollectionInterface;
 }
