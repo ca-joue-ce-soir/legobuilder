@@ -30,6 +30,7 @@ final class Zone implements ZoneInterface
     public function __construct(ZoneDefinitionInterface $definition)
     {
         $this->definition = $definition;
+        $this->widgets = [];
     }
 
     public function getDefinition(): ZoneDefinitionInterface
