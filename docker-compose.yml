@@ -48,6 +48,8 @@ services:
             - prestashop_data:/var/www/html
             - ./modules/prestashop:/var/www/html/modules/legobuilder
             - ./framework:/var/www/legobuilder-framework/
+        extra_hosts:
+            - host.docker.internal:host-gateway
         
 networks:
     app_network:

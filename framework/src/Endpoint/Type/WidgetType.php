@@ -31,9 +31,13 @@ final class WidgetType extends ObjectType
                         }
                     ],
                     'settings' => [
-                        'type' => Type::listOf($typeLoader->getByClassName(JsonType::class)),
+                        'type' => $typeLoader->getByClassName(JsonType::class),
                         'resolve' => function (WidgetInterface $widget) {
-                            return [['hello' => 'test']];
+                            return [
+                                'control_0' => 'Coucoucouuu',
+                                'control_1' => 'Hello',
+                                'control_2' => 'World'
+                            ];
                         }
                     ],
                     'render' => [

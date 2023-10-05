@@ -37,3 +37,6 @@ yarn-error.log*
 # PHP
 vendor
 modules/**/composer.lock
+
+# Visual Studio Code
+.vscode

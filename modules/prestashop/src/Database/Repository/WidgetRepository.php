@@ -18,7 +18,7 @@ class WidgetRepository extends AbstractDatabaseAware implements WidgetRepository
             ->where('w.id_widget = :id_widget')
             ->setParameter('id_widget', $widgetId)
             ->execute()
-            ->fetchOne()
+            ->fetch()
         ;
 
         if (false === $widgetData) {
@@ -47,7 +47,7 @@ class WidgetRepository extends AbstractDatabaseAware implements WidgetRepository
         
         foreach ($widgetsData as $widgetData) {
             $widgets[] = (new WidgetModel())
-                ->setId($widgetData['id_widget'])
+                ->setId((int) $widgetData['id_widget'])
                 ->setZone($widgetData['zone'])
                 ->setType($widgetData['type'])
             ;

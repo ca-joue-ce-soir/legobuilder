@@ -24,6 +24,6 @@ class WidgetResolver
      */
     public function getWidget($rootValue, array $args): ?WidgetInterface
     {
-        return $this->widgetFactory->getWidgetById($args['id']);
+        return $this->widgetFactory->getWidgetById((int) $args['id']);
     }
 }
