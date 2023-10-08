@@ -78,7 +78,7 @@ class WidgetModel
      * Get the value of zoneId
      *
      * @return  string
-     */ 
+     */
     public function getZoneId()
     {
         return $this->zoneId;
@@ -90,7 +90,7 @@ class WidgetModel
      * @param  string  $zoneId
      *
      * @return  self
-     */ 
+     */
     public function setZoneId(string $zoneId)
     {
         $this->zoneId = $zoneId;

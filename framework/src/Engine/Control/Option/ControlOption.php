@@ -92,7 +92,7 @@ class ControlOption implements ControlOptionInterface
      * Get the value of required
      *
      * @return  bool
-     */ 
+     */
     public function isRequired(): bool
     {
         return $this->required;
@@ -104,7 +104,7 @@ class ControlOption implements ControlOptionInterface
      * @param  bool  $required
      *
      * @return  self
-     */ 
+     */
     public function setRequired(bool $required): self
     {
         $this->required = $required;

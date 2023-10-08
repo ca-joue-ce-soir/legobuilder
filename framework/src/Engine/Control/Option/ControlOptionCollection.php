@@ -59,11 +59,9 @@ class ControlOptionCollection extends AbstractCollection implements ControlOptio
     public function resolve(array $options): array
     {
         foreach ($this->items as $controlOption) {
-
             $controlOptionIdentifier = $controlOption->getIdentifier();
 
             if (!isset($options[$controlOptionIdentifier])) {
-
                 if ($controlOption->isRequired()) {
                     throw new MissingControlOptionException($controlOptionIdentifier);
                 }

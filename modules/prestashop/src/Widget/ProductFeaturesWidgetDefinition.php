@@ -38,9 +38,10 @@ class ProductFeaturesWidgetDefinition extends AbstractPrestashopWidgetDefinition
     {
         return (new ControlCollection())
             ->add(
-                (new TextControl('label'))
+                (new TextControl('title'))
                     ->setOptions([
-                        'label' => $this->trans('Label control', 'Modules.Legobuilder.Widget'),
+                        'label' => $this->trans('Title', 'Modules.Legobuilder.Widget'),
+                        'required' => true
                     ])
             )
         ;

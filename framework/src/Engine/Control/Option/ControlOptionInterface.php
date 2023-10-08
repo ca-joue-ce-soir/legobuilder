@@ -40,7 +40,7 @@ interface ControlOptionInterface
 
     /**
      * Get the list of constraints.
-     * 
+     *
      * @return ConstraintInterface[]
      */
     public function getConstraints(): array;

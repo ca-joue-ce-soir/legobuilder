@@ -15,7 +15,7 @@ final class ZoneType extends ObjectType
     {
         parent::__construct(
             [
-                'fields' => function() use(&$typeLoader): array {
+                'fields' => function () use (&$typeLoader): array {
                     return [
                         'parameters' => [
                             'type' => Type::listOf(Type::string()),
@@ -36,7 +36,7 @@ final class ZoneType extends ObjectType
                             }
                         ]
                     ];
-                } 
+                }
             ]
         );
     }

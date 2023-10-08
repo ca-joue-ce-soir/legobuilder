@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Engine\Control;
 
+use Legobuilder\Framework\Engine\Constraint\BooleanConstraint;
 use Legobuilder\Framework\Engine\Constraint\StringConstraint;
 use Legobuilder\Framework\Engine\Control\Exception\OptionNotFoundException;
 use Legobuilder\Framework\Engine\Control\Option\ControlOption;
@@ -90,6 +91,13 @@ abstract class AbstractControl implements ControlInterface
                 (new ControlOption('hint'))
                     ->setConstraints([
                         new StringConstraint()
+                    ])
+            )
+            ->add(
+                (new ControlOption('required'))
+                    ->setDefault(false)
+                    ->setConstraints([
+                        new BooleanConstraint()
                     ])
             )
             ->add(
