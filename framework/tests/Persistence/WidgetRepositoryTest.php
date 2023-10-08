@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Legobuilder\Framework\Persistence\Model\WidgetModel;
+use Legobuilder\Framework\Persistence\Repository\WidgetRepositoryInterface;
 use PHPUnit\Framework\TestCase;
 
 class WidgetRepositoryTest extends TestCase

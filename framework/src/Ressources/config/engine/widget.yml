@@ -1,0 +1,17 @@
+services:
+    widget.widget_factory:
+        class: 'Legobuilder\Framework\Engine\Widget\Factory\WidgetFactory'
+        arguments:
+            - '@repository.widget_repository'
+            - '@widget.widget_definition_registry'
+
+    Legobuilder\Framework\Engine\Widget\Factory\WidgetFactoryInterface:
+        alias: 'widget.widget_factory'
+        public: true
+    
+    widget.widget_definition_registry:
+        class: 'Legobuilder\Framework\Engine\Widget\Definition\Registry\WidgetDefinitionRegistry'
+
+    Legobuilder\Framework\Engine\Widget\Definition\Registry\WidgetDefinitionRegistryInterface:
+        alias: 'widget.widget_definition_registry'
+        public: true

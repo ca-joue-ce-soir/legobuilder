@@ -8,36 +8,38 @@ use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
 use Legobuilder\Framework\Endpoint\Type\Scalar\JsonType;
-use Legobuilder\Framework\Widget\WidgetInterface;
+use Legobuilder\Framework\Engine\Widget\WidgetInterface;
 
 final class WidgetType extends ObjectType
 {
-    public function __construct(TypeLoaderInterface $typeLoader) 
+    public function __construct(TypeLoaderInterface $typeLoader)
     {
         parent::__construct(
             [
                 'description' => 'Widget that are saved in specific zone',
                 'fields' => [
+                    'id' => [
+                        'type' => Type::id(),
+                        'resolve' => function (WidgetInterface $widget): mixed {
+                            return $widget->getId();
+                        }
+                    ],
                     'definition' => [
                         'type' => Type::nonNull($typeLoader->getByClassName(WidgetDefinitionType::class)),
-                        'resolve' => function (WidgetInterface $widget) {
+                        'resolve' => function (WidgetInterface $widget): mixed {
                             return $widget->getDefinition();
                         }
                     ],
                     'zone' => [
                         'type' => Type::nonNull(Type::string()),
                         'resolve' => function (WidgetInterface $widget) {
-                            return $widget->getZoneIdentifier();
+                            return $widget->getZoneId();
                         }
                     ],
                     'settings' => [
                         'type' => $typeLoader->getByClassName(JsonType::class),
                         'resolve' => function (WidgetInterface $widget) {
-                            return [
-                                'control_0' => 'Coucoucouuu',
-                                'control_1' => 'Hello',
-                                'control_2' => 'World'
-                            ];
+                            return $widget->getSettings();
                         }
                     ],
                     'render' => [

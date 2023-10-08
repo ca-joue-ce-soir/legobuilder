@@ -19,7 +19,7 @@ class WidgetModel
     /**
      * @var string
      */
-    private $zone;
+    private $zoneId;
 
     /**
      * Get the value of id
@@ -69,32 +69,32 @@ class WidgetModel
         return $this;
     }
 
-    /**
-     * Get the value of zone
-     *
-     * @return string
-     */
-    public function getZone()
-    {
-        return $this->zone;
-    }
-
-    /**
-     * Set the value of zone
-     *
-     * @param string $zone
-     *
-     * @return self
-     */
-    public function setZone(string $zone)
-    {
-        $this->zone = $zone;
-
-        return $this;
-    }
-
     public function getControlSettings(): array
     {
         return [];
+    }
+
+    /**
+     * Get the value of zoneId
+     *
+     * @return  string
+     */ 
+    public function getZoneId()
+    {
+        return $this->zoneId;
+    }
+
+    /**
+     * Set the value of zoneId
+     *
+     * @param  string  $zoneId
+     *
+     * @return  self
+     */ 
+    public function setZoneId(string $zoneId)
+    {
+        $this->zoneId = $zoneId;
+
+        return $this;
     }
 }

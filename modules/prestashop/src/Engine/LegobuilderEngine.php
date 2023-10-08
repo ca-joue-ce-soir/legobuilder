@@ -2,20 +2,10 @@
 
 namespace Legobuilder\Engine;
 
-use Legobuilder\Framework\AbstractEngine;
+use Legobuilder\Framework\Engine\DependencyInjectionEngine;
 
-final class LegobuilderEngine extends AbstractEngine
+final class LegobuilderEngine extends DependencyInjectionEngine
 {
-    /**
-     * Register all the "controls" that are added through PrestaShop modules.
-     */
-    public function registerPlatformControls(): void
-    {
-        \Hook::exec('actionLegobuilderRegisterControls', [
-            'registry' => $this->getControlRegistry()
-        ]);
-    }
-    
     /**
      * Register all the "widgets" that are added through PrestaShop modules.
      */
@@ -23,16 +13,6 @@ final class LegobuilderEngine extends AbstractEngine
     {
         \Hook::exec('actionLegobuilderRegisterWidgetsDefinitions', [
             'registry' => $this->getWidgetDefinitionRegistry()
-        ]);
-    }
-
-    /**
-     * Register all the "zones" that are added through PrestaShop modules.
-     */
-    public function registerPlatformZones(): void
-    {        
-        \Hook::exec('actionLegobuilderRegisterZones', [
-            'registry' => $this->getZoneDefinitionRegistry()
         ]);
     }
 }

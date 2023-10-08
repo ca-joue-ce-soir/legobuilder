@@ -27,7 +27,7 @@ class WidgetRepository extends AbstractDatabaseAware implements WidgetRepository
 
         return (new WidgetModel())
             ->setId($widgetData['id_widget'])
-            ->setZone($widgetData['zone'])
+            ->setZoneId($widgetData['zone'])
             ->setType($widgetData['type'])
         ;
     }
@@ -48,7 +48,7 @@ class WidgetRepository extends AbstractDatabaseAware implements WidgetRepository
         foreach ($widgetsData as $widgetData) {
             $widgets[] = (new WidgetModel())
                 ->setId((int) $widgetData['id_widget'])
-                ->setZone($widgetData['zone'])
+                ->setZoneId($widgetData['zone'])
                 ->setType($widgetData['type'])
             ;
         }

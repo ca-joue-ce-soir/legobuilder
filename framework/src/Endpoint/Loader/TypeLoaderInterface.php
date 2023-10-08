@@ -11,16 +11,16 @@ interface TypeLoaderInterface
     /**
      * Retrieves an object type by class name.
      *
-     * @param string $className The class name of the object type
-     * @return Type The object type
+     * @param string $typeName The class name of the object type
+     * @return ?Type The object type
      */
-    public function getByTypeName(string $typeName): Type;
+    public function getByTypeName(string $typeName): ?Type;
 
     /**
      * Retrieves an object type by type name.
      *
-     * @param string $typeName The type name of the object type
-     * @return Type The object type
+     * @param string $className The type name of the object type
+     * @return ?Type The object type
      */
-    public function getByClassName(string $className): Type;
+    public function getByClassName(string $className): ?Type;
 }

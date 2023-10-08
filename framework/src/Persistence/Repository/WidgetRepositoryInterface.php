@@ -15,7 +15,7 @@ interface WidgetRepositoryInterface
      * @return ?WidgetModel The retrieved widget as a WidgetModel object, or null if not found.
      */
     public function find(int $widgetId): ?WidgetModel;
-    
+
     /**
      * Retrieves widgets by their zone.
      *
@@ -26,7 +26,7 @@ interface WidgetRepositoryInterface
 
     /**
      * Saves the widget data.
-     * 
+     *
      * @param WidgetModel $widget
      * @return bool Success ave
      */

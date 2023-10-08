@@ -6,14 +6,11 @@ namespace Legobuilder\Framework\Endpoint\Type;
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
-use Legobuilder\Framework\Control\ControlInterface;
-use Legobuilder\Framework\Control\Option\ControlOptionInterface;
-use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
-use Legobuilder\Framework\Endpoint\Type\Scalar\JsonType;
+use Legobuilder\Framework\Engine\Control\Option\ControlOptionInterface;
 
 final class ControlOptionType extends ObjectType
 {
-    public function __construct(TypeLoaderInterface $typeLoader)
+    public function __construct()
     {
         parent::__construct(
             [
@@ -30,6 +27,12 @@ final class ControlOptionType extends ObjectType
                         'type' => Type::boolean(),
                         'resolve' => function (ControlOptionInterface $controlOption) {
                             return $controlOption->isRequired();
+                        }
+                    ],
+                    'constraints' => [
+                        'type' => Type::listOf(Type::string()),
+                        'resolve' => function (ControlOptionInterface $controlOption) {
+                            return array_map('get_class', $controlOption->getConstraints());
                         }
                     ]
                 ],

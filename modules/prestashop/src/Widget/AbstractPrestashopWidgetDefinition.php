@@ -4,7 +4,7 @@ namespace Legobuilder\Widget;
 
 use Exception;
 use Smarty;
-use Legobuilder\Framework\Widget\Definition\AbstractWidgetDefinition;
+use Legobuilder\Framework\Engine\Widget\Definition\AbstractWidgetDefinition;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class AbstractPrestashopWidgetDefinition extends AbstractWidgetDefinition
@@ -47,7 +47,6 @@ abstract class AbstractPrestashopWidgetDefinition extends AbstractWidgetDefiniti
     protected function view(string $templatePath, array $parameters = []): string
     {
         try {
-
             $template = $this->smarty->createTemplate($templatePath, null, null, $this->smarty);
             $template->assign($parameters);
 

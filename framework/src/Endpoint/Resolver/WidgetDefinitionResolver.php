@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Endpoint\Resolver;
 
-use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
-use Legobuilder\Framework\Widget\Definition\WidgetDefinitionInterface;
+use Legobuilder\Framework\Engine\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
+use Legobuilder\Framework\Engine\Widget\Definition\WidgetDefinitionInterface;
 
 class WidgetDefinitionResolver
 {
@@ -29,10 +29,12 @@ class WidgetDefinitionResolver
         return $this->widgetDefinitionRegistry->getWidgetsDefinitions();
     }
 
-     /**
-     * 
+    /**
+     * Retrieves the widget definition based on the id.
      *
-     * @return array Widgets definitions
+     * @param mixed $rootValue The root value.
+     * @param array $args The arguments.
+     * @return WidgetDefinitionInterface|null The widget definition.
      */
     public function getWidgetDefinition($rootValue, array $args): ?WidgetDefinitionInterface
     {

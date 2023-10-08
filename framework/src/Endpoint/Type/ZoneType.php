@@ -7,7 +7,7 @@ namespace Legobuilder\Framework\Endpoint\Type;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
-use Legobuilder\Framework\Zone\ZoneInterface;
+use Legobuilder\Framework\Engine\Zone\ZoneInterface;
 
 final class ZoneType extends ObjectType
 {
@@ -15,33 +15,29 @@ final class ZoneType extends ObjectType
     {
         parent::__construct(
             [
-                'fields' => [
-                    'definition' => [
-                        'type' => Type::nonNull($typeLoader->getByClassName(ZoneDefinitionType::class)),
-                        'resolve' => function (ZoneInterface $zone) {
-                            return $zone->getDefinition();
-                        }
-                    ],
-                    'parameters' => [
-                        'type' => Type::listOf(Type::string()),
-                        'resolve' => function (ZoneInterface $zone) {
-                            return $zone->getParameters();
-                        }
-                    ],
-                    'widgets' => [
-                        'type' => Type::listOf($typeLoader->getByClassName(WidgetType::class)),
-                        'resolve' => function (ZoneInterface $zone) {
-                            return $zone->getWidgets();
-                        }
-                    ],
-                    'render' => [
-                        'type' => Type::nonNull(Type::string()),
-                        'resolve' => function(ZoneInterface $zone) {
-                            return $zone->render($zone);
-                        }
-                    ]
-                ]
+                'fields' => function() use(&$typeLoader): array {
+                    return [
+                        'parameters' => [
+                            'type' => Type::listOf(Type::string()),
+                            'resolve' => function (ZoneInterface $zone) {
+                                return $zone->getParameters();
+                            }
+                        ],
+                        'widgets' => [
+                            'type' => Type::listOf($typeLoader->getByClassName(WidgetType::class)),
+                            'resolve' => function (ZoneInterface $zone) {
+                                return $zone->getWidgets();
+                            }
+                        ],
+                        'render' => [
+                            'type' => Type::nonNull(Type::string()),
+                            'resolve' => function (ZoneInterface $zone) {
+                                return $zone->render();
+                            }
+                        ]
+                    ];
+                } 
             ]
-        ); 
+        );
     }
 }

@@ -2,17 +2,7 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        public: true
-
-    Legobuilder\Framework\Endpoint\Type\:
-        resource: '../../Endpoint/Type/*'
-        tags: ['endpoint.type']
-
-    Legobuilder\Framework\Endpoint\Type\Scalar\:
-        resource: '../../Endpoint/Type/Scalar/*'
-        tags: ['endpoint.type']
-
-    endpoint_type_loader:
-        class: 'Legobuilder\Framework\Endpoint\Loader\DependecyInjectionTypeLoader'
-        arguments:
-            - !tagged_locator endpoint.type
+        
+imports:
+    - { resource: ./engine/*.yml }
+    - { resource: ./endpoint/*.yml }

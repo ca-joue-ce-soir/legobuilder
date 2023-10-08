@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Legobuilder\Framework\Endpoint\Mutator;
 
 use Exception;
-use Legobuilder\Framework\Zone\Factory\ZoneFactoryInterface;
+use Legobuilder\Framework\Engine\Zone\Factory\ZoneFactoryInterface;
 
 class ZoneMutator
 {
@@ -13,6 +13,11 @@ class ZoneMutator
      * @var ZoneFactoryInterface
      */
     private $zoneFactory;
+
+    public function __construct(ZoneFactoryInterface $zoneFactory)
+    {
+        $this->zoneFactory = $zoneFactory;
+    }
 
     public function updateZone($rootValue, array $args): void
     {
@@ -26,7 +31,6 @@ class ZoneMutator
         $widgets = $args['widgets'];
 
         foreach ($widgets as $widget) {
-            
         }
     }
 }

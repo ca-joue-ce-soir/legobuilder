@@ -16,6 +16,11 @@ class WidgetRevisionModel
      */
     private $controlSettings;
 
+    public function __construct(WidgetModel $widgetModel)
+    {
+        $this->widget = $widgetModel;
+    }
+
     /**
      * Get the value of controlSettings
      *
@@ -38,5 +43,15 @@ class WidgetRevisionModel
         $this->controlSettings = $controlSettings;
 
         return $this;
+    }
+
+    /**
+     * Get the value of widget
+     *
+     * @return  WidgetModel
+     */
+    public function getWidget()
+    {
+        return $this->widget;
     }
 }

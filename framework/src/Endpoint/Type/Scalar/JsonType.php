@@ -19,7 +19,7 @@ final class JsonType extends ScalarType
 
     public function parseValue($value)
     {
-        return $this->decodeJSON($value);
+        return json_decode($value);
     }
 
     public function parseLiteral(Node $valueNode, array $variables = null)
@@ -29,24 +29,6 @@ final class JsonType extends ScalarType
             throw new Error("Can not parse literals without a value: {$withoutValue}.");
         }
 
-        return $this->decodeJSON($valueNode->value);
-    }
-
-    /**
-     * Try to decode a user-given JSON value.
-     *
-     * @param mixed $value A user given JSON
-     * @return mixed The decoded value
-     * @throws Error
-     */
-    protected function decodeJSON(mixed $value): mixed
-    {
-        try {
-            $decoded = json_decode($value);
-        } catch (JsonException $jsonException) {
-            throw new Error($jsonException->getMessage());
-        }
-
-        return $decoded;
+        return json_decode($valueNode->value);
     }
 }

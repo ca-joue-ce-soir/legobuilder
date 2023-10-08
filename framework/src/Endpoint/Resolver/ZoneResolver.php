@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Endpoint\Resolver;
 
-use Legobuilder\Framework\Zone\Factory\ZoneFactoryInterface;
-use Legobuilder\Framework\Zone\ZoneInterface;
+use Legobuilder\Framework\Engine\Zone\Factory\ZoneFactoryInterface;
+use Legobuilder\Framework\Engine\Zone\ZoneInterface;
 
 class ZoneResolver
 {
@@ -14,18 +14,17 @@ class ZoneResolver
      */
     private $zoneFactory;
 
-    public function __construct(ZoneFactoryInterface $zoneFactory) 
+    public function __construct(ZoneFactoryInterface $zoneFactory)
     {
         $this->zoneFactory = $zoneFactory;
     }
 
     /**
-     * Retrieve a specific zone from an identifier.
+     * Retrieves a zone object based on the ID.
      *
-     * @param $rootValue
-     * @param array $args
-     * 
-     * @return ?ZoneInterface The formatted zone
+     * @param mixed $rootValue The root value.
+     * @param array $args The arguments.
+     * @return ZoneInterface|null The retrieved ZoneInterface object, or null if not found.
      */
     public function getZone($rootValue, array $args): ?ZoneInterface
     {

@@ -3,7 +3,7 @@
 namespace Legobuilder\Controller;
 
 use Legobuilder\Endpoint\EndpointRequest;
-use Legobuilder\Framework\EngineInterface;
+use Legobuilder\Framework\Engine\EngineInterface;
 use Legobuilder\Framework\Helper\Vite\Manifest;
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
 use Symfony\Component\HttpFoundation\JsonResponse;

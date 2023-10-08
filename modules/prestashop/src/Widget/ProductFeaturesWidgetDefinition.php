@@ -2,11 +2,10 @@
 
 namespace Legobuilder\Widget;
 
-use Legobuilder\Framework\Control\Type\ColorControl;
-use Legobuilder\Framework\Control\Type\NumberControl;
-use Legobuilder\Framework\Control\Type\TextControl;
-use Legobuilder\Framework\Widget\Definition\Control\WidgetDefinitionControlsBuilderInterface;
-use Legobuilder\Framework\Widget\WidgetInterface;
+use Legobuilder\Framework\Engine\Control\ControlCollection;
+use Legobuilder\Framework\Engine\Control\ControlCollectionInterface;
+use Legobuilder\Framework\Engine\Control\Type\TextControl;
+use Legobuilder\Framework\Engine\Widget\WidgetInterface;
 
 class ProductFeaturesWidgetDefinition extends AbstractPrestashopWidgetDefinition
 {
@@ -35,18 +34,15 @@ class ProductFeaturesWidgetDefinition extends AbstractPrestashopWidgetDefinition
      * 
      * {@inheritdoc}
      */
-    public function buildControls(WidgetDefinitionControlsBuilderInterface $widgetDefinitionControlsBuilder): void
+    protected function configureControls(): ControlCollectionInterface
     {
-        $widgetDefinitionControlsBuilder
-            ->add('control_0', TextControl::class, [
-                'label' => $this->trans('Control 0', 'Modules.Legobuilder.Widget')
-            ])
-            ->add('control_1', NumberControl::class, [
-                'label' => $this->trans('Control 1', 'Modules.Legobuilder.Widget')
-            ])
-            ->add('control_2', ColorControl::class, [
-                'label' => $this->trans('Control 2', 'Modules.Legobuilder.Widget')
-            ])
+        return (new ControlCollection())
+            ->add(
+                (new TextControl('label'))
+                    ->setOptions([
+                        'label' => $this->trans('Label control', 'Modules.Legobuilder.Widget'),
+                    ])
+            )
         ;
     }
 

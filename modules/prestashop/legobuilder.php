@@ -4,11 +4,8 @@ use Doctrine\DBAL\Connection;
 use Legobuilder\Control\ProductControl;
 use Legobuilder\Database\Migration\MigrationDefaultWidgetTable;
 use Legobuilder\Database\Migration\MigrationExecutor;
-use Legobuilder\Framework\Control\Registry\ControlRegistryInterface;
-use Legobuilder\Framework\EngineInterface;
-use Legobuilder\Framework\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
-use Legobuilder\Framework\Zone\Definition\Registry\ZoneDefinitionRegistryInterface;
-use Legobuilder\Framework\Zone\Definition\ZoneDefinition;
+use Legobuilder\Framework\Engine\EngineInterface;
+use Legobuilder\Framework\Engine\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
 use Legobuilder\Widget\ProductFeaturesWidgetDefinition;
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
@@ -72,14 +69,6 @@ class Legobuilder extends Module implements WidgetInterface
 
         return $migrationExecutor;
     }
-
-    public function hookActionLegobuilderRegisterControls(array $params)
-    {
-        /** @var ControlRegistryInterface $registry */
-        $controlRegistry = $params['registry'];
-
-        $controlRegistry->registerControl(new ProductControl());
-    }
     
     public function hookActionLegobuilderRegisterWidgetsDefinitions(array $params)
     {
@@ -93,25 +82,22 @@ class Legobuilder extends Module implements WidgetInterface
         ;
     }
 
-    public function hookActionLegobuilderRegisterZones(array $params)
-    {
-        /** @var ZoneDefinitionRegistryInterface $zoneDefinitionRegistry */
-        $zoneDefinitionRegistry = $params['registry'];
-
-        $zoneDefinitionRegistry
-            ->registerZoneDefinition(new ZoneDefinition('displayHome'))
-            ->registerZoneDefinition(new ZoneDefinition('cms', ['id' => '[0-9]*']));
-    }
-
     public function renderWidget($hookName, array $configuration)
     {
+        if (!isset($configuration['zone'])) {
+            return null;
+        }
+
         /** @var EngineInterface $engine */
         $engine = $this->get('legobuilder.engine');
-        $zoneDefinitionRegistry = $engine->getZoneDefinitionRegistry();
+
+        $zoneFactory = $engine->getZoneFactory();
+        $zone = $zoneFactory->getZone($configuration['zone']);
+
+        return $zone->render();
     }
 
     public function getWidgetVariables($hookName, array $configuration)
     {
-        
     }
 }
