@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Engine\Widget\Definition;
 
-use Legobuilder\Framework\Engine\Control\ControlCollection;
-use Legobuilder\Framework\Engine\Control\ControlCollectionInterface;
+    use Legobuilder\Framework\Engine\Control\ControlCollectionInterface;
 use Legobuilder\Framework\Engine\Control\ControlInterface;
 
 abstract class AbstractWidgetDefinition implements WidgetDefinitionInterface
@@ -18,15 +17,37 @@ abstract class AbstractWidgetDefinition implements WidgetDefinitionInterface
     /**
      * {@inheritdoc}
      */
-    protected function configureControls(): ControlCollectionInterface
+    protected function configureControls(ControlBuilder $builder): ControlCollectionInterface
     {
-        return (new ControlCollection());
+        $builder
+            ->addSection('General')
+            ->addGroup('Group')
+            ->addField('title', TextControl::class, [
+                'label' => $this->trans('Title', 'Modules.Legobuilder.Widget'),
+                'required' => true
+            ])
+            ->addField('title', TextControl::class, [
+                'label' => $this->trans('Title', 'Modules.Legobuilder.Widget'),
+                'required' => true
+            ])
+            ->addField('title', TextControl::class, [
+                'label' => $this->trans('Title', 'Modules.Legobuilder.Widget'),
+                'required' => true
+            ])
+        ;
     }
 
+    /**
+     * Resolves the controls for the widget definition.
+     *
+     * @throws Some_Exception_Class Description of exception
+     */
     private function resolveControls()
     {
-        $controlCollection = $this->configureControls();
-        $this->controls = $controlCollection->toArray();
+        $widgetDefinitionControlBuilder = new WidgetDefinitionControlBuilder();
+        $this->configureControls($widgetDefinitionControlBuilder);
+
+        $this->controls = $widgetDefinitionControlBuilder->getControls();
     }
 
     /**

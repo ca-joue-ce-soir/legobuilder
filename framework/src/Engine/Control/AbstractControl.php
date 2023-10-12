@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Engine\Control;
 
-use Legobuilder\Framework\Engine\Constraint\BooleanConstraint;
-use Legobuilder\Framework\Engine\Constraint\StringConstraint;
 use Legobuilder\Framework\Engine\Control\Exception\OptionNotFoundException;
-use Legobuilder\Framework\Engine\Control\Option\ControlOption;
-use Legobuilder\Framework\Engine\Control\Option\ControlOptionCollection;
-use Legobuilder\Framework\Engine\Control\Option\ControlOptionCollectionInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 abstract class AbstractControl implements ControlInterface
 {
@@ -77,32 +73,15 @@ abstract class AbstractControl implements ControlInterface
      *
      * {@inheritdoc}
      */
-    protected function configureOptions(): ControlOptionCollectionInterface
+    protected function configureOptions(OptionsResolver $optionsResolver): void
     {
-        return (new ControlOptionCollection())
-            ->add(
-                (new ControlOption('label'))
-                    ->setRequired(true)
-                    ->setConstraints([
-                        new StringConstraint()
-                    ])
-            )
-            ->add(
-                (new ControlOption('hint'))
-                    ->setConstraints([
-                        new StringConstraint()
-                    ])
-            )
-            ->add(
-                (new ControlOption('required'))
-                    ->setDefault(false)
-                    ->setConstraints([
-                        new BooleanConstraint()
-                    ])
-            )
-            ->add(
-                (new ControlOption('default'))
-            )
+        $optionsResolver
+            ->setRequired([
+                'label'
+            ])
+            ->setAllowedTypes('label', 'string')
+            ->setAllowedTypes('hint', 'string')
+            ->setAllowedTypes('required', 'bool')
         ;
     }
 
@@ -114,8 +93,10 @@ abstract class AbstractControl implements ControlInterface
      */
     private function resolveOptions(array $options = [])
     {
-        $controlOptionCollection = $this->configureOptions();
-        $this->options = $controlOptionCollection->resolve($options);
+        $optionsResolver = new OptionsResolver();
+        $this->configureOptions($optionsResolver);
+
+        $this->options = $optionsResolver->resolve($options);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace Legobuilder\Widget;
 
 use Legobuilder\Framework\Engine\Control\ControlCollection;
 use Legobuilder\Framework\Engine\Control\ControlCollectionInterface;
+use Legobuilder\Framework\Engine\Control\ControlGroup;
 use Legobuilder\Framework\Engine\Control\Type\TextControl;
 use Legobuilder\Framework\Engine\Widget\WidgetInterface;
 
@@ -34,15 +35,18 @@ class ProductFeaturesWidgetDefinition extends AbstractPrestashopWidgetDefinition
      * 
      * {@inheritdoc}
      */
-    protected function configureControls(): ControlCollectionInterface
+    protected function configureControls(Optionsre): ControlCollectionInterface
     {
         return (new ControlCollection())
             ->add(
-                (new TextControl('title'))
-                    ->setOptions([
-                        'label' => $this->trans('Title', 'Modules.Legobuilder.Widget'),
-                        'required' => true
-                    ])
+                (new ControlGroup('styles'))
+                    ->add(
+                        (new TextControl('title'))
+                            ->setOptions([
+                                'label' => $this->trans('Title', 'Modules.Legobuilder.Widget'),
+                                'required' => true
+                            ])
+                    )
             )
         ;
     }

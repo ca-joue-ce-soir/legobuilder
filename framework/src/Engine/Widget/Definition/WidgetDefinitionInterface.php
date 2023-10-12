@@ -28,6 +28,8 @@ interface WidgetDefinitionInterface
      */
     public function getControls(): array;
 
+    public function setControls(): array;
+
     /**
      * Render the widget from the definition.
      *
