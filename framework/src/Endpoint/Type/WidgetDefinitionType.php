@@ -7,7 +7,7 @@ namespace Legobuilder\Framework\Endpoint\Type;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
-use Legobuilder\Framework\Engine\Widget\Definition\WidgetDefinitionInterface;
+use Legobuilder\Framework\Engine\WidgetDefinition\WidgetDefinitionInterface;
 
 final class WidgetDefinitionType extends ObjectType
 {
@@ -31,7 +31,7 @@ final class WidgetDefinitionType extends ObjectType
                         }
                     ],
                     'controls' => [
-                        'type' => Type::listOf($typeLoader->getByClassName(ControlType::class)),
+                        'type' => Type::listOf($typeLoader->getByClassName(WidgetDefinitionControlsType::class)),
                         'resolve' => function (WidgetDefinitionInterface $widgetDefinition) {
                             return $widgetDefinition->getControls();
                         }

@@ -10,8 +10,8 @@ services:
         public: true
     
     widget.widget_definition_registry:
-        class: 'Legobuilder\Framework\Engine\Widget\Definition\Registry\WidgetDefinitionRegistry'
+        class: 'Legobuilder\Framework\Engine\WidgetDefinition\Registry\WidgetDefinitionRegistry'
 
-    Legobuilder\Framework\Engine\Widget\Definition\Registry\WidgetDefinitionRegistryInterface:
+    Legobuilder\Framework\Engine\WidgetDefinition\Registry\WidgetDefinitionRegistryInterface:
         alias: 'widget.widget_definition_registry'
         public: true

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Endpoint\Resolver;
 
-use Legobuilder\Framework\Engine\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
-use Legobuilder\Framework\Engine\Widget\Definition\WidgetDefinitionInterface;
+use Legobuilder\Framework\Engine\WidgetDefinition\Registry\WidgetDefinitionRegistryInterface;
+use Legobuilder\Framework\Engine\WidgetDefinition\WidgetDefinitionInterface;
 
 class WidgetDefinitionResolver
 {

@@ -6,7 +6,7 @@ namespace Legobuilder\Framework\Engine;
 
 use Legobuilder\Framework\Endpoint\EndpointInterface;
 use Legobuilder\Framework\Persistence\Repository\WidgetRepositoryInterface;
-use Legobuilder\Framework\Engine\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
+use Legobuilder\Framework\Engine\WidgetDefinition\Registry\WidgetDefinitionRegistryInterface;
 use Legobuilder\Framework\Engine\Zone\Factory\ZoneFactoryInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

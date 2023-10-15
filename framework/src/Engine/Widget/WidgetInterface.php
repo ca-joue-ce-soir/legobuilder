@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Engine\Widget;
 
-use Legobuilder\Framework\Engine\Widget\Definition\WidgetDefinitionInterface;
+use Legobuilder\Framework\Engine\WidgetDefinition\WidgetDefinitionInterface;
 
 interface WidgetInterface
 {

@@ -6,7 +6,7 @@ namespace Legobuilder\Framework\Engine\Widget\Factory;
 
 use Legobuilder\Framework\Persistence\Model\WidgetModel;
 use Legobuilder\Framework\Persistence\Repository\WidgetRepositoryInterface;
-use Legobuilder\Framework\Engine\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
+use Legobuilder\Framework\Engine\WidgetDefinition\Registry\WidgetDefinitionRegistryInterface;
 use Legobuilder\Framework\Engine\Widget\Widget;
 use Legobuilder\Framework\Engine\Widget\WidgetInterface;
 

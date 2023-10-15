@@ -18,7 +18,7 @@ abstract class AbstractCollection implements Iterator, Countable, Traversable
     /**
      * Get the current item in the collection.
      *
-     * @return mixed
+     * @return mixed|false
      */
     public function current()
     {
@@ -38,7 +38,7 @@ abstract class AbstractCollection implements Iterator, Countable, Traversable
     /**
      * Get the key of the current item in the collection.
      *
-     * @return mixed
+     * @return int|string|null
      */
     public function key()
     {

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Helper\Vite;
 
-use Exception;
-
 final class Manifest
 {
     /**
