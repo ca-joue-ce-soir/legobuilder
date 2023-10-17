@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Engine\Control\Field\Type;
 
-use Legobuilder\Framework\Engine\Constraint\BooleanConstraint;
 use Legobuilder\Framework\Engine\Control\Field\AbstractControlField;
 
-class RadioControl extends AbstractControlField
+class RadioControlField extends AbstractControlField
 {
     /**
      * Get checkbox control type.

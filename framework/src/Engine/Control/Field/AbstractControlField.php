@@ -79,8 +79,12 @@ abstract class AbstractControlField implements ControlFieldInterface
             ->setRequired([
                 'label'
             ])
+            ->setDefaults([
+                'required' => false,
+                'hint' => null
+            ])
             ->setAllowedTypes('label', 'string')
-            ->setAllowedTypes('hint', 'string')
+            ->setAllowedTypes('hint', ['null', 'string'])
             ->setAllowedTypes('required', 'bool')
         ;
     }

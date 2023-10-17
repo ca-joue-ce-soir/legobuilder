@@ -2,11 +2,9 @@
 
 namespace Legobuilder\Widget;
 
-use Legobuilder\Framework\Engine\Control\ControlCollection;
-use Legobuilder\Framework\Engine\Control\ControlCollectionInterface;
-use Legobuilder\Framework\Engine\Control\ControlGroup;
-use Legobuilder\Framework\Engine\Control\Type\TextControl;
+use Legobuilder\Framework\Engine\Control\Field\Type\TextControlField;
 use Legobuilder\Framework\Engine\Widget\WidgetInterface;
+use Legobuilder\Framework\Engine\WidgetDefinition\Controls\WidgetDefinitionControlsBuilderInterface;
 
 class ProductFeaturesWidgetDefinition extends AbstractPrestashopWidgetDefinition
 {
@@ -35,19 +33,15 @@ class ProductFeaturesWidgetDefinition extends AbstractPrestashopWidgetDefinition
      * 
      * {@inheritdoc}
      */
-    protected function configureControls(Optionsre): ControlCollectionInterface
+    protected function configureControls(WidgetDefinitionControlsBuilderInterface $controlsBuilder): void
     {
-        return (new ControlCollection())
-            ->add(
-                (new ControlGroup('styles'))
-                    ->add(
-                        (new TextControl('title'))
-                            ->setOptions([
-                                'label' => $this->trans('Title', 'Modules.Legobuilder.Widget'),
-                                'required' => true
-                            ])
-                    )
-            )
+        $controlsBuilder
+            ->addSection('generale', $this->trans('General', 'Modules.Legobuilder.Widget'))
+            ->addGroup('group', $this->trans('Group', 'Modules.Legobuilder.Widget'))
+            ->addField('title', TextControlField::class, [
+                'label' => $this->trans('Field widget', 'Modules.Legobuilder.Widget'),
+                'required' => true
+            ])
         ;
     }
 

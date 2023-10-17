@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Engine\Control\Field\Type;
 
-use Legobuilder\Framework\Engine\Constraint\BooleanConstraint;
 use Legobuilder\Framework\Engine\Control\Field\AbstractControlField;
 
-class RepeaterControl extends AbstractControlField
+class TextControlField extends AbstractControlField
 {
     /**
-     * Get checkbox control type.
+     * Get text control type.
      *
      * @return string Control type.
      */
     public function getType(): string
     {
-        return 'repeater';
+        return 'text';
     }
 
     /**

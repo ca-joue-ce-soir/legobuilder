@@ -4,7 +4,7 @@ namespace Legobuilder\Widget;
 
 use Exception;
 use Smarty;
-use Legobuilder\Framework\Engine\Widget\Definition\AbstractWidgetDefinition;
+use Legobuilder\Framework\Engine\WidgetDefinition\AbstractWidgetDefinition;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class AbstractPrestashopWidgetDefinition extends AbstractWidgetDefinition

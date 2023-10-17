@@ -31,7 +31,7 @@ final class WidgetDefinitionType extends ObjectType
                         }
                     ],
                     'controls' => [
-                        'type' => Type::listOf($typeLoader->getByClassName(WidgetDefinitionControlsType::class)),
+                        'type' => $typeLoader->getByClassName(WidgetDefinitionControlsType::class),
                         'resolve' => function (WidgetDefinitionInterface $widgetDefinition) {
                             return $widgetDefinition->getControls();
                         }

@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Engine\Control\Field\Type;
 
-use Legobuilder\Framework\Engine\Constraint\StringConstraint;
 use Legobuilder\Framework\Engine\Control\Field\AbstractControlField;
 
-class TextareaControl extends AbstractControlField
+class TextareaControlField extends AbstractControlField
 {
     /**
      * Get textarea control type.

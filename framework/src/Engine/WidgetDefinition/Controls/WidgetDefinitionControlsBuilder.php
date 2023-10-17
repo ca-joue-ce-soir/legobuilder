@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Engine\WidgetDefinition\Controls;
 
+use Exception;
 use Legobuilder\Framework\Engine\Control\Field\ControlFieldInterface;
 use Legobuilder\Framework\Engine\Control\Group\ControlGroup;
 use Legobuilder\Framework\Engine\Control\Group\ControlGroupInterface;
