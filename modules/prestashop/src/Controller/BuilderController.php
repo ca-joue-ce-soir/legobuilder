@@ -3,8 +3,10 @@
 namespace Legobuilder\Controller;
 
 use Legobuilder\Endpoint\EndpointRequest;
+use Legobuilder\Framework\Endpoint\EndpointInterface;
 use Legobuilder\Framework\Engine\EngineInterface;
 use Legobuilder\Framework\Helper\Vite\Manifest;
+use Legobuilder\Framework\Persistence\Repository\WidgetRepositoryInterface;
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -66,7 +68,8 @@ final class BuilderController extends FrameworkBundleAdminController
             return new JsonResponse(['errors' => $errors, 'request' => $input]);
         }
         
-        $builderEndpoint = $this->engine->getEndpoint();
+        /** @var EndpointInterface $builderEndpoint */
+        $builderEndpoint = $this->get(EndpointInterface::class);
         $endpointResult = $builderEndpoint->execute($endpointRequest->getQuery(), $endpointRequest->getVariables());
 
         return new JsonResponse($endpointResult);

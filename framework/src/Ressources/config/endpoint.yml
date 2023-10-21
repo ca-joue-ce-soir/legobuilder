@@ -1,0 +1,28 @@
+imports:
+    - { resource: ./endpoint/*.yml }
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # Type Loader
+    legobuilder.framework.endpoint.type_loader:
+        class: 'Legobuilder\Framework\Endpoint\Loader\DependencyInjectionTypeLoader'
+        public: true
+        arguments:
+            - !tagged_locator endpoint.type
+
+    Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface:
+        alias: 'legobuilder.framework.endpoint.type_loader'
+        public: true
+
+    # Endpoint
+    legobuilder.framework.endpoint:
+        class: 'Legobuilder\Framework\Endpoint\DependencyInjectionEndpoint'
+        arguments:
+            - '@legobuilder.framework.endpoint.type_loader'
+
+    Legobuilder\Framework\Endpoint\EndpointInterface:
+        alias: 'legobuilder.framework.endpoint'
+        public: true

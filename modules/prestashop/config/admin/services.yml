@@ -1,2 +1,11 @@
 imports:
+    - { resource: ../../vendor/legobuilder/framework/src/Ressources/config/endpoint.yml }
     - { resource: ../common.yml }
+
+services:
+    # Controller
+    Legobuilder\Controller\BuilderController:
+        class: Legobuilder\Controller\BuilderController
+        public: true
+        arguments:
+            - '@legobuilder.engine'

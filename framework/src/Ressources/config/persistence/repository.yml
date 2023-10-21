@@ -1,0 +1,8 @@
+services:
+    # Repository
+    legobuilder.framework.repository.widget_repository:
+        class: Legobuilder\Framework\Persistence\Repository\FileWidgetRepository
+        
+    Legobuilder\Framework\Persistence\Repository\WidgetRepositoryInterface:
+        alias: 'legobuilder.framework.repository.widget_repository'
+        public: true

@@ -1,0 +1,14 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        
+    # Resolver
+    Legobuilder\Framework\Endpoint\Resolver\WidgetDefinitionResolver:
+        class: Legobuilder\Framework\Endpoint\Resolver\WidgetDefinitionResolver
+
+    Legobuilder\Framework\Endpoint\Resolver\WidgetResolver:
+        class: Legobuilder\Framework\Endpoint\Resolver\WidgetResolver
+
+    Legobuilder\Framework\Endpoint\Resolver\ZoneResolver:
+        class: Legobuilder\Framework\Endpoint\Resolver\ZoneResolver

@@ -1,8 +1,25 @@
 imports:
-    - { resource: services/engine.yml }
-    - { resource: services/controller.yml }
+    - { resource: ../vendor/legobuilder/framework/src/Ressources/config/common.yml }
 
 services:
-    _defaults:
+    # Engine
+    legobuilder.engine:
+        class: Legobuilder\Engine\LegobuilderEngine
         public: true
-        autoconfigure: false
+        arguments:
+            - '@legobuilder.framework.widget.widget_definition_registry'
+
+    # Repository
+    Legobuilder\Database\AbstractDatabaseAware:
+        abstract:  true
+        arguments: 
+            - '@doctrine.dbal.default_connection'
+            - '%database_prefix%'
+
+    legobuilder.repository.doctrine_widget_repository:
+        class: Legobuilder\Database\Repository\WidgetRepository
+        parent: Legobuilder\Database\AbstractDatabaseAware
+        
+    Legobuilder\Framework\Persistence\Repository\WidgetRepositoryInterface:
+        alias: 'legobuilder.repository.doctrine_widget_repository'
+        public: true

@@ -1,0 +1,6 @@
+services:
+    # Mutator
+    Legobuilder\Framework\Endpoint\Mutator\ZoneMutator:
+        class: Legobuilder\Framework\Endpoint\Mutator\ZoneMutator
+        arguments:
+            - '@legobuilder.framework.zone.zone_factory'

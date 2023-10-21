@@ -1,0 +1,47 @@
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # GraphQL Object Type
+    Legobuilder\Framework\Endpoint\Type\ControlFieldType:
+        class: Legobuilder\Framework\Endpoint\Type\ControlFieldType
+        tags: ['endpoint.type']
+
+    Legobuilder\Framework\Endpoint\Type\ControlGroupType:
+        class: Legobuilder\Framework\Endpoint\Type\ControlGroupType
+        tags: ['endpoint.type']
+
+    Legobuilder\Framework\Endpoint\Type\ControlSectionType:
+        class: Legobuilder\Framework\Endpoint\Type\ControlSectionType
+        tags: ['endpoint.type']
+
+    Legobuilder\Framework\Endpoint\Type\MutationType:
+        class: Legobuilder\Framework\Endpoint\Type\MutationType
+        tags: ['endpoint.type']
+
+    Legobuilder\Framework\Endpoint\Type\QueryType:
+        class: Legobuilder\Framework\Endpoint\Type\QueryType
+        tags: ['endpoint.type']
+
+    Legobuilder\Framework\Endpoint\Type\WidgetDefinitionControlsType:
+        class: Legobuilder\Framework\Endpoint\Type\WidgetDefinitionControlsType
+        tags: ['endpoint.type']
+
+    Legobuilder\Framework\Endpoint\Type\WidgetDefinitionType:
+        class: Legobuilder\Framework\Endpoint\Type\WidgetDefinitionType
+        tags: ['endpoint.type']
+
+    Legobuilder\Framework\Endpoint\Type\ZoneType:
+        class: Legobuilder\Framework\Endpoint\Type\ZoneType
+        tags: ['endpoint.type']
+
+    Legobuilder\Framework\Endpoint\Type\WidgetType:
+        class: Legobuilder\Framework\Endpoint\Type\WidgetType
+        tags: ['endpoint.type']
+
+    # GraphQL Scalar Type
+    Legobuilder\Framework\Endpoint\Type\Scalar\JsonType:
+        class: Legobuilder\Framework\Endpoint\Type\Scalar\JsonType
+        tags: ['endpoint.type']
