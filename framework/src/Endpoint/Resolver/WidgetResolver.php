@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Endpoint\Resolver;
 
-use Legobuilder\Framework\Engine\Widget\Factory\WidgetFactoryInterface;
-use Legobuilder\Framework\Engine\Widget\WidgetInterface;
+use Legobuilder\Framework\Widget\Factory\WidgetFactoryInterface;
+use Legobuilder\Framework\Widget\WidgetInterface;
 
 class WidgetResolver
 {

@@ -4,9 +4,9 @@ namespace Legobuilder\Controller;
 
 use Legobuilder\Endpoint\EndpointRequest;
 use Legobuilder\Framework\Endpoint\EndpointInterface;
-use Legobuilder\Framework\Engine\EngineInterface;
 use Legobuilder\Framework\Helper\Vite\Manifest;
-use Legobuilder\Framework\Persistence\Repository\WidgetRepositoryInterface;
+use PrestaShop\PrestaShop\Adapter\Shop\Url\BaseUrlProvider;
+use PrestaShop\PrestaShop\Core\Shop\Url\UrlProviderInterface;
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,13 +17,13 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 final class BuilderController extends FrameworkBundleAdminController
 {
     /**
-     * @var EngineInterface
+     * @var UrlProviderInterface
      */
-    private $engine;
+    private $baseUrlProvider;
 
-    public function __construct(EngineInterface $engine)
+    public function __construct(BaseUrlProvider $baseUrlProvider)
     {
-        $this->engine = $engine;
+        $this->baseUrlProvider = $baseUrlProvider;
     }
 
     /**
@@ -36,10 +36,15 @@ final class BuilderController extends FrameworkBundleAdminController
     public function editorAction(): Response
     {
         $viteDevelopmentPort = getenv('LEGOBUILDER_VITE');
-        $viteManifest = new Manifest('');
+        $viteManifest = null;
 
+        if (false == $viteDevelopmentPort) {
+            $viteManifest = new Manifest('a', 'e');
+        }
+        
         return $this->render('@Modules/legobuilder/views/templates/admin/editor.html.twig', [
-            'endpoint_link' => $this->generateUrl('legobuilder_endpoint'),
+            'front_uri' => $this->baseUrlProvider->getUrl(),
+            'endpoint_uri' => $this->generateUrl('legobuilder_endpoint'),
             'vite_port' => $viteDevelopmentPort,
             'vite_manifest' => $viteManifest
         ]);

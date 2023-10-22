@@ -7,7 +7,7 @@ namespace Legobuilder\Framework\Endpoint\Type;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
-use Legobuilder\Framework\Engine\Control\Group\ControlGroupInterface;
+use Legobuilder\Framework\Control\Group\ControlGroupInterface;
 
 final class ControlGroupType extends ObjectType
 {

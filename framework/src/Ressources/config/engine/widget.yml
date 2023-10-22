@@ -1,17 +1,17 @@
 services:
     legobuilder.framework.widget.widget_factory:
-        class: 'Legobuilder\Framework\Engine\Widget\Factory\WidgetFactory'
+        class: 'Legobuilder\Framework\Widget\Factory\WidgetFactory'
         arguments:
             - '@legobuilder.framework.repository.widget_repository'
             - '@legobuilder.framework.widget.widget_definition_registry'
 
-    Legobuilder\Framework\Engine\Widget\Factory\WidgetFactoryInterface:
+    Legobuilder\Framework\Widget\Factory\WidgetFactoryInterface:
         alias: 'legobuilder.framework.widget.widget_factory'
         public: true
     
     legobuilder.framework.widget.widget_definition_registry:
-        class: 'Legobuilder\Framework\Engine\WidgetDefinition\Registry\WidgetDefinitionRegistry'
+        class: 'Legobuilder\Framework\WidgetDefinition\Registry\WidgetDefinitionRegistry'
 
-    Legobuilder\Framework\Engine\WidgetDefinition\Registry\WidgetDefinitionRegistryInterface:
+    Legobuilder\Framework\WidgetDefinition\Registry\WidgetDefinitionRegistryInterface:
         alias: 'legobuilder.framework.widget.widget_definition_registry'
         public: true

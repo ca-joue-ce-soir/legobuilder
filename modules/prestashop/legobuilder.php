@@ -1,12 +1,11 @@
 <?php
 
 use Doctrine\DBAL\Connection;
-use Legobuilder\Control\ProductControl;
 use Legobuilder\Database\Migration\MigrationDefaultWidgetTable;
 use Legobuilder\Database\Migration\MigrationExecutor;
-use Legobuilder\Framework\Engine\EngineInterface;
-use Legobuilder\Framework\Engine\Widget\Definition\Registry\WidgetDefinitionRegistryInterface;
-use Legobuilder\Widget\ProductFeaturesWidgetDefinition;
+use Legobuilder\Framework\WidgetDefinition\Registry\WidgetDefinitionRegistryInterface;
+use Legobuilder\Framework\Zone\Factory\ZoneFactoryInterface;
+use Legobuilder\WidgetDefinition\ProductFeaturesWidgetDefinition;
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
 if (!defined('_PS_VERSION_')) {
@@ -59,6 +58,12 @@ class Legobuilder extends Module implements WidgetInterface
         return $this->getMigrateExecutor()->runDown() && parent::uninstall();
     }
 
+    /**
+     * Retrieves the MigrateExecutor that will be used for the 
+     * database installation and uninstallation.
+     *
+     * @return MigrationExecutor The MigrateExecutor.
+     */
     private function getMigrateExecutor(): MigrationExecutor
     {
         /** @var Connection $doctrineConnection */
@@ -70,6 +75,11 @@ class Legobuilder extends Module implements WidgetInterface
         return $migrationExecutor;
     }
     
+    /**
+     * Registers widget definitions.
+     *
+     * @param array $params Hook parameters.
+     */
     public function hookActionLegobuilderRegisterWidgetsDefinitions(array $params)
     {
         /** @var WidgetDefinitionRegistryInterface $widgetDefinitionRegistry */
@@ -82,22 +92,37 @@ class Legobuilder extends Module implements WidgetInterface
         ;
     }
 
+    /**
+     * Render the zone.
+     *
+     * @param string $hookName The name of the hook.
+     * @param array $configuration The configuration.
+     * 
+     * @return string Rendered zone.
+     */
     public function renderWidget($hookName, array $configuration)
     {
-        if (!isset($configuration['zone'])) {
-            return null;
-        }
-
-        /** @var EngineInterface $engine */
-        $engine = $this->get('legobuilder.engine');
-
-        $zoneFactory = $engine->getZoneFactory();
-        $zone = $zoneFactory->getZone($configuration['zone']);
+        $zone = $this->getWidgetVariables($hookName, $configuration);
 
         return $zone->render();
     }
 
+    /**
+     * Retrieves the widget variables for a given hook name and configuration.
+     *
+     * @param string $hookName The name of the hook.
+     * @param array $configuration The configuration.
+     *
+     * @return Zone The zone.
+     */
     public function getWidgetVariables($hookName, array $configuration)
     {
+        $zoneIdentifier = $configuration['zone'] ?? $hookName;
+
+        /** @var ZoneFactoryInterface $zoneFactory */
+        $zoneFactory = $this->get(ZoneFactoryInterface::class);
+        $zone = $zoneFactory->getZone($zoneIdentifier);
+
+        return $zone;
     }
 }

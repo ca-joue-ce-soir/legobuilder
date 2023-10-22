@@ -1,4 +1,4 @@
-	{
+{
 	"name": "legobuilder",
 	"version": "0.0.0",
 	"private": true,
@@ -18,6 +18,5 @@
 	"engines": {
 		"node": ">=14.0.0"
 	},
-	"dependencies": {},
 	"packageManager": "npm@8.3.0"
 }

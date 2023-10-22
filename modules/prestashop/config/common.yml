@@ -3,11 +3,12 @@ imports:
 
 services:
     # Engine
-    legobuilder.engine:
-        class: Legobuilder\Engine\LegobuilderEngine
+    legobuilder.widget.widget_definition_registry:
+        class: Legobuilder\WidgetDefinition\Registry\WidgetDefinitionRegistry
+
+    Legobuilder\Framework\WidgetDefinition\Registry\WidgetDefinitionRegistryInterface:
+        alias: 'legobuilder.widget.widget_definition_registry'
         public: true
-        arguments:
-            - '@legobuilder.framework.widget.widget_definition_registry'
 
     # Repository
     Legobuilder\Database\AbstractDatabaseAware:
@@ -23,3 +24,4 @@ services:
     Legobuilder\Framework\Persistence\Repository\WidgetRepositoryInterface:
         alias: 'legobuilder.repository.doctrine_widget_repository'
         public: true
+

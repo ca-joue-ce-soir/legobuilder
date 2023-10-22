@@ -11,8 +11,12 @@
 	},
 	"dependencies": {
 		"@legobuilder/ui": "*",
+		"graphql": "^16.8.1",
+		"graphql-request": "^6.1.0",
 		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
+		"react-dom": "^18.2.0",
+		"react-query": "^3.39.3",
+		"urql": "^4.0.5"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.0.0",

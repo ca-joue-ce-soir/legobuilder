@@ -1,10 +1,10 @@
 services:
     legobuilder.framework.zone.zone_factory:
-        class: 'Legobuilder\Framework\Engine\Zone\Factory\ZoneFactory'
+        class: 'Legobuilder\Framework\Zone\Factory\ZoneFactory'
         arguments:
             - '@legobuilder.framework.repository.widget_repository'
             - '@legobuilder.framework.widget.widget_factory'
 
-    Legobuilder\Framework\Engine\Zone\Factory\ZoneFactoryInterface:
+    Legobuilder\Framework\Zone\Factory\ZoneFactoryInterface:
         alias: 'legobuilder.framework.zone.zone_factory'
         public: true

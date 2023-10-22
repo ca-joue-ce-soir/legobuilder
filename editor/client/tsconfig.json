@@ -1,6 +1,6 @@
 {
   "extends": "@legobuilder/configuration/vite.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "index.jsx"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "isolatedModules": false

@@ -7,7 +7,7 @@ namespace Legobuilder\Framework\Endpoint\Type;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
-use Legobuilder\Framework\Engine\WidgetDefinition\WidgetDefinitionInterface;
+use Legobuilder\Framework\WidgetDefinition\WidgetDefinitionInterface;
 
 final class WidgetDefinitionType extends ObjectType
 {

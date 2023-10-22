@@ -7,7 +7,7 @@ namespace Legobuilder\Framework\Endpoint\Type;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
-use Legobuilder\Framework\Engine\Zone\ZoneInterface;
+use Legobuilder\Framework\Zone\ZoneInterface;
 
 final class ZoneType extends ObjectType
 {

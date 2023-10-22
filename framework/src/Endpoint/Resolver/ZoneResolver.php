@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Legobuilder\Framework\Endpoint\Resolver;
 
-use Legobuilder\Framework\Engine\Zone\Factory\ZoneFactoryInterface;
-use Legobuilder\Framework\Engine\Zone\ZoneInterface;
+use Legobuilder\Framework\Zone\Factory\ZoneFactoryInterface;
+use Legobuilder\Framework\Zone\ZoneInterface;
 
 class ZoneResolver
 {

@@ -8,7 +8,7 @@ use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use Legobuilder\Framework\Endpoint\Loader\TypeLoaderInterface;
 use Legobuilder\Framework\Endpoint\Type\Scalar\JsonType;
-use Legobuilder\Framework\Engine\Control\Field\ControlFieldInterface;
+use Legobuilder\Framework\Control\Field\ControlFieldInterface;
 
 final class ControlFieldType extends ObjectType
 {
